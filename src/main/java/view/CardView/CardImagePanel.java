@@ -16,6 +16,7 @@ import View.Gui.Panels.ShopPanel.PanelToShowCardInBuySellPanel;
 import View.Gui.Panels.ShopPanel.ShopPage;
 import Visitors.CardVisitors.AfterSelectVisitor;
 import Visitors.PowerVisitor.HeroPowerVisitor.AfterSelectPowerVisitor;
+import controller.Controller;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -227,6 +228,7 @@ public class CardImagePanel extends JPanel implements MouseListener, MouseMotion
         if (ControllerOfMainComponents.getStatus().equals(Status.CHOOSE_TARGET_FOR_SPELL)) {
             if (SwingUtilities.isLeftMouseButton(e)) {
 
+
                 int xCoordinateOfCard = e.getComponent().getX();
                 int yCoordinateOfCard = e.getComponent().getY();
                 GamePartController.setTargetOfSpell(getNumber(xCoordinateOfCard), alliance);
@@ -356,6 +358,9 @@ public class CardImagePanel extends JPanel implements MouseListener, MouseMotion
         } else {
 
 
+
+
+
             if (SwingUtilities.isRightMouseButton(e)) {
                 UIManager UI = new UIManager();
                 UI.put("OptionPane.background", Color.cyan);
@@ -367,48 +372,7 @@ public class CardImagePanel extends JPanel implements MouseListener, MouseMotion
                 UIManager.put("OptionPane.minimumSize", new Dimension(200, 80));
                 UIManager.put("OptionPane.minimumSize", UIManager.getDefaults().getDimension("OptionPane.minimumSize"));
             } else if (SwingUtilities.isLeftMouseButton(e)) {
-                if (ControllerOfMainComponents.getStatus().equals(Status.BUY_PAGE)) {
-
-                    PanelToShowCardInBuySellPanel.getInstance().removeAll();
-                    PanelToShowCardInBuySellPanel.getInstance().repaint();
-                    PanelToShowCardInBuySellPanel.getInstance().revalidate();
-                    BuySellPanel.getInstance().getPriceLabel().setText("");
-                    Administer.defineShopStateCard(cardName);
-                    BuySellPanel.getInstance().getPriceLabel().setText("Price " + Administer.getMoneyOfShopStatesCard() + " $");
-                    PanelToShowCardInBuySellPanel.getInstance().repaint();
-                    PanelToShowCardInBuySellPanel.getInstance().revalidate();
-
-                } else if (ControllerOfMainComponents.getStatus().equals(Status.SELL_PAGE)) {
-
-                    
-                    PanelToShowCardInBuySellPanel.getInstance().removeAll();
-                    PanelToShowCardInBuySellPanel.getInstance().repaint();
-                    PanelToShowCardInBuySellPanel.getInstance().revalidate();
-                    BuySellPanel.getInstance().getPriceLabel().setText("");
-                    Administer.defineShopStateCard(cardName);
-                    BuySellPanel.getInstance().getPriceLabel().setText("Price " + Administer.getMoneyOfShopStatesCard() + " $");
-                    PanelToShowCardInBuySellPanel.getInstance().repaint();
-                    PanelToShowCardInBuySellPanel.getInstance().revalidate();
-
-
-
-                } else if (ControllerOfMainComponents.getStatus().equals(Status.COLLECTIONS_PAGE)) {
-                    if (this.isLock) {
-                        ControllerOfMainComponents.setStatus(Status.BUY_PAGE_FROM_COLLECTION);
-                        MyMainFrame.getInstance().setContentPane(ShopPage.getInstance());
-                    } else {
-                        JOptionPane.showMessageDialog(null, "You can't Buy this card:((");
-                    }
-                } else if (ControllerOfMainComponents.getStatus().equals(Status.MAKE_DECK) || ControllerOfMainComponents.getStatus().equals(Status.CHANGE_DECK)) {
-
-                    try {
-                        Administer.addGivenCardToCollectionDeck(cardName, isLock);
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
-
-                }
-
+                Controller.getCurrentClient().sendLeftClickRequest(cardName,isLock);
             }
         }
 

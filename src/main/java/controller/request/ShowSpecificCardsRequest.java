@@ -5,13 +5,15 @@ public class ShowSpecificCardsRequest extends Request {
 
     private String group;
     private String userName;
+    private String panelName;
 
 
-    public ShowSpecificCardsRequest(String sendersToken, String userName, String group) {
+    public ShowSpecificCardsRequest(String sendersToken, String userName, String group,String panelName) {
         setRequestType("ShowSpecificCardsRequest");
         setRequestSendersToken(sendersToken);
         this.group = group;
         this.userName = userName;
+        this.panelName = panelName;
     }
 
 
@@ -29,5 +31,13 @@ public class ShowSpecificCardsRequest extends Request {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getPanelName() {
+        return panelName;
+    }
+
+    public void setPanelName(String panelName) {
+        this.panelName = panelName;
     }
 }

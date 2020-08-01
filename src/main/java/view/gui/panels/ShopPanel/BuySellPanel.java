@@ -1,22 +1,16 @@
 package view.gui.panels.ShopPanel;
 
-import Controller.Administer;
-import Controller.ControllerOfMainComponents;
-import Logic.Status;
-import Utility.Config2.ConfigLoader;
+
+import controller.Controller;
 import utility.constant.Constant;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.Properties;
 
 public class BuySellPanel extends JPanel {
-
-
 
 
     private Color colorOfTextOfBtn = new Color(255, 0, 0);
@@ -56,7 +50,6 @@ public class BuySellPanel extends JPanel {
     }
 
 
-
     private void initTransactionBtn() {
         transactionBtn = new JButton("Transaction");
         transactionBtn.setSize(WIDTH_OF_BTN, HEIGHT_OF_BTN);
@@ -67,84 +60,10 @@ public class BuySellPanel extends JPanel {
         transactionBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                PanelToShowCardInBuySellPanel panelToShowCardInBuySellPanel = (PanelToShowCardInBuySellPanel)
+                        Constant.getPanels().get("PanelToShowCardInBuySellPanel");
 
-                if (Administer.isShopStateCardNull()) {
-                    JOptionPane.showMessageDialog(null,
-                            "Please select a card!",
-                            "Error",
-                            JOptionPane.ERROR_MESSAGE);
-
-                } else {
-                    if (ControllerOfMainComponents.getStatus().equals(Status.BUY_PAGE)) {
-
-                        int reply = JOptionPane.showConfirmDialog(null, "Are you sure that you want buy this card?\n" +
-                                        "this card cost" + Administer.getMoneyOfShopStatesCard() + "$",
-                                "Buy", JOptionPane.YES_NO_OPTION);
-
-                        if (reply == JOptionPane.YES_OPTION) {
-                            try {
-                                Administer.buyShopStateCard();
-                                Administer.playActionSounds("BuyCard");
-                                Administer.makeShopStateCardNull();
-                                PanelToShowCardInBuySellPanel panelToShowCardInBuySellPanel =
-                                        (PanelToShowCardInBuySellPanel) Constant.getPanels().get("PanelToShowCardInBuySellPanel");
-                                panelToShowCardInBuySellPanel.removeAll();
-                                panelToShowCardInBuySellPanel.repaint();
-                                panelToShowCardInBuySellPanel.revalidate();
-                                BuySellPanel buySellPanel =(BuySellPanel)Constant.getPanels().get("BuySellPanel");
-                                buySellPanel.getPriceLabel().setText("");
-                                ButtonPanel.showBuyableCards();
-
-                            } catch (IOException ex) {
-                                ex.printStackTrace();
-                            }
-
-                        }
-                    } else if (ControllerOfMainComponents.getStatus().equals(Status.SELL_PAGE)) {
-                        try {
-                            if (Administer.isShopStateCardNull()) {
-                                JOptionPane.showConfirmDialog(null, "Please select a card!",
-                                        "Error", JOptionPane.ERROR_MESSAGE);
-                            } else {
-                                int reply = JOptionPane.showConfirmDialog(null,
-                                        "Are you sure that you want sell this card?\n" +
-                                                "this card cost" + Administer.getMoneyOfShopStatesCard() + "$",
-                                        "Sell", JOptionPane.YES_NO_OPTION);
-
-                                if (reply == JOptionPane.YES_OPTION) {
-
-                                    if (!Administer.isShopStateCardInMyDecks()) {
-                                        Administer.sellShopStateCard();
-                                        Administer.playActionSounds("SellCard");
-                                        ButtonPanel.showSalableCards();
-                                        Administer.makeShopStateCardNull();
-                                        PanelToShowCardInBuySellPanel panelToShowCardInBuySellPanel =
-                                                (PanelToShowCardInBuySellPanel) Constant.getPanels().get("PanelToShowCardInBuySellPanel");
-                                        panelToShowCardInBuySellPanel.removeAll();
-                                        panelToShowCardInBuySellPanel.repaint();
-                                        panelToShowCardInBuySellPanel.revalidate();
-                                        BuySellPanel buySellPanel =(BuySellPanel)Constant.getPanels().get("BuySellPanel");
-                                        buySellPanel.getPriceLabel().setText("");
-                                    } else {
-                                        JOptionPane.showMessageDialog(null, "This card is in your deck",
-                                                "Error", JOptionPane.ERROR_MESSAGE);
-                                        Administer.makeShopStateCardNull();
-                                        PanelToShowCardInBuySellPanel panelToShowCardInBuySellPanel =
-                                                (PanelToShowCardInBuySellPanel) Constant.getPanels().get("PanelToShowCardInBuySellPanel");
-
-                                        panelToShowCardInBuySellPanel.removeAll();
-                                        panelToShowCardInBuySellPanel.repaint();
-                                        panelToShowCardInBuySellPanel.revalidate();
-                                        BuySellPanel buySellPanel =(BuySellPanel)Constant.getPanels().get("BuySellPanel");
-                                        buySellPanel.getPriceLabel().setText("");
-                                    }
-                                }
-                            }
-                        } catch (IOException ex) {
-                            ex.printStackTrace();
-                        }
-                    }
-                }
+                Controller.getCurrentClient().sendTransactionRequest(panelToShowCardInBuySellPanel.getCardToShowName());
             }
         });
         add(transactionBtn);

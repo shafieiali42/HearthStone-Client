@@ -39,6 +39,7 @@ public class Constant {
         panels.put("ShopCardPanel",new ShopCardPanel());
         panels.put("PanelToShowCardInBuySellPanel",new PanelToShowCardInBuySellPanel());
         panels.put("BuySellPanel",new BuySellPanel());
+
     }
 
     public static HashMap<String, JPanel> getPanels() {

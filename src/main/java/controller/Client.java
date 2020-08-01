@@ -116,14 +116,37 @@ public class Client extends Thread{
     }
 
 
+    public void sendTransactionRequest(String cardName){
+        Request request =new TransactionRequest(Controller.getCurrentPlayerUserName(),cardName);
+        String message =new Gson().toJson(request);
+        sendRequest(authToken,"TransactionRequest",message);
+    }
+
+
+
+    public void sendMakeNewDeckRequest(String deckName,String heroName){
+        Request request =new MakeNewDeckRequest();
+        String message =new Gson().toJson(request);
+        sendRequest(authToken,"MakeNewDeckRequest",message);
+    }
+
+
+
+    public void sendLeftClickRequest(String cardName,boolean isLock){
+        Request request =new LeftClickRequest(authToken,Controller.getCurrentPlayerUserName(),isLock);
+        String message =new Gson().toJson(request);
+        sendRequest(authToken,"LeftClickRequest",message);
+    }
+
+
     public void sendShowWalletRequest(String userName){
         Request request =new ShowWalletRequest(authToken,userName);
         String message =new Gson().toJson(request);
         sendRequest(authToken,"ShowWalletRequest",message);
     }
 
-    public void sendShowSpecificCardsRequest(String group){
-        Request request =new ShowSpecificCardsRequest(authToken,Controller.getCurrentPlayerUserName(),group);
+    public void sendShowSpecificCardsRequest(String group,String pageName){
+        Request request =new ShowSpecificCardsRequest(authToken,Controller.getCurrentPlayerUserName(),group,pageName);
         String message =new Gson().toJson(request);
         sendRequest(authToken,"ShowSpecificCardsRequest",message);
     }
@@ -146,6 +169,11 @@ public class Client extends Thread{
         String message =new Gson().toJson(request);
         sendRequest(authToken,"ShowDeckNumberRequest",message);
     }
+
+
+
+
+
 
 
     //getter and setters

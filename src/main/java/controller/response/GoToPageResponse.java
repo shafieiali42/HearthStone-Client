@@ -33,6 +33,8 @@ public class GoToPageResponse extends Response {
             case "CollectionPage":
                 ClientMain.getMyMainFrame().setContentPane(Constant.getPanels().get("CollectionPage"));
                 break;
+            case "DeckPage":
+                ClientMain.getMyMainFrame().setContentPane(Constant.getPanels().get("DeckPage"));
             case "MainMenuPage":
                 ShowDeckInfoPanel showDeckInfoPanel = (ShowDeckInfoPanel) Constant.getPanels().get("ShowDeckInfoPanel");
                 showDeckInfoPanel.setReadyToShow(false);

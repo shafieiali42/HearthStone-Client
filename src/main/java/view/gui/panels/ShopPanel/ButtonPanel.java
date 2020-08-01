@@ -78,7 +78,7 @@ public class ButtonPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 //                    Administer.writeLog("Show salable cards");
 //                    CLI.currentPlayer.getLoggerOfMyPlayer().info("Show salable cards");
-                Controller.getCurrentClient().sendShowSpecificCardsRequest("Salable");
+                Controller.getCurrentClient().sendShowSpecificCardsRequest("Salable","ShopCardPanel");
 
             }
         });
@@ -94,7 +94,7 @@ public class ButtonPanel extends JPanel {
                 //                    Administer.writeLog("Show buyable cards");
 //                    CLI.currentPlayer.getLoggerOfMyPlayer().info("Show buyable cards");
 //                    showBuyableCards();
-                Controller.getCurrentClient().sendShowSpecificCardsRequest("Buyable");
+                Controller.getCurrentClient().sendShowSpecificCardsRequest("Buyable","ShopCardPanel");
             }
         });
         add(buyableCardsBtn);

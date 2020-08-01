@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class MethodsOfShowCardsOnPanel {
 
     //this method used to show cards in shop and collection pages :))
-    public static void showCards(ArrayList<String> cards, JPanel panel, int numOfCardInEveryRow) throws IOException {
+    public static void showCards(ArrayList<String> cards, JPanel panel, int numOfCardInEveryRow) {
         panel.removeAll();
         panel.repaint();
         panel.revalidate();
@@ -22,14 +22,19 @@ public class MethodsOfShowCardsOnPanel {
         int ySpace = 10;
         for (String cardName : cards) {
             counter++;
-            CardImagePanel cardImagePanel = new CardImagePanel(cardName);
-            addPanel(cardImagePanel, panel, xCoordinate, yCoordinate, cardImagePanel.getWidth(),
-                    cardImagePanel.getHeight());
-            if (counter % numOfCardInEveryRow == 0) {
-                xCoordinate = 10;
-                yCoordinate += cardImagePanel.getHeight() + ySpace;
-            } else {
-                xCoordinate += xSapce;
+            CardImagePanel cardImagePanel = null;
+            try {
+                cardImagePanel = new CardImagePanel(cardName);
+                addPanel(cardImagePanel, panel, xCoordinate, yCoordinate, cardImagePanel.getWidth(),
+                        cardImagePanel.getHeight());
+                if (counter % numOfCardInEveryRow == 0) {
+                    xCoordinate = 10;
+                    yCoordinate += cardImagePanel.getHeight() + ySpace;
+                } else {
+                    xCoordinate += xSapce;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }

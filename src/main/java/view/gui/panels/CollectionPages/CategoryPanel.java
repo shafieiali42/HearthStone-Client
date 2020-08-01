@@ -1,6 +1,7 @@
 package view.gui.panels.CollectionPages;
 
 
+import controller.Controller;
 import utility.constant.Constant;
 
 import javax.swing.*;
@@ -62,11 +63,8 @@ public class CategoryPanel extends JPanel {
         lockBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    CollectionController.showLockCards(Constant.getPanels().get("cardPanelOfCollectionPage"), CardPanel.getNumOfCardInEveryRow());
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+                Controller.getCurrentClient().sendShowSpecificCardsRequest("LockCards","cardPanelOfCollectionPage");
+//                    CollectionController.showLockCards(Constant.getPanels().get("cardPanelOfCollectionPage"), CardPanel.getNumOfCardInEveryRow());
             }
         });
         add(lockBtn);
@@ -79,11 +77,8 @@ public class CategoryPanel extends JPanel {
         unLockBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    CollectionController.showUnLockCards(Constant.getPanels().get("cardPanelOfCollectionPage"), CardPanel.getNumOfCardInEveryRow());
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+                Controller.getCurrentClient().sendShowSpecificCardsRequest("UnLockCards","cardPanelOfCollectionPage");
+//                CollectionController.showUnLockCards(Constant.getPanels().get("cardPanelOfCollectionPage"), CardPanel.getNumOfCardInEveryRow());
             }
         });
         add(unLockBtn);
@@ -95,11 +90,8 @@ public class CategoryPanel extends JPanel {
         allCardBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    CollectionController.showAllCards(Constant.getPanels().get("cardPanelOfCollectionPage"), CardPanel.getNumOfCardInEveryRow());
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+                Controller.getCurrentClient().sendShowSpecificCardsRequest("AllCards","cardPanelOfCollectionPage");
+//                CollectionController.showAllCards(Constant.getPanels().get("cardPanelOfCollectionPage"), CardPanel.getNumOfCardInEveryRow());
             }
         });
         add(allCardBtn);
@@ -111,12 +103,9 @@ public class CategoryPanel extends JPanel {
         neutralBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    CollectionController.showCardsOnCardPanelWithSpecifiedClass("Neutral",
-                            Constant.getPanels().get("cardPanelOfCollectionPage"), CardPanel.getNumOfCardInEveryRow());
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+                Controller.getCurrentClient().sendShowSpecificCardsRequest("NeutralCards","cardPanelOfCollectionPage");
+                //                    CollectionController.showCardsOnCardPanelWithSpecifiedClass("Neutral",
+//                            Constant.getPanels().get("cardPanelOfCollectionPage"), CardPanel.getNumOfCardInEveryRow());
             }
         });
         add(neutralBtn);
@@ -128,12 +117,9 @@ public class CategoryPanel extends JPanel {
         priestBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    CollectionController.showCardsOnCardPanelWithSpecifiedClass("Priest",
-                            Constant.getPanels().get("cardPanelOfCollectionPage"), CardPanel.getNumOfCardInEveryRow());
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+                Controller.getCurrentClient().sendShowSpecificCardsRequest("PriestCards","cardPanelOfCollectionPage");
+                //                    CollectionController.showCardsOnCardPanelWithSpecifiedClass("Priest",
+//                            Constant.getPanels().get("cardPanelOfCollectionPage"), CardPanel.getNumOfCardInEveryRow());
             }
         });
         add(priestBtn);
@@ -145,12 +131,9 @@ public class CategoryPanel extends JPanel {
         hunterBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    CollectionController.showCardsOnCardPanelWithSpecifiedClass("Hunter",
-                            Constant.getPanels().get("cardPanelOfCollectionPage"), CardPanel.getNumOfCardInEveryRow());
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+                Controller.getCurrentClient().sendShowSpecificCardsRequest("HunterCards","cardPanelOfCollectionPage");
+                //                    CollectionController.showCardsOnCardPanelWithSpecifiedClass("Hunter",
+//                            Constant.getPanels().get("cardPanelOfCollectionPage"), CardPanel.getNumOfCardInEveryRow());
             }
         });
         add(hunterBtn);
@@ -162,12 +145,9 @@ public class CategoryPanel extends JPanel {
         warlockBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    CollectionController.showCardsOnCardPanelWithSpecifiedClass("Warlock",
-                            Constant.getPanels().get("cardPanelOfCollectionPage"), CardPanel.getNumOfCardInEveryRow());
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+                Controller.getCurrentClient().sendShowSpecificCardsRequest("WarlockCards","cardPanelOfCollectionPage");
+                //                    CollectionController.showCardsOnCardPanelWithSpecifiedClass("Warlock",
+//                            Constant.getPanels().get("cardPanelOfCollectionPage"), CardPanel.getNumOfCardInEveryRow());
             }
         });
         add(warlockBtn);
@@ -179,12 +159,9 @@ public class CategoryPanel extends JPanel {
         rogueBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    CollectionController.showCardsOnCardPanelWithSpecifiedClass("Rogue",
-                            Constant.getPanels().get("cardPanelOfCollectionPage"), CardPanel.getNumOfCardInEveryRow());
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+                Controller.getCurrentClient().sendShowSpecificCardsRequest("RogueCards","cardPanelOfCollectionPage");
+                //                    CollectionController.showCardsOnCardPanelWithSpecifiedClass("Rogue",
+//                            Constant.getPanels().get("cardPanelOfCollectionPage"), CardPanel.getNumOfCardInEveryRow());
             }
         });
         add(rogueBtn);
@@ -196,13 +173,10 @@ public class CategoryPanel extends JPanel {
         mageBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    CollectionController.showCardsOnCardPanelWithSpecifiedClass("Mage",
-                            Constant.getPanels().get("cardPanelOfCollectionPage"), CardPanel.getNumOfCardInEveryRow());
+                Controller.getCurrentClient().sendShowSpecificCardsRequest("MageCards","cardPanelOfCollectionPage");
+                //                    CollectionController.showCardsOnCardPanelWithSpecifiedClass("Mage",
+//                            Constant.getPanels().get("cardPanelOfCollectionPage"), CardPanel.getNumOfCardInEveryRow());
 //                    filterByClassOfCard("Mage");
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
             }
         });
         add(mageBtn);

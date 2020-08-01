@@ -1,9 +1,10 @@
 package view.gui.panels.CollectionPages;
 
 
-
 import Main.ClientMain;
+import controller.Controller;
 import utility.constant.Constant;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -22,8 +23,6 @@ public class DeckPanel extends JPanel {
 //    public static DeckPanel getInstance() {
 //        return deckPanel;
 //    }
-
-
 
 
     private JButton newDeckBtn;
@@ -79,24 +78,21 @@ public class DeckPanel extends JPanel {
         newDeckBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ControllerOfMainComponents.setStatus(Status.MAKE_DECK);
+//                ControllerOfMainComponents.setStatus(Status.MAKE_DECK);
                 makeNewDeck();
-
             }
         });
         this.add(newDeckBtn);
     }
 
     private void makeNewDeck() {
-
-        DeckViewer deckViewer=(DeckViewer)Constant.getPanels().get("DeckViewer");
+        DeckViewer deckViewer = (DeckViewer) Constant.getPanels().get("DeckViewer");
         deckViewer.removeAll();
         deckViewer.repaint();
         deckViewer.revalidate();
         LittleCardPanel.setAllLittleCardPanels();
-        CollectionController.makeCollectionStatesDeckToNull();
-        ((DeckPage)Constant.getPanels().get("DeckPage")).setNameOfDeckToChange("");
-
+//        CollectionController.makeCollectionStatesDeckToNull();
+        ((DeckPage) Constant.getPanels().get("DeckPage")).setNameOfDeckToChange("");
         String name = JOptionPane.showInputDialog("Enter your favorite name!");
         Object[] possibilities = {"Mage", "Rogue", "Warlock", "Hunter", "Priest"};
         Icon questionError = UIManager.getIcon("OptionPane.questionIcon");
@@ -108,20 +104,20 @@ public class DeckPanel extends JPanel {
                 questionError,
                 possibilities,
                 "Mage");
-
-        CollectionController.makeNewDeck(name, heroName);
-        ((DeckPage)Constant.getPanels().get("DeckPage")).setNameOfDeckToChange(name);
-
-       ClientMain.getMyMainFrame().setContentPane(DeckPage.getInstance());
+        Controller.getCurrentClient().sendMakeNewDeckRequest(name, heroName);
+//        CollectionController.makeNewDeck(name, heroName);
+//        ((DeckPage) Constant.getPanels().get("DeckPage")).setNameOfDeckToChange(name);
+//        Controller.getCurrentClient().sendGoToPage(Controller.getCurrentPlayerUserName(), "DeckPage");
+//        ClientMain.getMyMainFrame().setContentPane(DeckPage.getInstance());
     }
 
     public void showDeckButtons() {
-        DeckPanel deckPanel=(DeckPanel) Constant.getPanels().get("DeckPanel");
+        DeckPanel deckPanel = (DeckPanel) Constant.getPanels().get("DeckPanel");
         deckPanel.removeAll();
         deckPanel.repaint();
         deckPanel.revalidate();
         this.add(newDeckBtn);
-        if (CollectionController.getListOfPlayersDeckNames().size()!=0) {
+        if (CollectionController.getListOfPlayersDeckNames().size() != 0) {
             for (String deckName : CollectionController.getListOfPlayersDeckNames()) {
                 initButtonForDeck(deckName);
             }
@@ -130,8 +126,8 @@ public class DeckPanel extends JPanel {
 
 
     private void showDeck() {
-       ClientMain.getMyMainFrame().setContentPane(Constant.getPanels().get("DeckPage"));
-        DeckViewer deckViewer=(DeckViewer)Constant.getPanels().get("DeckViewer");
+        ClientMain.getMyMainFrame().setContentPane(Constant.getPanels().get("DeckPage"));
+        DeckViewer deckViewer = (DeckViewer) Constant.getPanels().get("DeckViewer");
         deckViewer.removeAll();
         deckViewer.repaint();
         deckViewer.revalidate();

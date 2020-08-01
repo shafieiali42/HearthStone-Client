@@ -2,6 +2,7 @@ package view.gui.panels.CollectionPages;
 
 
 import Main.ClientMain;
+import controller.Controller;
 import utility.constant.Constant;
 
 import javax.swing.*;
@@ -19,7 +20,6 @@ public class CategoryPanelOfChangeDeck extends JPanel {
 
     private Color colorOfTextOfBtn = new Color(255, 0, 0);
     private Color colorOfBtn = new Color(48, 48, 45);
-
 
 
     private JButton HeroCardsBtn;
@@ -65,7 +65,7 @@ public class CategoryPanelOfChangeDeck extends JPanel {
         System.out.println("select deck");
         CollectionController.selectMainDeck();
         JOptionPane.showMessageDialog(null, "Your Deck is:" +
-                ((DeckPage)Constant.getPanels().get("DeckPage")).getNameOfDeckToChange());
+                ((DeckPage) Constant.getPanels().get("DeckPage")).getNameOfDeckToChange());
 //        CLI.currentPlayer.getLoggerOfMyPlayer().info("select " + DeckPage.getInstance().getDeckTOChange().getName() + " for main deck");
     }
 
@@ -82,7 +82,7 @@ public class CategoryPanelOfChangeDeck extends JPanel {
     }
 
     private void changeName() {
-        String name=JOptionPane.showInputDialog("Enter your favorite name!");
+        String name = JOptionPane.showInputDialog("Enter your favorite name!");
         CollectionController.changeNameOfDeck(name);
 //        DeckPage.getInstance().getDeckTOChange().setName(JOptionPane.showInputDialog("Enter your favorite name!"));
 //        CLI.currentPlayer.getLoggerOfMyPlayer().info("Change name of deck ");
@@ -140,10 +140,10 @@ public class CategoryPanelOfChangeDeck extends JPanel {
     private void removeDeck() {
 //        CLI.currentPlayer.getAllDecksOfPlayer().remove(DeckPage.getInstance().getDeckTOChange());
         CollectionController.removeDeck();
-        ((DeckPanel)Constant.getPanels().get("DeckPanel")).showDeckButtons();
+        ((DeckPanel) Constant.getPanels().get("DeckPanel")).showDeckButtons();
 //        CollectionPage.getInstance().repaint();
 //        CollectionPage.getInstance().revalidate();
-     ClientMain.getMyMainFrame().setContentPane(Constant.getPanels().get("CollectionPage"));
+        ClientMain.getMyMainFrame().setContentPane(Constant.getPanels().get("CollectionPage"));
 //        CLI.currentPlayer.getLoggerOfMyPlayer().info("Removed "+DeckPage.getInstance().getDeckTOChange().getName());
     }
 
@@ -153,12 +153,9 @@ public class CategoryPanelOfChangeDeck extends JPanel {
         neutralBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    CollectionController.showCardsOnCardPanelWithSpecifiedClass("Neutral",
-                            Constant.getPanels().get("cardPanelOfDeckPage"), CardPanel.getNumOfCardInEveryRow());
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+                Controller.getCurrentClient().sendShowSpecificCardsRequest("NeutralCards", "cardPanelOfDeckPage");
+//                    CollectionController.showCardsOnCardPanelWithSpecifiedClass("Neutral",
+//                            Constant.getPanels().get("cardPanelOfDeckPage"), CardPanel.getNumOfCardInEveryRow());
             }
         });
         add(neutralBtn);
@@ -171,8 +168,11 @@ public class CategoryPanelOfChangeDeck extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    CollectionController.showCardsOnCardPanelWithSpecifiedClass(CollectionController.getHeroNameOfDeckToChange(),
-                            Constant.getPanels().get("cardPanelOfDeckPage"), CardPanel.getNumOfCardInEveryRow());
+                    Controller.getCurrentClient().sendShowSpecificCardsRequest(
+                            CollectionController.getHeroNameOfDeckToChange()+"Cards", "cardPanelOfDeckPage");
+
+//                    CollectionController.showCardsOnCardPanelWithSpecifiedClass(CollectionController.getHeroNameOfDeckToChange(),
+//                            Constant.getPanels().get("cardPanelOfDeckPage"), CardPanel.getNumOfCardInEveryRow());
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
