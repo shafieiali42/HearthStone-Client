@@ -1,9 +1,12 @@
 package controller.response;
 
 import Main.ClientMain;
+import utility.constant.Constant;
 import view.gui.panels.CollectionPages.CollectionPage;
+import view.gui.panels.MenuPanel.MainMenuPage;
 import view.gui.panels.SettingPanel.SettingPage;
 import view.gui.panels.ShopPanel.ShopPage;
+import view.gui.panels.StatusPanel.ShowDeckInfoPanel;
 import view.gui.panels.StatusPanel.StatusPage;
 
 public class GoToPageResponse extends Response {
@@ -28,9 +31,16 @@ public class GoToPageResponse extends Response {
                 ClientMain.getMyMainFrame().setContentPane(new ShopPage());
                 break;
             case "CollectionPage":
-                ClientMain.getMyMainFrame().setContentPane(new CollectionPage());
+                ClientMain.getMyMainFrame().setContentPane(Constant.getPanels().get("CollectionPage"));
                 break;
-
+            case "MainMenuPage":
+                ShowDeckInfoPanel showDeckInfoPanel = (ShowDeckInfoPanel) Constant.getPanels().get("ShowDeckInfoPanel");
+                showDeckInfoPanel.setReadyToShow(false);
+                showDeckInfoPanel.removeAll();
+                showDeckInfoPanel.repaint();
+                showDeckInfoPanel.revalidate();
+                ClientMain.getMyMainFrame().setContentPane(new MainMenuPage());
+                break;
         }
     }
 

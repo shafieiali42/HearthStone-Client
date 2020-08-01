@@ -1,47 +1,25 @@
 package view.gui.panels.StatusPanel;
 
 
-import Controller.Administer;
-import Controller.ControllerOfMainComponents;
-import Logic.Status;
-import Utility.Config2.ConfigLoader;
-import View.Gui.Panels.MenuPanel.MainMenuPage;
-import View.Gui.Panels.MyMainFrame.MyMainFrame;
+import Main.ClientMain;
+import controller.Administer;
+import controller.Controller;
 import utility.constant.Constant;
+import view.gui.panels.MenuPanel.MainMenuPage;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.util.Properties;
 
 
 public class RankedPanel extends JPanel {
 
 
-    private Properties properties;
-
-    {
-        try {
-            properties = ConfigLoader.getInstance().readProperties("src/main/resources/ConfigFiles/graphicConfigFiles/Panels/StatusPanel/RankedPanel.properties");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    int WIDE_OF_RANKED_PANEL=Integer.parseInt(properties.getProperty("WIDE_OF_RANKED_PANEL"));
-    int HEIGHT_OF_RANKED_PANEL=Integer.parseInt(properties.getProperty("HEIGHT_OF_RANKED_PANEL"));
-
-
     private Color colorOfTextOfBtn = new Color(255, 0, 0);
     private Color colorOfBtn = new Color(48, 48, 45);
-    public static final int WIDTH_OF_BTN= Constant.widthOfMainFrame /2;
+    public static final int WIDTH_OF_BTN = Constant.widthOfMainFrame / 2;
     public static final int HEIGHT_OF_BTN = 71;
-
-
-    private static RankedPanel rankedPanel=new RankedPanel();
-    public static RankedPanel getInstance(){return rankedPanel;}
 
     private JButton firstBtn;
     private JButton secondBtn;
@@ -55,21 +33,21 @@ public class RankedPanel extends JPanel {
     private JButton tenthBtn;
     private JButton backBtn;
 
-    public RankedPanel(){
+    public RankedPanel() {
         setLayout(null);
-        setSize(WIDE_OF_RANKED_PANEL,HEIGHT_OF_RANKED_PANEL);
-        setBounds(700,0,WIDE_OF_RANKED_PANEL,HEIGHT_OF_RANKED_PANEL);
+        setSize(Constant.WIDE_OF_RANKED_PANEL, Constant.HEIGHT_OF_RANKED_PANEL);
+        setBounds(700, 0, Constant.WIDE_OF_RANKED_PANEL, Constant.HEIGHT_OF_RANKED_PANEL);
         initButtons();
     }
 
-    public void designBtn(JButton btn){
+    public void designBtn(JButton btn) {
         btn.setSize(WIDTH_OF_BTN, HEIGHT_OF_BTN);
         btn.setFont(new Font("TimesRoman", Font.ITALIC, 20));
         btn.setForeground(colorOfTextOfBtn);
         btn.setBackground(colorOfBtn);
     }
 
-    public void initButtons(){
+    public void initButtons() {
         initFirstBtn();
         initSecondBtn();
         initThirdBtn();
@@ -84,231 +62,168 @@ public class RankedPanel extends JPanel {
     }
 
     private void initBackBtn() {
-        backBtn=new JButton("Back");
+        backBtn = new JButton("Back");
         designBtn(backBtn);
-        backBtn.setBounds(0,backBtn.getHeight()*10,backBtn.getWidth(),backBtn.getHeight());
+        backBtn.setBounds(0, backBtn.getHeight() * 10, backBtn.getWidth(), backBtn.getHeight());
         backBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Administer.writeLog("Go back from status page");
+//                Administer.writeLog("Go back from status page");
 //                CLI.currentPlayer.getLoggerOfMyPlayer().info("Go back from status page");
-                goBack();
+               Administer.goBack();
             }
         });
         add(backBtn);
     }
 
-    private void goBack() {
-        ControllerOfMainComponents.setStatus(Status.MAIN_MENU_PAGE);
-        ShowDeckInfoPanel.getInstance().setReadyToShow(false);
-        ShowDeckInfoPanel.getInstance().removeAll();
-        ShowDeckInfoPanel.getInstance().repaint();
-        ShowDeckInfoPanel.getInstance().revalidate();
-        MyMainFrame.getInstance().setContentPane(MainMenuPage.getInstance());
-    }
-
-
 
 
 
     private void initTenthBtn() {
-        tenthBtn=new JButton("Tenth Deck");
+        tenthBtn = new JButton("Tenth Deck");
         designBtn(tenthBtn);
-        tenthBtn.setBounds(0,firstBtn.getHeight()*9,secondBtn.getWidth(),secondBtn.getHeight());
+        tenthBtn.setBounds(0, firstBtn.getHeight() * 9, secondBtn.getWidth(), secondBtn.getHeight());
         tenthBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                showDeckNumber(10);
+                Controller.getCurrentClient().sendShowDeckNumber(10);
             }
         });
         add(tenthBtn);
     }
 
     private void initNinthBtn() {
-        ninthBtn=new JButton("Ninth Deck");
+        ninthBtn = new JButton("Ninth Deck");
         designBtn(ninthBtn);
-        ninthBtn.setBounds(0,firstBtn.getHeight()*8,secondBtn.getWidth(),secondBtn.getHeight());
+        ninthBtn.setBounds(0, firstBtn.getHeight() * 8, secondBtn.getWidth(), secondBtn.getHeight());
         ninthBtn.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                showDeckNumber(9);
+            public void actionPerformed(ActionEvent e){
+                Controller.getCurrentClient().sendShowDeckNumber(9);
             }
         });
         add(ninthBtn);
     }
 
     private void initEighthBtn() {
-        eighthBtn=new JButton("Eighth Deck");
+        eighthBtn = new JButton("Eighth Deck");
         designBtn(eighthBtn);
-        eighthBtn.setBounds(0,firstBtn.getHeight()*7,secondBtn.getWidth(),secondBtn.getHeight());
+        eighthBtn.setBounds(0, firstBtn.getHeight() * 7, secondBtn.getWidth(), secondBtn.getHeight());
         eighthBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                showDeckNumber(8);
+                Controller.getCurrentClient().sendShowDeckNumber(8);
             }
         });
         add(eighthBtn);
     }
 
     private void initSeventhBtn() {
-        seventhBtn=new JButton("Seventh Deck");
+        seventhBtn = new JButton("Seventh Deck");
         designBtn(seventhBtn);
-        seventhBtn.setBounds(0,firstBtn.getHeight()*6,secondBtn.getWidth(),secondBtn.getHeight());
+        seventhBtn.setBounds(0, firstBtn.getHeight() * 6, secondBtn.getWidth(), secondBtn.getHeight());
         seventhBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                showDeckNumber(7);
+                Controller.getCurrentClient().sendShowDeckNumber(7);
             }
         });
         add(seventhBtn);
     }
 
     private void initSixthBtn() {
-        sixthBtn=new JButton("Sixth Deck");
+        sixthBtn = new JButton("Sixth Deck");
         designBtn(sixthBtn);
-        sixthBtn.setBounds(0,firstBtn.getHeight()*5,secondBtn.getWidth(),secondBtn.getHeight());
+        sixthBtn.setBounds(0, firstBtn.getHeight() * 5, secondBtn.getWidth(), secondBtn.getHeight());
         sixthBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                showDeckNumber(6);
+                Controller.getCurrentClient().sendShowDeckNumber(6);
             }
         });
         add(sixthBtn);
     }
 
     private void initFifthBtn() {
-        fifthBtn=new JButton("Fifth Deck");
+        fifthBtn = new JButton("Fifth Deck");
         designBtn(fifthBtn);
-        fifthBtn.setBounds(0,firstBtn.getHeight()*4,secondBtn.getWidth(),secondBtn.getHeight());
+        fifthBtn.setBounds(0, firstBtn.getHeight() * 4, secondBtn.getWidth(), secondBtn.getHeight());
         fifthBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                showDeckNumber(5);
+                Controller.getCurrentClient().sendShowDeckNumber(5);
             }
         });
         add(fifthBtn);
     }
 
     private void initFourthBtn() {
-        fourthBtn=new JButton("Fourth Deck");
+        fourthBtn = new JButton("Fourth Deck");
         designBtn(fourthBtn);
-        fourthBtn.setBounds(0,firstBtn.getHeight()*3,secondBtn.getWidth(),secondBtn.getHeight());
+        fourthBtn.setBounds(0, firstBtn.getHeight() * 3, secondBtn.getWidth(), secondBtn.getHeight());
         fourthBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                showDeckNumber(4);
-            }
+                Controller.getCurrentClient().sendShowDeckNumber(4);            }
         });
         add(fourthBtn);
     }
 
     private void initThirdBtn() {
-        thirdBtn=new JButton("Third Deck");
+        thirdBtn = new JButton("Third Deck");
         designBtn(thirdBtn);
-        thirdBtn.setBounds(0,firstBtn.getHeight()*2,secondBtn.getWidth(),secondBtn.getHeight());
+        thirdBtn.setBounds(0, firstBtn.getHeight() * 2, secondBtn.getWidth(), secondBtn.getHeight());
         thirdBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                showDeckNumber(3);
+                Controller.getCurrentClient().sendShowDeckNumber(3);
             }
         });
         add(thirdBtn);
     }
 
     private void initSecondBtn() {
-        secondBtn=new JButton("Second Deck");
+        secondBtn = new JButton("Second Deck");
         designBtn(secondBtn);
-        secondBtn.setBounds(0,firstBtn.getHeight(),secondBtn.getWidth(),secondBtn.getHeight());
+        secondBtn.setBounds(0, firstBtn.getHeight(), secondBtn.getWidth(), secondBtn.getHeight());
         secondBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                showDeckNumber(2);
+                Controller.getCurrentClient().sendShowDeckNumber(2);
             }
         });
         add(secondBtn);
     }
 
     private void initFirstBtn() {
-        firstBtn=new JButton("First Deck");
+        firstBtn = new JButton("First Deck");
         designBtn(firstBtn);
-        firstBtn.setBounds(0,0,firstBtn.getWidth(),firstBtn.getHeight());
+        firstBtn.setBounds(0, 0, firstBtn.getWidth(), firstBtn.getHeight());
         firstBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                showDeckNumber(1);
+                Controller.getCurrentClient().sendShowDeckNumber(1);
             }
         });
         add(firstBtn);
     }
 
 
+//    public void sortDecks() {
+//        Administer.sortDecksOfCurrentPlayer();
+//
+//    }
 
-    public void sortDecks(){
-        Administer.sortDecksOfCurrentPlayer();
-
-    }
-
-
-    private void showDeckNumber(int deckNumber) {
-        sortDecks();
-        Administer.setDeckToShowOFStatusState(deckNumber);
-        ShowDeckInfoPanel.getInstance().setReadyToShow(true);
-        ShowDeckInfoPanel.getInstance().repaint();
-        ShowDeckInfoPanel.getInstance().revalidate();
-        Administer.writeLog("Show best deck, deck number: "+ deckNumber);
-    }
+//
+//    private void showDeckNumber(int deckNumber) {
+//        sortDecks();
+//        Administer.setDeckToShowOFStatusState(deckNumber);
+//        ShowDeckInfoPanel showDeckInfoPanel=(ShowDeckInfoPanel)Constant.getPanels().get("ShowDeckInfoPanel");
+//        showDeckInfoPanel.setReadyToShow(true);
+//        showDeckInfoPanel.repaint();
+//        showDeckInfoPanel.revalidate();
+//        Administer.writeLog("Show best deck, deck number: " + deckNumber);
+//    }
 
 
 }
-//
-//
-// class ShowDeckInfoPanel extends JPanel {
-//
-//    private static final int WIDE_OF_SHOW_INFO_PANEL =700;
-//    private static final int HEIGHT_OF_SHOW_INFO_PANEL=800;
-//
-//    private static ShowDeckInfoPanel showDeckInfoPanel=new ShowDeckInfoPanel();
-//    public static ShowDeckInfoPanel getInstance(){return showDeckInfoPanel;}
-//    private boolean readyToShow=false;
-//     private String nameOfDeckToShow;
-//
-//     public String getNameOfDeckToShow() {
-//         return nameOfDeckToShow;
-//     }
-//
-//     public void setNameOfDeckToShow(String nameOfDeckToShow) {
-//         this.nameOfDeckToShow = nameOfDeckToShow;
-//     }
-//
-//
-//     public boolean isReadyToShow() {
-//         return readyToShow;
-//     }
-//
-//     public void setReadyToShow(boolean readyToShow) {
-//         this.readyToShow = readyToShow;
-//     }
-//
-//     private ShowDeckInfoPanel(){
-//        setLayout(null);
-//        setSize(WIDE_OF_SHOW_INFO_PANEL,HEIGHT_OF_SHOW_INFO_PANEL);
-//        setBounds(0,0,WIDE_OF_SHOW_INFO_PANEL,HEIGHT_OF_SHOW_INFO_PANEL);
-//        setBackground(Color.orange);
-//
-//    }
-//
-//
-//    @Override
-//    protected void paintComponent(Graphics g) {
-//        super.paintComponent(g);
-//        Graphics2D graphics2D=(Graphics2D)g;
-//        graphics2D.setFont(new Font("TimesRoman", Font.ITALIC, 20));
-//        if(readyToShow){
-////            deckToShow.defineMostUsedCard();
-//            Administer.defineMostUsedCardInDeck(nameOfDeckToShow);
-//            Administer.showDeckOfStatusState(this,graphics2D);
-//        }
-//    }
-//
-//}
-//

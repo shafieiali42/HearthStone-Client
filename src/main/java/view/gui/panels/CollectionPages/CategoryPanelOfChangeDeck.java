@@ -1,7 +1,8 @@
 package view.gui.panels.CollectionPages;
 
-import Controller.CollectionController;
-import View.Gui.Panels.MyMainFrame.MyMainFrame;
+
+import Main.ClientMain;
+import utility.constant.Constant;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,13 +30,7 @@ public class CategoryPanelOfChangeDeck extends JPanel {
     private JButton selectDeckBtn;
 
 
-    private static CategoryPanelOfChangeDeck categoryPanelOfChangeDeck = new CategoryPanelOfChangeDeck();
-
-    public static CategoryPanelOfChangeDeck getInstance() {
-        return categoryPanelOfChangeDeck;
-    }
-
-    private CategoryPanelOfChangeDeck() {
+    public CategoryPanelOfChangeDeck() {
         setBackground(Color.cyan);
         setLayout(new FlowLayout(NUMBER_OF_BTN, 20, 20));
         initButtons();
@@ -69,7 +64,8 @@ public class CategoryPanelOfChangeDeck extends JPanel {
 //        CLI.currentPlayer.setCurrentDeck(DeckPage.getInstance().getDeckTOChange());
         System.out.println("select deck");
         CollectionController.selectMainDeck();
-        JOptionPane.showMessageDialog(null, "Your Deck is:" + DeckPage.getInstance().getNameOfDeckToChange());
+        JOptionPane.showMessageDialog(null, "Your Deck is:" +
+                ((DeckPage)Constant.getPanels().get("DeckPage")).getNameOfDeckToChange());
 //        CLI.currentPlayer.getLoggerOfMyPlayer().info("select " + DeckPage.getInstance().getDeckTOChange().getName() + " for main deck");
     }
 
@@ -144,10 +140,10 @@ public class CategoryPanelOfChangeDeck extends JPanel {
     private void removeDeck() {
 //        CLI.currentPlayer.getAllDecksOfPlayer().remove(DeckPage.getInstance().getDeckTOChange());
         CollectionController.removeDeck();
-        DeckPanel.getInstance().showDeckButtons();
-        CollectionPage.getInstance().repaint();
-        CollectionPage.getInstance().revalidate();
-        MyMainFrame.getInstance().setContentPane(CollectionPage.getInstance());
+        ((DeckPanel)Constant.getPanels().get("DeckPanel")).showDeckButtons();
+//        CollectionPage.getInstance().repaint();
+//        CollectionPage.getInstance().revalidate();
+     ClientMain.getMyMainFrame().setContentPane(Constant.getPanels().get("CollectionPage"));
 //        CLI.currentPlayer.getLoggerOfMyPlayer().info("Removed "+DeckPage.getInstance().getDeckTOChange().getName());
     }
 
@@ -159,7 +155,7 @@ public class CategoryPanelOfChangeDeck extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     CollectionController.showCardsOnCardPanelWithSpecifiedClass("Neutral",
-                            CardPanel.getInstanceOfDeckPage(), CardPanel.getNumOfCardInEveryRow());
+                            Constant.getPanels().get("cardPanelOfDeckPage"), CardPanel.getNumOfCardInEveryRow());
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -176,7 +172,7 @@ public class CategoryPanelOfChangeDeck extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     CollectionController.showCardsOnCardPanelWithSpecifiedClass(CollectionController.getHeroNameOfDeckToChange(),
-                            CardPanel.getInstanceOfDeckPage(), CardPanel.getNumOfCardInEveryRow());
+                            Constant.getPanels().get("cardPanelOfDeckPage"), CardPanel.getNumOfCardInEveryRow());
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }

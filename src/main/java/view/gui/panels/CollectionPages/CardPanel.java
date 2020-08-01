@@ -14,16 +14,16 @@ public class CardPanel extends JPanel {
         return NUM_OF_CARD_IN_EVERY_ROW;
     }
 
+//
+//    private static CardPanel cardPanelForCollectionPage =new CardPanel();
+//    public static CardPanel getInstanceOfCollectionPage(){return cardPanelForCollectionPage;}
+//
+//    private static CardPanel cardPanelForDeckPage=new CardPanel();
+//    public static CardPanel getInstanceOfDeckPage(){return cardPanelForDeckPage;}
 
-    private static CardPanel cardPanelForCollectionPage =new CardPanel();
-    public static CardPanel getInstanceOfCollectionPage(){return cardPanelForCollectionPage;}
-
-    private static CardPanel cardPanelForDeckPage=new CardPanel();
-    public static CardPanel getInstanceOfDeckPage(){return cardPanelForDeckPage;}
 
 
-
-    private CardPanel(){
+    public CardPanel(){
         setBackground(Color.gray);
         setLayout(null);
         setJScrollPane(new JScrollPane(this));

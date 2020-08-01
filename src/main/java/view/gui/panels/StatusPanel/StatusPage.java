@@ -12,8 +12,8 @@ public class StatusPage extends JPanel {
     public StatusPage(){
         setLayout(null);
         setSize(Constant.widthOfMainFrame,Constant.heightOfMainFrame);
-        add(new RankedPanel());
-        add(new ShowDeckInfoPanel());
+        add(Constant.getPanels().get("RankedPanel"));
+        add(Constant.getPanels().get("ShowDeckInfoPanel"));
     }
 
 }

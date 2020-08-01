@@ -1,38 +1,19 @@
 package view.gui.panels.CollectionPages;
 
 
-import Utility.Config2.ConfigLoader;
-import View.Gui.Panels.MyMainFrame.MyMainFrame;
+import utility.constant.Constant;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Properties;
+
 
 public class DeckPage extends JPanel {
 
-    private Properties properties;
-
-    {
-        try {
-            properties = ConfigLoader.getInstance().readProperties("src/main/resources/ConfigFiles/graphicConfigFiles/Panels/CollectionPages/DeckPage.properties");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    int WIDTH_OF_CATEGORY_PANEL_DECK_PAGE=Integer.parseInt(properties.getProperty("WIDTH_OF_CATEGORY_PANEL_DECK_PAGE"));
-    int HEIGHT_OF_CATEGORY_PANEL_DECK_PAGE=Integer.parseInt(properties.getProperty("HEIGHT_OF_CATEGORY_PANEL_DECK_PAGE"));
-    int WIDTH_OF_MANA_PANEL=Integer.parseInt(properties.getProperty("WIDTH_OF_MANA_PANEL"));
-    int HEIGHT_OF_MANA_PANEL=Integer.parseInt(properties.getProperty("HEIGHT_OF_MANA_PANEL"));
-    int HEIGHT_OF_CATEGORY_PANEL=Integer.parseInt(properties.getProperty("HEIGHT_OF_CATEGORY_PANEL"));
-
-    private static DeckPage deckPage=new DeckPage();
-    public static DeckPage getInstance(){return deckPage;}
 
 
-    private ArrayList<LittleCardPanel> listOfLittleCardsPanelOfDeckToChange=new ArrayList<LittleCardPanel>();
+
+    private ArrayList<LittleCardPanel> listOfLittleCardsPanelOfDeckToChange = new ArrayList<LittleCardPanel>();
 
     public ArrayList<LittleCardPanel> getListOfLittleCardsPanelOfDeckToChange() {
         return listOfLittleCardsPanelOfDeckToChange;
@@ -53,45 +34,45 @@ public class DeckPage extends JPanel {
     }
 
 
-    private DeckPage(){
+    public DeckPage() {
 
-        nameOfDeckToChange="";
+        nameOfDeckToChange = "";
 
-        setSize(MyMainFrame.getInstance().getMyFrameWidth(),MyMainFrame.getInstance().getMyFrameHeight());
+        setSize(Constant.widthOfMainFrame, Constant.heightOfMainFrame);
         setLayout(null);
-        this.addPanel(CategoryPanelOfChangeDeck.getInstance(),0,0, WIDTH_OF_CATEGORY_PANEL_DECK_PAGE,
-                HEIGHT_OF_CATEGORY_PANEL_DECK_PAGE);
+        this.addPanel(Constant.getPanels().get("CategoryPanelOfChangeDeck"), 0, 0, Constant.WIDTH_OF_CATEGORY_PANEL_DECK_PAGE,
+                Constant.HEIGHT_OF_CATEGORY_PANEL_DECK_PAGE);
 
-        this.addPanel(DeckViewer.getInstance(),WIDTH_OF_CATEGORY_PANEL_DECK_PAGE,0,
-                DeckViewer.getInstance().getWidth(),DeckViewer.getInstance().getHeight());
+        this.addPanel(Constant.getPanels().get("DeckViewer"), Constant.WIDTH_OF_CATEGORY_PANEL_DECK_PAGE, 0,
+                Constant.getPanels().get("DeckViewer").getWidth(), Constant.getPanels().get("DeckViewer").getHeight());
+
+        CardPanel cardPanelOfDeckPage = (CardPanel)Constant.getPanels().get("cardPanelOfDeckPage");
+        cardPanelOfDeckPage.setPreferredSize(new Dimension(1155, 1600));
+        cardPanelOfDeckPage.setFocusable(true);
+        cardPanelOfDeckPage.requestFocus();
+
+        cardPanelOfDeckPage.getJScrollPane().setBounds(0, Constant.HEIGHT_OF_CATEGORY_PANEL, 1155, 620);
+        cardPanelOfDeckPage.getJScrollPane().setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        cardPanelOfDeckPage.getJScrollPane().setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        cardPanelOfDeckPage.getJScrollPane().setBorder(null);
+        cardPanelOfDeckPage.getJScrollPane().setFocusable(false);
+        this.add(cardPanelOfDeckPage.getJScrollPane());
 
 
-        CardPanel.getInstanceOfDeckPage().setPreferredSize(new Dimension(1155,1600));
-        CardPanel.getInstanceOfDeckPage().setFocusable(true);
-        CardPanel.getInstanceOfDeckPage().requestFocus();
-
-        CardPanel.getInstanceOfDeckPage().getJScrollPane().setBounds(0,HEIGHT_OF_CATEGORY_PANEL,1155,620);
-        CardPanel.getInstanceOfDeckPage().getJScrollPane().setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        CardPanel.getInstanceOfDeckPage().getJScrollPane().setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        CardPanel.getInstanceOfDeckPage().getJScrollPane().setBorder(null);
-        CardPanel.getInstanceOfDeckPage().getJScrollPane().setFocusable(false);
-        this.add(CardPanel.getInstanceOfDeckPage().getJScrollPane());
-
-
-        this.addPanel(ManaPanel.getInstanceOfDeckPage(),0,
-                (HEIGHT_OF_CATEGORY_PANEL+620),
-                WIDTH_OF_MANA_PANEL,HEIGHT_OF_MANA_PANEL);
+        this.addPanel(Constant.getPanels().get("manaPanelForDeckPage"), 0,
+                (Constant.HEIGHT_OF_CATEGORY_PANEL + 620),
+                Constant.WIDTH_OF_MANA_PANEL, Constant.HEIGHT_OF_MANA_PANEL);
 
 
     }
 
-    public void addPanel(JPanel panel,int x, int y, int width,int height){
-        panel.setBounds(x,y,width,height);
+    public void addPanel(JPanel panel, int x, int y, int width, int height) {
+        panel.setBounds(x, y, width, height);
         add(panel);
     }
 
-    public void addPanel(JScrollPane jScrollPane,int x, int y, int width,int height){
-        jScrollPane.setBounds(x,y,width,height);
+    public void addPanel(JScrollPane jScrollPane, int x, int y, int width, int height) {
+        jScrollPane.setBounds(x, y, width, height);
         add(jScrollPane);
     }
 

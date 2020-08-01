@@ -120,7 +120,7 @@ public class MainMenuPage extends JPanel {
         statusBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Controller.getCurrentClient().sendGoToPage("StatusPage");
+                Controller.getCurrentClient().sendGoToPage(Controller.getCurrentPlayerUserName(),"StatusPage");
             }
         });
         menuPanel.add(statusBtn);
@@ -137,7 +137,7 @@ public class MainMenuPage extends JPanel {
         settingBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Controller.getCurrentClient().sendGoToPage("SettingPage");
+                Controller.getCurrentClient().sendGoToPage(Controller.getCurrentPlayerUserName(),"SettingPage");
             }
         });
         menuPanel.add(settingBtn);
@@ -154,7 +154,7 @@ public class MainMenuPage extends JPanel {
         shopBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Controller.getCurrentClient().sendGoToPage("ShopPage");
+                Controller.getCurrentClient().sendGoToPage(Controller.getCurrentPlayerUserName(),"ShopPage");
 //                ControllerOfMainComponents.setStatus(Status.SHOP_PAGE);
 //                Administer.writeLog("Navigate into shop page");
 //                Administer.setBuyableCard();
@@ -177,7 +177,7 @@ public class MainMenuPage extends JPanel {
         collectionBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Controller.getCurrentClient().sendGoToPage("CollectionPage");
+                Controller.getCurrentClient().sendGoToPage(Controller.getCurrentPlayerUserName(),"CollectionPage");
 //                ControllerOfMainComponents.setStatus(Status.COLLECTIONS_PAGE);
 //                Administer.writeLog("Navigate into collection page");
 ////                CLI.currentPlayer.getLoggerOfMyPlayer().info("Navigate into collection page");

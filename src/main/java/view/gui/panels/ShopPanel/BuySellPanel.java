@@ -4,7 +4,9 @@ import Controller.Administer;
 import Controller.ControllerOfMainComponents;
 import Logic.Status;
 import Utility.Config2.ConfigLoader;
+import utility.constant.Constant;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,30 +16,8 @@ import java.util.Properties;
 
 public class BuySellPanel extends JPanel {
 
-    private Properties properties;
-
-    {
-        try {
-            properties = ConfigLoader.getInstance().readProperties("src/main/resources/ConfigFiles/graphicConfigFiles/Panels/ShopPanel/BuySellPanel.properties");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    int WIDTH_OF_BUY_SELL_PANEL=Integer.parseInt(properties.getProperty("WIDTH_OF_BUY_SELL_PANEL"));
 
 
-    private static BuySellPanel buySellPanel;
-    public static BuySellPanel getInstance() {
-        return buySellPanel;
-    }
-    static {
-        try {
-            buySellPanel = new BuySellPanel();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     private Color colorOfTextOfBtn = new Color(255, 0, 0);
     private Color colorOfBtn = new Color(48, 48, 45);
@@ -48,10 +28,8 @@ public class BuySellPanel extends JPanel {
     private JButton transactionBtn;
 
 
-
     private boolean isFirstTime = true;
     private String cardName;
-
 
 
     private void initPriceLabel() {
@@ -59,21 +37,23 @@ public class BuySellPanel extends JPanel {
         priceLabel.setBounds(100, 75, 150, 30);
         add(priceLabel);
     }
-    private BuySellPanel() throws IOException {
+
+    public BuySellPanel() {
 //        setBackground(Color.cyan);
         setLayout(null);
         initPriceLabel();
         initTransactionBtn();
 
-        PanelToShowCardInBuySellPanel.getInstance().setBounds(
-                (WIDTH_OF_BUY_SELL_PANEL - PanelToShowCardInBuySellPanel.getInstance().getWidth()) / 2, 100,
-                PanelToShowCardInBuySellPanel.getInstance().getWidth(),
-                PanelToShowCardInBuySellPanel.getInstance().getHeight());
+        PanelToShowCardInBuySellPanel panelToShowCardInBuySellPanel =
+                (PanelToShowCardInBuySellPanel) Constant.getPanels().get("PanelToShowCardInBuySellPanel");
 
-        add(PanelToShowCardInBuySellPanel.getInstance());
+        panelToShowCardInBuySellPanel.setBounds(
+                (Constant.WIDTH_OF_BUY_SELL_PANEL - panelToShowCardInBuySellPanel.getWidth()) / 2, 100,
+                panelToShowCardInBuySellPanel.getWidth(),
+                panelToShowCardInBuySellPanel.getHeight());
+
+        add(panelToShowCardInBuySellPanel);
     }
-
-
 
 
 
@@ -98,7 +78,7 @@ public class BuySellPanel extends JPanel {
                     if (ControllerOfMainComponents.getStatus().equals(Status.BUY_PAGE)) {
 
                         int reply = JOptionPane.showConfirmDialog(null, "Are you sure that you want buy this card?\n" +
-                                        "this card cost" + Administer.getMoneyOfShopStatesCard()+ "$",
+                                        "this card cost" + Administer.getMoneyOfShopStatesCard() + "$",
                                 "Buy", JOptionPane.YES_NO_OPTION);
 
                         if (reply == JOptionPane.YES_OPTION) {
@@ -106,10 +86,13 @@ public class BuySellPanel extends JPanel {
                                 Administer.buyShopStateCard();
                                 Administer.playActionSounds("BuyCard");
                                 Administer.makeShopStateCardNull();
-                                PanelToShowCardInBuySellPanel.getInstance().removeAll();
-                                PanelToShowCardInBuySellPanel.getInstance().repaint();
-                                PanelToShowCardInBuySellPanel.getInstance().revalidate();
-                                BuySellPanel.getInstance().getPriceLabel().setText("");
+                                PanelToShowCardInBuySellPanel panelToShowCardInBuySellPanel =
+                                        (PanelToShowCardInBuySellPanel) Constant.getPanels().get("PanelToShowCardInBuySellPanel");
+                                panelToShowCardInBuySellPanel.removeAll();
+                                panelToShowCardInBuySellPanel.repaint();
+                                panelToShowCardInBuySellPanel.revalidate();
+                                BuySellPanel buySellPanel =(BuySellPanel)Constant.getPanels().get("BuySellPanel");
+                                buySellPanel.getPriceLabel().setText("");
                                 ButtonPanel.showBuyableCards();
 
                             } catch (IOException ex) {
@@ -135,18 +118,25 @@ public class BuySellPanel extends JPanel {
                                         Administer.playActionSounds("SellCard");
                                         ButtonPanel.showSalableCards();
                                         Administer.makeShopStateCardNull();
-                                        PanelToShowCardInBuySellPanel.getInstance().removeAll();
-                                        PanelToShowCardInBuySellPanel.getInstance().repaint();
-                                        PanelToShowCardInBuySellPanel.getInstance().revalidate();
-                                        BuySellPanel.getInstance().getPriceLabel().setText("");
+                                        PanelToShowCardInBuySellPanel panelToShowCardInBuySellPanel =
+                                                (PanelToShowCardInBuySellPanel) Constant.getPanels().get("PanelToShowCardInBuySellPanel");
+                                        panelToShowCardInBuySellPanel.removeAll();
+                                        panelToShowCardInBuySellPanel.repaint();
+                                        panelToShowCardInBuySellPanel.revalidate();
+                                        BuySellPanel buySellPanel =(BuySellPanel)Constant.getPanels().get("BuySellPanel");
+                                        buySellPanel.getPriceLabel().setText("");
                                     } else {
                                         JOptionPane.showMessageDialog(null, "This card is in your deck",
                                                 "Error", JOptionPane.ERROR_MESSAGE);
                                         Administer.makeShopStateCardNull();
-                                        PanelToShowCardInBuySellPanel.getInstance().removeAll();
-                                        PanelToShowCardInBuySellPanel.getInstance().repaint();
-                                        PanelToShowCardInBuySellPanel.getInstance().revalidate();
-                                        BuySellPanel.getInstance().getPriceLabel().setText("");
+                                        PanelToShowCardInBuySellPanel panelToShowCardInBuySellPanel =
+                                                (PanelToShowCardInBuySellPanel) Constant.getPanels().get("PanelToShowCardInBuySellPanel");
+
+                                        panelToShowCardInBuySellPanel.removeAll();
+                                        panelToShowCardInBuySellPanel.repaint();
+                                        panelToShowCardInBuySellPanel.revalidate();
+                                        BuySellPanel buySellPanel =(BuySellPanel)Constant.getPanels().get("BuySellPanel");
+                                        buySellPanel.getPriceLabel().setText("");
                                     }
                                 }
                             }
@@ -164,12 +154,15 @@ public class BuySellPanel extends JPanel {
     public boolean getIsFirstTime() {
         return isFirstTime;
     }
+
     public void setFirstTime(boolean firstTime) {
         isFirstTime = firstTime;
     }
+
     public JLabel getPriceLabel() {
         return priceLabel;
     }
+
     public void setPriceLabel(JLabel priceLabel) {
         this.priceLabel = priceLabel;
     }

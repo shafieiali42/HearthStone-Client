@@ -5,10 +5,13 @@ import Controller.CollectionController;
 import Controller.ControllerOfMainComponents;
 import Controller.GamePartController;
 import Logic.Status;
+import Main.ClientMain;
 import Utility.Config2.ConfigLoader;
 import View.Gui.Panels.GamePage.GamePage;
 import View.Gui.Panels.MenuPanel.MainMenuPage;
 import View.Gui.Panels.MyMainFrame.MyMainFrame;
+import utility.constant.Constant;
+import view.gui.panels.MenuPanel.MainMenuPage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,23 +22,6 @@ import java.util.Properties;
 
 
 public class ManaPanel extends JPanel {
-
-
-    private Properties properties;
-
-    {
-        try {
-            properties = ConfigLoader.getInstance().readProperties("src/main/resources/ConfigFiles/graphicConfigFiles/Panels/CollectionPages/ManaPanel.properties");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    int HEIGHT_OF_MANA_BTN=Integer.parseInt(properties.getProperty("HEIGHT_OF_MANA_BTN"));
-
-    int WIDTH_OF_MANA_BTN=Integer.parseInt(properties.getProperty("WIDTH_OF_MANA_BTN"));
-
-    int WIDTH_OF_BACK_BTN_IN_MANA_PANEL =Integer.parseInt(properties.getProperty("WIDTH_OF_BACK_BTN_IN_MANA_PANEL"));
-    int HEIGHT_OF_BACK_BTN_IN_MANA_PANEL =Integer.parseInt(properties.getProperty("HEIGHT_OF_BACK_BTN_IN_MANA_PANEL"));
 
 
     private static final int NUM_OF_COMPONENT = 13;
@@ -58,20 +44,9 @@ public class ManaPanel extends JPanel {
     private JButton nineManaBtn;
     private JButton tenManaBtn;
 
-    private static ManaPanel manaPanelForCollectionPage = new ManaPanel();
-
-    public static ManaPanel getInstanceOfCollectionPage() {
-        return manaPanelForCollectionPage;
-    }
-
-    private static ManaPanel manaPanelForDeckPage = new ManaPanel();
-
-    public static ManaPanel getInstanceOfDeckPage() {
-        return manaPanelForDeckPage;
-    }
 
 
-    private ManaPanel() {
+    public ManaPanel() {
         setBackground(Color.pink);
         setLayout(new FlowLayout(NUM_OF_COMPONENT, 20, 20));
         initButtons();
@@ -100,7 +75,7 @@ public class ManaPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Administer.writeLog("Search for card: "+searchField.getText());
+                    Administer.writeLog("Search for card: " + searchField.getText());
 //                    CLI.currentPlayer.getLoggerOfMyPlayer().info("Search for card: "+searchField.getText());
                     searchInCards(searchField.getText());
                 } catch (IOException ex) {
@@ -113,10 +88,8 @@ public class ManaPanel extends JPanel {
     }
 
 
-
-
     public void designBtn(JButton btn) {
-        btn.setSize(WIDTH_OF_MANA_BTN, HEIGHT_OF_MANA_BTN);
+        btn.setSize(Constant.WIDTH_OF_MANA_BTN, Constant.HEIGHT_OF_MANA_BTN);
         btn.setFont(new Font("TimesRoman", Font.ITALIC, 20));
         btn.setForeground(colorOfTextOfBtn);
         btn.setBackground(colorOfManaBtn);
@@ -284,19 +257,19 @@ public class ManaPanel extends JPanel {
     }
 
 
-
     private void initBackBtn() {
         backBtn = new JButton("Back");
         backBtn.setFont(new Font("TimesRoman", Font.ITALIC, 30));
         backBtn.setForeground(colorOfTextOfBtn);
         backBtn.setBackground(colorOfBackBtn);
-        backBtn.setSize(WIDTH_OF_BACK_BTN_IN_MANA_PANEL, HEIGHT_OF_BACK_BTN_IN_MANA_PANEL);
+        backBtn.setSize(Constant.WIDTH_OF_BACK_BTN_IN_MANA_PANEL, Constant.HEIGHT_OF_BACK_BTN_IN_MANA_PANEL);
         backBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                CardPanel.getInstanceOfCollectionPage().removeAll();
-                CardPanel.getInstanceOfCollectionPage().repaint();
-                CardPanel.getInstanceOfCollectionPage().revalidate();
+                CardPanel cardPanel = (CardPanel) Constant.getPanels().get("cardPanelOfCollectionPage");
+                cardPanel.removeAll();
+                cardPanel.repaint();
+                cardPanel.revalidate();
                 Administer.writeLog("Go back from collection page");
                 goBack();
             }
@@ -306,29 +279,29 @@ public class ManaPanel extends JPanel {
 
     private void goBack() {
         if (ControllerOfMainComponents.getStatus().equals(Status.COLLECTIONS_PAGE)) {
-            MyMainFrame.getInstance().setContentPane(MainMenuPage.getInstance());
+            ClientMain.getMyMainFrame().setContentPane(new MainMenuPage());
         } else if (ControllerOfMainComponents.getStatus().equals(Status.MAKE_DECK) || ControllerOfMainComponents.getStatus().equals(Status.CHANGE_DECK)) {
-            JOptionPane.showMessageDialog(null,"You should press done button","Error",JOptionPane.ERROR_MESSAGE);
-        }else if (ControllerOfMainComponents.getStatus().equals(Status.COLLECTION_PAGE_FROM_PLAY)){
-            if (!GamePartController.isCurrentPlayersCurrentDeckNull()){
+            JOptionPane.showMessageDialog(null, "You should press done button", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (ControllerOfMainComponents.getStatus().equals(Status.COLLECTION_PAGE_FROM_PLAY)) {
+            if (!GamePartController.isCurrentPlayersCurrentDeckNull()) {
                 ControllerOfMainComponents.setStatus(Status.PLAY_PAGE);
-            MyMainFrame.getInstance().setContentPane(GamePage.getInstance());
-            }else {
+                ClientMain.getMyMainFrame().setContentPane(GamePage.getInstance());
+            } else {
                 ControllerOfMainComponents.setStatus(Status.MAIN_MENU_PAGE);
-                MyMainFrame.getInstance().setContentPane(MainMenuPage.getInstance());
+                ClientMain.getMyMainFrame().setContentPane(new MainMenuPage());
             }
         }
     }
 
 
     private void searchInCards(String searchFieldText) throws IOException {
-        CollectionController.showSearchedCards(searchFieldText,CardPanel.getInstanceOfCollectionPage(),
-                CardPanel.getInstanceOfDeckPage(),CardPanel.getNumOfCardInEveryRow());
+        CollectionController.showSearchedCards(searchFieldText,  Constant.getPanels().get("cardPanelOfCollectionPage"),
+              Constant.getPanels().get("cardPanelOfDeckPage"), CardPanel.getNumOfCardInEveryRow());
     }
 
     public void filterByMana(int mana) throws IOException {
-        CollectionController.showCardsWithSpecifiedManaCost(mana,CardPanel.getInstanceOfCollectionPage(),
-                CardPanel.getInstanceOfDeckPage(),CardPanel.getNumOfCardInEveryRow());
+        CollectionController.showCardsWithSpecifiedManaCost(mana, Constant.getPanels().get("cardPanelOfCollectionPage"),
+                Constant.getPanels().get("cardPanelOfDeckPage"), CardPanel.getNumOfCardInEveryRow());
     }
 
 }

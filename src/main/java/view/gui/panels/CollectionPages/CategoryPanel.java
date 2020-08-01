@@ -1,6 +1,7 @@
 package view.gui.panels.CollectionPages;
 
-import Controller.CollectionController;
+
+import utility.constant.Constant;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,8 +13,8 @@ import java.io.IOException;
 public class CategoryPanel extends JPanel {
 
     public static final int NUMBER_OF_BTN = 9;
-    public static final int WIDTH_OF_BTN=90;
-    public static final int HEIGHT_OF_BTN =90;
+    public static final int WIDTH_OF_BTN = 90;
+    public static final int HEIGHT_OF_BTN = 90;
 
 
     private JButton mageBtn;
@@ -29,13 +30,8 @@ public class CategoryPanel extends JPanel {
     private Color colorOfTextOfBtn = new Color(255, 0, 0);
     private Color colorOfBtn = new Color(48, 48, 45);
 
-    private static CategoryPanel categoryPanel = new CategoryPanel();
 
-    public static CategoryPanel getInstance() {
-        return categoryPanel;
-    }
-
-    private CategoryPanel() {
+    public CategoryPanel() {
         setBackground(Color.cyan);
         setLayout(new FlowLayout(NUMBER_OF_BTN, 20, 20));
         initButtons();
@@ -53,7 +49,7 @@ public class CategoryPanel extends JPanel {
         initLockBtn();
     }
 
-    public void designBtn(JButton btn){
+    public void designBtn(JButton btn) {
         btn.setSize(WIDTH_OF_BTN, HEIGHT_OF_BTN);
         btn.setFont(new Font("TimesRoman", Font.ITALIC, 20));
         btn.setForeground(colorOfTextOfBtn);
@@ -67,7 +63,7 @@ public class CategoryPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    CollectionController.showLockCards(CardPanel.getInstanceOfCollectionPage(),CardPanel.getNumOfCardInEveryRow());
+                    CollectionController.showLockCards(Constant.getPanels().get("cardPanelOfCollectionPage"), CardPanel.getNumOfCardInEveryRow());
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -84,7 +80,7 @@ public class CategoryPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    CollectionController.showUnLockCards(CardPanel.getInstanceOfCollectionPage(),CardPanel.getNumOfCardInEveryRow());
+                    CollectionController.showUnLockCards(Constant.getPanels().get("cardPanelOfCollectionPage"), CardPanel.getNumOfCardInEveryRow());
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -100,7 +96,7 @@ public class CategoryPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    CollectionController.showAllCards(CardPanel.getInstanceOfCollectionPage(),CardPanel.getNumOfCardInEveryRow());
+                    CollectionController.showAllCards(Constant.getPanels().get("cardPanelOfCollectionPage"), CardPanel.getNumOfCardInEveryRow());
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -117,7 +113,7 @@ public class CategoryPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     CollectionController.showCardsOnCardPanelWithSpecifiedClass("Neutral",
-                            CardPanel.getInstanceOfCollectionPage(),CardPanel.getNumOfCardInEveryRow());
+                            Constant.getPanels().get("cardPanelOfCollectionPage"), CardPanel.getNumOfCardInEveryRow());
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -134,7 +130,7 @@ public class CategoryPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     CollectionController.showCardsOnCardPanelWithSpecifiedClass("Priest",
-                            CardPanel.getInstanceOfCollectionPage(),CardPanel.getNumOfCardInEveryRow());
+                            Constant.getPanels().get("cardPanelOfCollectionPage"), CardPanel.getNumOfCardInEveryRow());
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -151,7 +147,7 @@ public class CategoryPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     CollectionController.showCardsOnCardPanelWithSpecifiedClass("Hunter",
-                            CardPanel.getInstanceOfCollectionPage(),CardPanel.getNumOfCardInEveryRow());
+                            Constant.getPanels().get("cardPanelOfCollectionPage"), CardPanel.getNumOfCardInEveryRow());
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -168,7 +164,7 @@ public class CategoryPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     CollectionController.showCardsOnCardPanelWithSpecifiedClass("Warlock",
-                            CardPanel.getInstanceOfCollectionPage(),CardPanel.getNumOfCardInEveryRow());
+                            Constant.getPanels().get("cardPanelOfCollectionPage"), CardPanel.getNumOfCardInEveryRow());
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -185,7 +181,7 @@ public class CategoryPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     CollectionController.showCardsOnCardPanelWithSpecifiedClass("Rogue",
-                            CardPanel.getInstanceOfCollectionPage(),CardPanel.getNumOfCardInEveryRow());
+                            Constant.getPanels().get("cardPanelOfCollectionPage"), CardPanel.getNumOfCardInEveryRow());
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -202,7 +198,7 @@ public class CategoryPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     CollectionController.showCardsOnCardPanelWithSpecifiedClass("Mage",
-                            CardPanel.getInstanceOfCollectionPage(),CardPanel.getNumOfCardInEveryRow());
+                            Constant.getPanels().get("cardPanelOfCollectionPage"), CardPanel.getNumOfCardInEveryRow());
 //                    filterByClassOfCard("Mage");
                 } catch (IOException ex) {
                     ex.printStackTrace();

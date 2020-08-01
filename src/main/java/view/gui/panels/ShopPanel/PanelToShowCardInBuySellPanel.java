@@ -1,8 +1,6 @@
 package view.gui.panels.ShopPanel;
 
-
-import Controller.Administer;
-import Utility.LengthOfMessage;
+import utility.guiUtilities.LengthOfMessage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,13 +8,8 @@ import java.io.IOException;
 
 public class PanelToShowCardInBuySellPanel extends JPanel {
 
-    private static PanelToShowCardInBuySellPanel panelToShowCardInBuySellPanel = new PanelToShowCardInBuySellPanel();
 
-    public static PanelToShowCardInBuySellPanel getInstance() {
-        return panelToShowCardInBuySellPanel;
-    }
-
-    private PanelToShowCardInBuySellPanel() {
+    public PanelToShowCardInBuySellPanel() {
 
         setLayout(null);
 //        setBackground(Color.orange);
@@ -33,8 +26,8 @@ public class PanelToShowCardInBuySellPanel extends JPanel {
 
         if (Administer.isShopStateCardNull()) {
 
-            int lenghtOfMessage = LengthOfMessage.lengthOfMessage("Click on your Intended Card!", graphics2D);
-            graphics2D.drawString("Click on your Intended Card!", (300 - lenghtOfMessage) / 2, 250);
+            int lengthOfMessage = LengthOfMessage.lengthOfMessage("Click on your Intended Card!", graphics2D);
+            graphics2D.drawString("Click on your Intended Card!", (300 - lengthOfMessage) / 2, 250);
         } else {
             try {
                 Administer.showShopStateCardInBuySellPanel(this);

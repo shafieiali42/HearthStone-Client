@@ -1,43 +1,27 @@
 package view.gui.panels.CollectionPages;
 
-import Controller.CollectionController;
-import Controller.ControllerOfMainComponents;
-import Logic.Status;
-import Utility.Config2.ConfigLoader;
-import View.Gui.Panels.MyMainFrame.MyMainFrame;
 
+
+import Main.ClientMain;
+import utility.constant.Constant;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.util.Properties;
-
 
 public class DeckPanel extends JPanel {
 
-    private Properties properties;
 
-    {
-        try {
-            properties = ConfigLoader.getInstance().readProperties("src/main/resources/ConfigFiles/graphicConfigFiles/Panels/CollectionPages/DeckPanel.properties");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    int WIDTH_OF_DECK_PANEL=Integer.parseInt(properties.getProperty("WIDTH_OF_DECK_PANEL"));
-    int HEIGHT_OF_DECK_PANEL=Integer.parseInt(properties.getProperty("HEIGHT_OF_DECK_PANEL"));
     private static final int WIDTH_OF_BTN = 180;
     private static final int HEIGHT_OF_BTN = 40;
     private Color colorOfTextOfNewDeckBtn = new Color(255, 0, 0);
     private Color colorOfNewDeckBtn = new Color(48, 48, 45);
     private Color colorOfDeckBtn = new Color(48, 48, 45);
-    private static DeckPanel deckPanel = new DeckPanel();
-
-    public static DeckPanel getInstance() {
-        return deckPanel;
-    }
+//    private static DeckPanel deckPanel = new DeckPanel();
+//
+//    public static DeckPanel getInstance() {
+//        return deckPanel;
+//    }
 
 
 
@@ -53,11 +37,11 @@ public class DeckPanel extends JPanel {
         this.jScrollPane = jScrollPane;
     }
 
-    private DeckPanel() {
+    public DeckPanel() {
         setBackground(Color.blue);
         setLayout(new FlowLayout(1, 20, 20));
         setJScrollPane(new JScrollPane(this));
-        setBounds(0, 0, WIDTH_OF_DECK_PANEL, HEIGHT_OF_DECK_PANEL);
+        setBounds(0, 0, Constant.WIDTH_OF_DECK_PANEL, Constant.HEIGHT_OF_DECK_PANEL);
         initNewDeckBtn();
     }
 
@@ -104,12 +88,14 @@ public class DeckPanel extends JPanel {
     }
 
     private void makeNewDeck() {
-        DeckViewer.getInstance().removeAll();
-        DeckViewer.getInstance().repaint();
-        DeckViewer.getInstance().revalidate();
+
+        DeckViewer deckViewer=(DeckViewer)Constant.getPanels().get("DeckViewer");
+        deckViewer.removeAll();
+        deckViewer.repaint();
+        deckViewer.revalidate();
         LittleCardPanel.setAllLittleCardPanels();
         CollectionController.makeCollectionStatesDeckToNull();
-        DeckPage.getInstance().setNameOfDeckToChange("");
+        ((DeckPage)Constant.getPanels().get("DeckPage")).setNameOfDeckToChange("");
 
         String name = JOptionPane.showInputDialog("Enter your favorite name!");
         Object[] possibilities = {"Mage", "Rogue", "Warlock", "Hunter", "Priest"};
@@ -124,15 +110,16 @@ public class DeckPanel extends JPanel {
                 "Mage");
 
         CollectionController.makeNewDeck(name, heroName);
-        DeckPage.getInstance().setNameOfDeckToChange(name);
+        ((DeckPage)Constant.getPanels().get("DeckPage")).setNameOfDeckToChange(name);
 
-        MyMainFrame.getInstance().setContentPane(DeckPage.getInstance());
+       ClientMain.getMyMainFrame().setContentPane(DeckPage.getInstance());
     }
 
     public void showDeckButtons() {
-        DeckPanel.getInstance().removeAll();
-        DeckPanel.getInstance().repaint();
-        DeckPanel.getInstance().revalidate();
+        DeckPanel deckPanel=(DeckPanel) Constant.getPanels().get("DeckPanel");
+        deckPanel.removeAll();
+        deckPanel.repaint();
+        deckPanel.revalidate();
         this.add(newDeckBtn);
         if (CollectionController.getListOfPlayersDeckNames().size()!=0) {
             for (String deckName : CollectionController.getListOfPlayersDeckNames()) {
@@ -143,11 +130,12 @@ public class DeckPanel extends JPanel {
 
 
     private void showDeck() {
-        MyMainFrame.getInstance().setContentPane(DeckPage.getInstance());
-        DeckViewer.getInstance().removeAll();
-        DeckViewer.getInstance().repaint();
-        DeckViewer.getInstance().revalidate();
-        DeckViewer.getInstance().showCardsInDecK();
+       ClientMain.getMyMainFrame().setContentPane(Constant.getPanels().get("DeckPage"));
+        DeckViewer deckViewer=(DeckViewer)Constant.getPanels().get("DeckViewer");
+        deckViewer.removeAll();
+        deckViewer.repaint();
+        deckViewer.revalidate();
+
 
     }
 

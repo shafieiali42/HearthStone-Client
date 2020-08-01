@@ -109,12 +109,43 @@ public class Client extends Thread{
     }
 
 
-    public void sendGoToPage(String pageName){
-        Request request =new GoToPageRequest(authToken,pageName);
+    public void sendGoToPage(String userName,String pageName){
+        Request request =new GoToPageRequest(authToken,userName,pageName);
         String message =new Gson().toJson(request);
         sendRequest(authToken,"GoToPageRequest",message);
     }
 
+
+    public void sendShowWalletRequest(String userName){
+        Request request =new ShowWalletRequest(authToken,userName);
+        String message =new Gson().toJson(request);
+        sendRequest(authToken,"ShowWalletRequest",message);
+    }
+
+    public void sendShowSpecificCardsRequest(String group){
+        Request request =new ShowSpecificCardsRequest(authToken,Controller.getCurrentPlayerUserName(),group);
+        String message =new Gson().toJson(request);
+        sendRequest(authToken,"ShowSpecificCardsRequest",message);
+    }
+
+    public void sendChangeBackOfCardRequest(String mode){
+            Request request =new ChangeBackOfCardRequest(authToken,Controller.getCurrentPlayerUserName(),mode);
+            String message=new Gson().toJson(request);
+            sendRequest(authToken,"ChangeBackOfCardRequest",message);
+    }
+
+
+    public void sendChangeVolumeRequest(String state){
+        Request request =new ChangeVolumeRequest(authToken,Controller.getCurrentPlayerUserName(),state);
+        String message= new Gson().toJson(request);
+        sendRequest(authToken,"ChangeVolumeRequest",message);
+    }
+
+    public void sendShowDeckNumber(int number){
+        Request request=new ShowDeckNumberRequest(authToken,Controller.getCurrentPlayerUserName(),number);
+        String message =new Gson().toJson(request);
+        sendRequest(authToken,"ShowDeckNumberRequest",message);
+    }
 
 
     //getter and setters
