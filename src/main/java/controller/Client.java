@@ -124,15 +124,63 @@ public class Client extends Thread{
 
 
 
+
+    public void sendShowSearchCardsRequest(String searchTextField){
+        Request request =new ShowSearchCardsRequest(Controller.getCurrentPlayerUserName(),searchTextField);
+        String message =new Gson().toJson(request);
+        sendRequest(authToken,"ShowSearchCardsRequest",message);
+    }
+
+
+    public void sendShowCardsFilteredByManaRequest(int mana){
+            Request request =new ShowCardsFilteredByManaRequest(Controller.getCurrentPlayerUserName(),mana);
+            String message = new Gson().toJson(request);
+            sendRequest(authToken,"ShowCardsFilteredByManaRequest",message);
+    }
+
+
+
+    public void sendGoBackFromCollectionPages(){
+        Request request =new GoBackFromCollectionPages(Controller.getCurrentPlayerUserName());
+        String message =new Gson().toJson(request);
+        sendRequest(authToken,"GoBackFromCollectionPages",message);
+    }
+
+
+    public void sendRemoveCardFromDeckToChangeRequest(String cardName){
+        Request request =new RemoveCardFromDeckToChangeRequest(Controller.getCurrentPlayerUserName(),cardName);
+        String message =new Gson().toJson(request);
+        sendRequest(authToken,"RemoveCardFromDeckToChangeRequest",message);
+    }
+
+
+
+
+
+    public void sendSetAllLittleCardsPanelsRequest(){
+        Request request =new SetAllLittleCardsPanelsRequest(Controller.getCurrentPlayerUserName());
+        String message = new Gson().toJson(request);
+        sendRequest(authToken,"SetAllLittleCardsPanelsRequest",message);
+    }
+
+
+
+
+
     public void sendMakeNewDeckRequest(String deckName,String heroName){
-        Request request =new MakeNewDeckRequest();
+        Request request =new MakeNewDeckRequest(Controller.getCurrentPlayerUserName(),deckName,heroName);
         String message =new Gson().toJson(request);
         sendRequest(authToken,"MakeNewDeckRequest",message);
     }
 
 
 
-    public void sendLeftClickRequest(String cardName,boolean isLock){
+    public void sendDoneCreatDeckRequest(){
+
+    }
+
+
+    public void sendLeftClickRequest(String cardName, boolean isLock){
         Request request =new LeftClickRequest(authToken,Controller.getCurrentPlayerUserName(),isLock);
         String message =new Gson().toJson(request);
         sendRequest(authToken,"LeftClickRequest",message);

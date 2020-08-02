@@ -7,13 +7,14 @@ import view.gui.panels.CollectionPages.DeckViewer;
 
 import java.util.HashMap;
 
-public class AddCardToDeckResponse extends Response {
+public class RemoveCardFromDeckToChangeResponse extends Response {
+
 
     private String userName;
     private HashMap<String, Integer> usesMap;
 
 
-    public AddCardToDeckResponse(String userName, HashMap<String, Integer> usesMap) {
+    public RemoveCardFromDeckToChangeResponse(String userName, HashMap<String, Integer> usesMap) {
         this.userName = userName;
         this.usesMap = usesMap;
     }
@@ -30,8 +31,6 @@ public class AddCardToDeckResponse extends Response {
             }
         }
         deckViewer.showCardsInDecK();
-
-
     }
 
     public String getUserName() {

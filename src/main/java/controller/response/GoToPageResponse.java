@@ -43,6 +43,11 @@ public class GoToPageResponse extends Response {
                 showDeckInfoPanel.revalidate();
                 ClientMain.getMyMainFrame().setContentPane(new MainMenuPage());
                 break;
+            case "MainMenuPageNormal":
+                ClientMain.getMyMainFrame().setContentPane(new MainMenuPage());
+                break;
+            case "GamePage":
+                ClientMain.getMyMainFrame().setContentPane(GamePage.getInstance());
         }
     }
 

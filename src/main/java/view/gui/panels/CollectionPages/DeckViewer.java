@@ -1,13 +1,16 @@
 package view.gui.panels.CollectionPages;
 
 
-import Main.ClientMain;
+import controller.CollectionController;
+import controller.Controller;
 import utility.constant.Constant;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class DeckViewer extends JPanel {
@@ -40,7 +43,7 @@ public class DeckViewer extends JPanel {
         doneBtn = new JButton("Done");
         designBtn(doneBtn);
         doneBtn.setBounds((Constant.WIDTH_OF_DECK_VIEWER - doneBtn.getWidth()) / 2,
-                30* Constant.HEIGHT_OF_LITTLE_CARD + 100, doneBtn.getWidth(), doneBtn.getHeight());
+                30 * Constant.HEIGHT_OF_LITTLE_CARD + 100, doneBtn.getWidth(), doneBtn.getHeight());
         doneBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -51,49 +54,18 @@ public class DeckViewer extends JPanel {
     }
 
     private void done() {
-        if (CollectionController.getListOfCardsOfCollectionStatesDeck().size() < 15) {
-
-            JOptionPane.showMessageDialog(null,
-                    "You must select at least 15 cards.", "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
-            DeckViewer deckViewer =(DeckViewer)Constant.getPanels().get("DeckViewer");
-            deckViewer.removeAll();
-            deckViewer.repaint();
-            deckViewer.revalidate();
-            DeckPage deckPage =(DeckPage)Constant.getPanels().get("DeckPage");
-            if (ControllerOfMainComponents.getStatus().equals(Status.CHANGE_DECK)) {
-                ControllerOfMainComponents.currentPlayer.getLoggerOfMyPlayer().info("Changed deck " +
-                       deckPage.getNameOfDeckToChange());
-                CollectionController.defineUsesHashMap();
-                CollectionController.makeCollectionStatesDeckToNull();
-                deckPage.setListOfLittleCardsPanelOfDeckToChange(LittleCardPanel.getAllLittleCardPanels());
-
-                ControllerOfMainComponents.setStatus(Status.COLLECTIONS_PAGE);
-                ClientMain.getMyMainFrame().setContentPane(Constant.getPanels().get("CollectionPage"));
-                ((DeckPanel)Constant.getPanels().get("DeckPanel")).showDeckButtons();
-            } else if (ControllerOfMainComponents.getStatus().equals(Status.MAKE_DECK)) {
-                CollectionController.defineUsesHashMap();
-                CollectionController.addCollectionStatesDeckToPlayersDecksList();
-                CollectionController.makeCollectionStatesDeckToNull();
-               deckPage.setListOfLittleCardsPanelOfDeckToChange(LittleCardPanel.getAllLittleCardPanels());
-
-                ControllerOfMainComponents.setStatus(Status.COLLECTIONS_PAGE);
-               ClientMain.getMyMainFrame().setContentPane(Constant.getPanels().get("CollectionPage"));
-                ((DeckPanel)Constant.getPanels().get("DeckPanel")).showDeckButtons();
-                Administer.writeLog("Make new Deck");
-            }
-        }
+        Controller.getCurrentClient().sendDoneCreatDeckRequest();
     }
 
     public void showCardsInDecK() {
-        DeckViewer deckViewer=(DeckViewer)Constant.getPanels().get("DeckViewer");
+        DeckViewer deckViewer = (DeckViewer) Constant.getPanels().get("DeckViewer");
         deckViewer.removeAll();
         deckViewer.repaint();
         deckViewer.revalidate();
         int yCoordinate = 0;
-        for ( LittleCardPanel littleCardPanel : CollectionController.getLittleCardPanelOfDeckToChangeFromDeckPage()) {
-            for (Cards card : CollectionController.getListOfCardsOfCollectionStatesDeck()) {
-                if (littleCardPanel.getNameLabel().getText().equalsIgnoreCase(card.getName())) {
+        for (LittleCardPanel littleCardPanel : this.getLittleCardPanelOfDeckToChangeFromDeckPage()) {
+            for (String cardName : CollectionController.getListOfCardOfDeckToChange()) {
+                if (littleCardPanel.getNameLabel().getText().equalsIgnoreCase(cardName)) {
 
                     CollectionController.showLittleCardPanelOnDeckViewer(littleCardPanel, this,
                             (Constant.WIDTH_OF_DECK_VIEWER - littleCardPanel.getWidth()) / 2, yCoordinate);
@@ -106,5 +78,24 @@ public class DeckViewer extends JPanel {
         add(doneBtn);
     }
 
+
+    public ArrayList<LittleCardPanel> setLittleCardsListFromHashMap(HashMap<String, Integer> hashMap) {
+        ArrayList<LittleCardPanel> littleCardPanelsOfThisHashMap = LittleCardPanel.getAllLittleCardPanels();
+        for (String cardName : hashMap.keySet()) {
+            int useOfCard = hashMap.get(cardName);
+            for (LittleCardPanel littleCardPanel : littleCardPanelsOfThisHashMap) {
+                if (littleCardPanel.getNameLabel().getText().equalsIgnoreCase(cardName)) {
+                    littleCardPanel.getUsedLabel().setText(useOfCard + "");
+                }
+            }
+        }
+        return littleCardPanelsOfThisHashMap;
+    }
+
+    public ArrayList<LittleCardPanel> getLittleCardPanelOfDeckToChangeFromDeckPage() {
+//        return CollectionState.getInstance().getDeckToChange().getLittleCardPanelsOfThisDeck();
+        DeckPage deckPage=(DeckPage)Constant.getPanels().get("DeckPage");
+        return deckPage.getListOfLittleCardsPanelOfDeckToChange();
+    }
 
 }

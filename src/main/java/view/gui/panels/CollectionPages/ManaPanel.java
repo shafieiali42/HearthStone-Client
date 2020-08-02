@@ -1,15 +1,8 @@
 package view.gui.panels.CollectionPages;
 
-import Controller.Administer;
-import Controller.CollectionController;
-import Controller.ControllerOfMainComponents;
-import Controller.GamePartController;
-import Logic.Status;
+
 import Main.ClientMain;
-import Utility.Config2.ConfigLoader;
-import View.Gui.Panels.GamePage.GamePage;
-import View.Gui.Panels.MenuPanel.MainMenuPage;
-import View.Gui.Panels.MyMainFrame.MyMainFrame;
+import controller.Controller;
 import utility.constant.Constant;
 import view.gui.panels.MenuPanel.MainMenuPage;
 
@@ -74,13 +67,9 @@ public class ManaPanel extends JPanel {
         searchBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    Administer.writeLog("Search for card: " + searchField.getText());
+                //                    Administer.writeLog("Search for card: " + searchField.getText());
 //                    CLI.currentPlayer.getLoggerOfMyPlayer().info("Search for card: "+searchField.getText());
-                    searchInCards(searchField.getText());
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+                searchInCards(searchField.getText());
             }
         });
         add(searchField);
@@ -102,11 +91,7 @@ public class ManaPanel extends JPanel {
         tenManaBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    filterByMana(10);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+                filterByMana(10);
             }
         });
         this.add(tenManaBtn);
@@ -118,11 +103,7 @@ public class ManaPanel extends JPanel {
         nineManaBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    filterByMana(9);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+                filterByMana(9);
             }
         });
         this.add(nineManaBtn);
@@ -134,11 +115,7 @@ public class ManaPanel extends JPanel {
         eightManaBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    filterByMana(8);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+                filterByMana(8);
             }
         });
         this.add(eightManaBtn);
@@ -150,11 +127,7 @@ public class ManaPanel extends JPanel {
         sevenManaBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    filterByMana(7);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+                filterByMana(7);
             }
         });
         this.add(sevenManaBtn);
@@ -166,11 +139,7 @@ public class ManaPanel extends JPanel {
         sixManaBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    filterByMana(6);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+                filterByMana(6);
             }
         });
         this.add(sixManaBtn);
@@ -182,11 +151,7 @@ public class ManaPanel extends JPanel {
         fiveManaBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    filterByMana(5);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+                filterByMana(5);
             }
         });
         this.add(fiveManaBtn);
@@ -198,11 +163,7 @@ public class ManaPanel extends JPanel {
         fourManaBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    filterByMana(4);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+                filterByMana(4);
             }
         });
         this.add(fourManaBtn);
@@ -214,11 +175,7 @@ public class ManaPanel extends JPanel {
         threeManaBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    filterByMana(3);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+                filterByMana(3);
             }
         });
         this.add(threeManaBtn);
@@ -230,11 +187,7 @@ public class ManaPanel extends JPanel {
         twoManaBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    filterByMana(2);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+                filterByMana(2);
             }
         });
         this.add(twoManaBtn);
@@ -246,11 +199,7 @@ public class ManaPanel extends JPanel {
         oneManaBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    filterByMana(1);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+                filterByMana(1);
             }
         });
         this.add(oneManaBtn);
@@ -270,7 +219,7 @@ public class ManaPanel extends JPanel {
                 cardPanel.removeAll();
                 cardPanel.repaint();
                 cardPanel.revalidate();
-                Administer.writeLog("Go back from collection page");
+//                Administer.writeLog("Go back from collection page");
                 goBack();
             }
         });
@@ -278,30 +227,20 @@ public class ManaPanel extends JPanel {
     }
 
     private void goBack() {
-        if (ControllerOfMainComponents.getStatus().equals(Status.COLLECTIONS_PAGE)) {
-            ClientMain.getMyMainFrame().setContentPane(new MainMenuPage());
-        } else if (ControllerOfMainComponents.getStatus().equals(Status.MAKE_DECK) || ControllerOfMainComponents.getStatus().equals(Status.CHANGE_DECK)) {
-            JOptionPane.showMessageDialog(null, "You should press done button", "Error", JOptionPane.ERROR_MESSAGE);
-        } else if (ControllerOfMainComponents.getStatus().equals(Status.COLLECTION_PAGE_FROM_PLAY)) {
-            if (!GamePartController.isCurrentPlayersCurrentDeckNull()) {
-                ControllerOfMainComponents.setStatus(Status.PLAY_PAGE);
-                ClientMain.getMyMainFrame().setContentPane(GamePage.getInstance());
-            } else {
-                ControllerOfMainComponents.setStatus(Status.MAIN_MENU_PAGE);
-                ClientMain.getMyMainFrame().setContentPane(new MainMenuPage());
-            }
-        }
+        Controller.getCurrentClient().sendGoBackFromCollectionPages();
     }
 
 
-    private void searchInCards(String searchFieldText) throws IOException {
-        CollectionController.showSearchedCards(searchFieldText,  Constant.getPanels().get("cardPanelOfCollectionPage"),
-              Constant.getPanels().get("cardPanelOfDeckPage"), CardPanel.getNumOfCardInEveryRow());
+    private void searchInCards(String searchFieldText) {
+        Controller.getCurrentClient().sendShowSearchCardsRequest(searchFieldText);
+//        CollectionController.showSearchedCards(searchFieldText,  Constant.getPanels().get("cardPanelOfCollectionPage"),
+//              Constant.getPanels().get("cardPanelOfDeckPage"), CardPanel.getNumOfCardInEveryRow());
     }
 
-    public void filterByMana(int mana) throws IOException {
-        CollectionController.showCardsWithSpecifiedManaCost(mana, Constant.getPanels().get("cardPanelOfCollectionPage"),
-                Constant.getPanels().get("cardPanelOfDeckPage"), CardPanel.getNumOfCardInEveryRow());
+    public void filterByMana(int mana) {
+        Controller.getCurrentClient().sendShowCardsFilteredByManaRequest(mana);
+//        CollectionController.showCardsWithSpecifiedManaCost(mana, Constant.getPanels().get("cardPanelOfCollectionPage"),
+//                Constant.getPanels().get("cardPanelOfDeckPage"), CardPanel.getNumOfCardInEveryRow());
     }
 
 }

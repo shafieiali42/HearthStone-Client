@@ -1,18 +1,15 @@
 package view.gui.panels.CollectionPages;
 
-import Controller.CollectionController;
-import Utility.Config2.ConfigLoader;
+
+import controller.Controller;
 import utility.constant.Constant;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Properties;
-
 
 public class LittleCardPanel extends JPanel implements MouseListener, Serializable {
 
@@ -56,36 +53,37 @@ public class LittleCardPanel extends JPanel implements MouseListener, Serializab
         nameLabel.setBackground(Color.ORANGE);
         nameLabel.setBounds(Constant.height, 0,
                 (Constant.width - 2 * Constant.height),Constant. height);
-        nameLabel.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (SwingUtilities.isLeftMouseButton(e)) {
-                    CollectionController.removeThisCardFromCollectionStatesDeck(LittleCardPanel.this);
-                    ((DeckViewer)Constant.getPanels().get("DeckViewer")).showCardsInDecK();
-
-                }
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
-            }
-        });
+        manaLabel.addMouseListener(this);
+//        nameLabel.addMouseListener(new MouseListener() {
+//            @Override
+//            public void mouseClicked(MouseEvent e) {
+//                if (SwingUtilities.isLeftMouseButton(e)) {
+//                    CollectionController.removeThisCardFromCollectionStatesDeck(LittleCardPanel.this);
+//                    ((DeckViewer)Constant.getPanels().get("DeckViewer")).showCardsInDecK();
+//
+//                }
+//            }
+//
+//            @Override
+//            public void mousePressed(MouseEvent e) {
+//
+//            }
+//
+//            @Override
+//            public void mouseReleased(MouseEvent e) {
+//
+//            }
+//
+//            @Override
+//            public void mouseEntered(MouseEvent e) {
+//
+//            }
+//
+//            @Override
+//            public void mouseExited(MouseEvent e) {
+//
+//            }
+//        });
         usedLabel = new JLabel();
         usedLabel.setHorizontalAlignment(SwingConstants.CENTER);
         usedLabel.setText(used + "");
@@ -99,18 +97,27 @@ public class LittleCardPanel extends JPanel implements MouseListener, Serializab
 
     public static void setAllLittleCardPanels() {
         allLittleCardPanels.clear();
-        CollectionController.initializeAllLittleCardPanels();
+        Controller.getCurrentClient().sendSetAllLittleCardsPanelsRequest();
     }
+
+
+
+
 
 
     @Override
     public void mouseClicked(MouseEvent e) {
         if (SwingUtilities.isLeftMouseButton(e)) {
-            CollectionController.removeThisCardFromCollectionStatesDeck(LittleCardPanel.this);
-            ((DeckViewer)Constant.getPanels().get("DeckViewer")).showCardsInDecK();
+            Controller.getCurrentClient().sendRemoveCardFromDeckToChangeRequest(this.nameLabel.getText());
+//            CollectionController.removeThisCardFromCollectionStatesDeck(LittleCardPanel.this);
+//            ((DeckViewer)Constant.getPanels().get("DeckViewer")).showCardsInDecK();
 
         }
     }
+
+
+
+
 
     @Override
     public void mousePressed(MouseEvent e) {

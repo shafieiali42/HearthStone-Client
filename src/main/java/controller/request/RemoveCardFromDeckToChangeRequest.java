@@ -2,20 +2,17 @@ package controller.request;
 
 import java.util.HashMap;
 
-public class LeftClickRequest extends Request {
+public class RemoveCardFromDeckToChangeRequest extends Request {
 
 
     private String userName;
     private String cardName;
-    private boolean isLock;
 
-    public LeftClickRequest(String userName, String cardName, boolean isLock) {
+
+    public RemoveCardFromDeckToChangeRequest(String userName, String cardName) {
         this.userName = userName;
-        this.cardName = cardName;
-        this.isLock = isLock;
+        this.cardName=cardName;
     }
-
-
 
 
     public String getUserName() {
@@ -26,7 +23,6 @@ public class LeftClickRequest extends Request {
         this.userName = userName;
     }
 
-
     public String getCardName() {
         return cardName;
     }
@@ -34,15 +30,4 @@ public class LeftClickRequest extends Request {
     public void setCardName(String cardName) {
         this.cardName = cardName;
     }
-
-    public boolean isLock() {
-        return isLock;
-    }
-
-    public void setLock(boolean lock) {
-        isLock = lock;
-    }
-
-
 }
-

@@ -374,6 +374,7 @@ public class CardImagePanel extends JPanel implements MouseListener, MouseMotion
             } else if (SwingUtilities.isLeftMouseButton(e)) {
                 Controller.getCurrentClient().sendLeftClickRequest(cardName,isLock);
             }
+
         }
 
     }

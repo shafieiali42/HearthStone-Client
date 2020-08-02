@@ -16,10 +16,10 @@ public class ShowSpecificCardsResponse extends Response {
     private String panelName;
 
 
-    public ShowSpecificCardsResponse(ArrayList<String> names,String group,String panelName) {
+    public ShowSpecificCardsResponse(ArrayList<String> names, String group, String panelName) {
         this.names = names;
-        this.group=group;
-        this.panelName=panelName;
+        this.group = group;
+        this.panelName = panelName;
     }
 
     @Override
@@ -27,8 +27,8 @@ public class ShowSpecificCardsResponse extends Response {
         switch (group) {
             case "Buyable":
             case "Salable":
-                ShopCardPanel shopCardPanel=(ShopCardPanel) Constant.getPanels().get("ShopCardPanel");
-                Administer.showGroupOfCards(names, shopCardPanel,shopCardPanel.getNumOfCardInEveryRow());
+                ShopCardPanel shopCardPanel = (ShopCardPanel) Constant.getPanels().get("ShopCardPanel");
+                Administer.showGroupOfCards(names, shopCardPanel, shopCardPanel.getNumOfCardInEveryRow());
                 break;
             case "LockCards":
             case "UnLockCards":
@@ -39,8 +39,10 @@ public class ShowSpecificCardsResponse extends Response {
             case "WarlockCards":
             case "RogueCards":
             case "MageCards":
-                CardPanel cardPanel=(CardPanel)Constant.getPanels().get(panelName);
-                MethodsOfShowCardsOnPanel.showCards(names,cardPanel,CardPanel.getNumOfCardInEveryRow());
+            case "Mana":
+            case "Search":
+                CardPanel cardPanel = (CardPanel) Constant.getPanels().get(panelName);
+                MethodsOfShowCardsOnPanel.showCards(names, cardPanel, CardPanel.getNumOfCardInEveryRow());
                 break;
         }
 
