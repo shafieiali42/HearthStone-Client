@@ -47,7 +47,7 @@ public class GoToPageResponse extends Response {
                 ClientMain.getMyMainFrame().setContentPane(new MainMenuPage());
                 break;
             case "GamePage":
-                ClientMain.getMyMainFrame().setContentPane(GamePage.getInstance());
+//                ClientMain.getMyMainFrame().setContentPane(GamePage.getInstance());
         }
     }
 

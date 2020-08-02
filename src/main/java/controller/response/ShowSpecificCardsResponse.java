@@ -41,9 +41,12 @@ public class ShowSpecificCardsResponse extends Response {
             case "MageCards":
             case "Mana":
             case "Search":
+            case "SpecialCardsInCollections":
                 CardPanel cardPanel = (CardPanel) Constant.getPanels().get(panelName);
                 MethodsOfShowCardsOnPanel.showCards(names, cardPanel, CardPanel.getNumOfCardInEveryRow());
                 break;
+
+
         }
 
     }

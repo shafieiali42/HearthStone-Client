@@ -39,7 +39,7 @@ public class MethodsOfShowCardsOnPanel {
         }
     }
 
-
+/*
     public static void showCards(ArrayList<String> cards, JPanel panel, int numOfCardInEveryRow, int width, int height) throws IOException {
         panel.removeAll();
         panel.repaint();
@@ -153,7 +153,7 @@ public class MethodsOfShowCardsOnPanel {
             }
         }
     }
-
+*/
 
     public static void addPanel(JPanel originPanel, JPanel destinationPanel, int x, int y, int width, int height) {
         originPanel.setBounds(x, y, width, height);

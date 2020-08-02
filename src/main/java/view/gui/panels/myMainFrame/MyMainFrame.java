@@ -21,6 +21,8 @@ public class MyMainFrame extends JFrame {
     }
 
     private void loadFrame() {
+        System.out.println("mainFrame");
+
         width = Constant.widthOfMainFrame;
         height = Constant.heightOfMainFrame;
         setDefaultCloseOperation(Constant.defaultCloseOperation);

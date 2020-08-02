@@ -60,10 +60,7 @@ public class DeckPanel extends JPanel {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ControllerOfMainComponents.setStatus(Status.CHANGE_DECK);
-                LittleCardPanel.setAllLittleCardPanels();
-                CollectionController.setCollectionDeck(deckName);
-                showDeck();
+                showDeck(deckName);
             }
         });
         this.add(button);
@@ -112,30 +109,41 @@ public class DeckPanel extends JPanel {
     }
 
     public void showDeckButtons() {
-        DeckPanel deckPanel = (DeckPanel) Constant.getPanels().get("DeckPanel");
-        deckPanel.removeAll();
-        deckPanel.repaint();
-        deckPanel.revalidate();
-        this.add(newDeckBtn);
-        if (CollectionController.getListOfPlayersDeckNames().size() != 0) {
-            for (String deckName : CollectionController.getListOfPlayersDeckNames()) {
-                initButtonForDeck(deckName);
-            }
-        }
+        Controller.getCurrentClient().sendShowDeckButtonsRequest();
+//        DeckPanel deckPanel = (DeckPanel) Constant.getPanels().get("DeckPanel");
+//        deckPanel.removeAll();
+//        deckPanel.repaint();
+//        deckPanel.revalidate();
+//        this.add(newDeckBtn);
+//        if (CollectionController.getListOfPlayersDeckNames().size() != 0) {
+//            for (String deckName : CollectionController.getListOfPlayersDeckNames()) {
+//                initButtonForDeck(deckName);
+//            }
+//        }
     }
 
 
-    private void showDeck() {
-        ClientMain.getMyMainFrame().setContentPane(Constant.getPanels().get("DeckPage"));
-        DeckViewer deckViewer = (DeckViewer) Constant.getPanels().get("DeckViewer");
-        deckViewer.removeAll();
-        deckViewer.repaint();
-        deckViewer.revalidate();
-
-
+    private void showDeck(String deckName) {
+        Controller.getCurrentClient().sendShowDeckRequest(deckName);
+        LittleCardPanel.setAllLittleCardPanels();
+//        ControllerOfMainComponents.setStatus(Status.CHANGE_DECK);
+//        LittleCardPanel.setAllLittleCardPanels();
+//        CollectionController.setCollectionDeck(deckName);
+//        ClientMain.getMyMainFrame().setContentPane(Constant.getPanels().get("DeckPage"));
+//        DeckViewer deckViewer = (DeckViewer) Constant.getPanels().get("DeckViewer");
+//        deckViewer.removeAll();
+//        deckViewer.repaint();
+//        deckViewer.revalidate();
     }
 
 
+    public JButton getNewDeckBtn() {
+        return newDeckBtn;
+    }
+
+    public void setNewDeckBtn(JButton newDeckBtn) {
+        this.newDeckBtn = newDeckBtn;
+    }
 }
 
 

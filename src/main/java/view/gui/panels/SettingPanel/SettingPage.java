@@ -48,6 +48,8 @@ public class SettingPage extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 int a = PlayPanel.getInstance().getTypeOfBackOfCards() + 1;
                 Controller.getCurrentClient().sendChangeBackOfCardRequest(a + "");
+
+
             }
         });
         this.add(changeBackOfCardsBtn);

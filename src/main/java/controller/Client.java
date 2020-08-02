@@ -147,6 +147,53 @@ public class Client extends Thread{
     }
 
 
+    public void sendShowDeckRequest(String deckName){
+        Request request =new ShowDeckRequest(Controller.getCurrentPlayerUserName(),deckName);
+        String message = new Gson().toJson(request);
+        sendRequest(authToken,"ShowDeckRequest",message);
+    }
+
+    public void sendShowDeckButtonsRequest(){
+        Request request =new ShowDeckButtonsRequest(Controller.getCurrentPlayerUserName());
+        String message =new Gson().toJson(request);
+        sendRequest(authToken,"ShowDeckButtonsRequest",message);
+    }
+
+
+    public void sendShowSpecialCardsOfHeroRequest(){
+        Request request =new ShowSpecialCardsOfHeroRequest(Controller.getCurrentPlayerUserName());
+        String message =new Gson().toJson(request);
+        sendRequest(authToken,"ShowSpecialCardsOfHeroRequest",message);
+    }
+
+
+
+    public void sendRemoveDeckRequest(String requestType){
+        Request request =new MakeChangeToDeckToChangeRequest(Controller.getCurrentPlayerUserName(),requestType,null);
+        String message =new Gson().toJson(request);
+        sendRequest(authToken,"MakeChangeToDeckToChangeRequest",message);
+    }
+
+    public void sendChangeHeroOfDeckRequest(String requestType,String heroName){
+        Request request =new MakeChangeToDeckToChangeRequest(Controller.getCurrentPlayerUserName(),requestType,heroName);
+        String message=new Gson().toJson(request);
+        sendRequest(authToken,"MakeChangeToDeckToChangeRequest",message);
+    }
+
+    public void sendSelectMainDeckRequest(String requestType){
+        Request request =new MakeChangeToDeckToChangeRequest(Controller.getCurrentPlayerUserName(),requestType,null);
+        String message = new Gson().toJson(request);
+        sendRequest(authToken,"MakeChangeToDeckToChangeRequest",message);
+    }
+
+
+    public void sendChangeNameOfDeckRequest(String requestType,String newName){
+        Request request = new MakeChangeToDeckToChangeRequest(Controller.getCurrentPlayerUserName(),requestType,newName);
+        String message =new Gson().toJson(request);
+        sendRequest(authToken,"MakeChangeToDeckToChangeRequest",message);
+    }
+
+
     public void sendRemoveCardFromDeckToChangeRequest(String cardName){
         Request request =new RemoveCardFromDeckToChangeRequest(Controller.getCurrentPlayerUserName(),cardName);
         String message =new Gson().toJson(request);

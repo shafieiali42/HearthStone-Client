@@ -16,11 +16,7 @@ public class Administer {
 
 
     public static void showGroupOfCards(ArrayList<String> listOfCardsNames,JPanel panel, int numberOfCardsPerRow) {
-        try {
-            MethodsOfShowCardsOnPanel.showCards(listOfCardsNames,panel, numberOfCardsPerRow);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        MethodsOfShowCardsOnPanel.showCards(listOfCardsNames,panel, numberOfCardsPerRow);
     }
 
 
@@ -30,6 +26,7 @@ public class Administer {
         CardImagePanel cardImagePanel = new CardImagePanel(panelToShowCardInBuySellPanel.getCardToShowName());
         MethodsOfShowCardsOnPanel.addPanel(cardImagePanel, panel, 0, 0, panel.getWidth(), panel.getHeight());
     }
+
 
     public static void changeBackOfCards(int typeOfBackOfCards) {
         PlayPanel.getInstance().setTypeOfBackOfCards(typeOfBackOfCards);

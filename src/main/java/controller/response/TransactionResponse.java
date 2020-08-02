@@ -36,10 +36,10 @@ public class TransactionResponse extends Response {
                 panelToShowCardInBuySellPanel.revalidate();
                 BuySellPanel buySellPanel = (BuySellPanel) Constant.getPanels().get("BuySellPanel");
                 buySellPanel.getPriceLabel().setText("");
-                Controller.getCurrentClient().sendShowSpecificCardsRequest("Buyable");
+                Controller.getCurrentClient().sendShowSpecificCardsRequest("Buyable","BuySellPanel");//todo
             } else if (transactionType.equalsIgnoreCase("sell")) {
                 Administer.playActionSounds("SellCard");
-                Controller.getCurrentClient().sendShowSpecificCardsRequest("Salable");
+                Controller.getCurrentClient().sendShowSpecificCardsRequest("Salable","BuySellPanel");//todo
 
 //                PanelToShowCardInBuySellPanel panelToShowCardInBuySellPanel =
 //                        (PanelToShowCardInBuySellPanel) Constant.getPanels().get("PanelToShowCardInBuySellPanel");
