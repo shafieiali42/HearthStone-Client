@@ -3,6 +3,9 @@ package controller.response;
 import Main.ClientMain;
 import utility.constant.Constant;
 import view.gui.panels.CollectionPages.CollectionPage;
+import view.gui.panels.GamePage.FirstThreeCardsPage;
+import view.gui.panels.GamePage.GamePage;
+import view.gui.panels.GamePage.InfoPassivePage;
 import view.gui.panels.MenuPanel.MainMenuPage;
 import view.gui.panels.SettingPanel.SettingPage;
 import view.gui.panels.ShopPanel.ShopPage;
@@ -47,7 +50,16 @@ public class GoToPageResponse extends Response {
                 ClientMain.getMyMainFrame().setContentPane(new MainMenuPage());
                 break;
             case "GamePage":
-//                ClientMain.getMyMainFrame().setContentPane(GamePage.getInstance());
+                ClientMain.getMyMainFrame().setContentPane(GamePage.getInstance());
+                break;
+            case "FirstThreeCardsPage":
+                ClientMain.getMyMainFrame().setContentPane(FirstThreeCardsPage.getInstance());
+                break;
+            case "InfoPassivePage":
+                ClientMain.getMyMainFrame().setContentPane(InfoPassivePage.getInstance());
+                break;
+
+
         }
     }
 

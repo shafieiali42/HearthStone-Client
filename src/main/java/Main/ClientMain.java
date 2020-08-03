@@ -2,7 +2,7 @@ package Main;
 
 
 import controller.Client;
-import controller.Controller;
+import controller.controllers.Controller;
 import utility.constant.Constant;
 import view.gui.panels.logInPage.LogInPage;
 import view.gui.panels.myMainFrame.MyMainFrame;

@@ -1,15 +1,13 @@
 package view.gui.panels.CollectionPages;
 
 
-import Main.ClientMain;
-import controller.Controller;
+import controller.controllers.Controller;
 import utility.constant.Constant;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 public class CategoryPanelOfChangeDeck extends JPanel {
 

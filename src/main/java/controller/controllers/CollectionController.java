@@ -1,4 +1,4 @@
-package controller;
+package controller.controllers;
 
 import utility.guiUtilities.MethodsOfShowCardsOnPanel;
 import view.gui.panels.CollectionPages.LittleCardPanel;

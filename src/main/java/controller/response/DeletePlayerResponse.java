@@ -1,7 +1,7 @@
 package controller.response;
 
 import Main.ClientMain;
-import controller.Controller;
+import controller.controllers.Controller;
 
 import javax.swing.*;
 

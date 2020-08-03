@@ -1,14 +1,12 @@
 package view.gui.panels.CollectionPages;
 
 
-import controller.Controller;
-import utility.constant.Constant;
+import controller.controllers.Controller;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 
 public class CategoryPanel extends JPanel {

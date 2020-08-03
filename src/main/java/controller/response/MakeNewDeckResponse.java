@@ -1,7 +1,7 @@
 package controller.response;
 
 import Main.ClientMain;
-import controller.Controller;
+import controller.controllers.Controller;
 import utility.constant.Constant;
 import view.gui.panels.CollectionPages.DeckPage;
 import view.gui.panels.CollectionPages.LittleCardPanel;

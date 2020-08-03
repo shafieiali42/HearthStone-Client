@@ -1,7 +1,7 @@
 package view.gui.panels.MenuPanel;
 
 
-import controller.Controller;
+import controller.controllers.Controller;
 import utility.constant.Constant;
 import utility.guiUtilities.DrawRotate;
 import utility.guiUtilities.LengthOfMessage;
@@ -11,7 +11,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 
 public class MainMenuPage extends JPanel {
@@ -29,7 +28,6 @@ public class MainMenuPage extends JPanel {
     private JButton exitBtn;
     private Color colorOfBtn = new Color(48, 48, 45);
     private Color colorOfTextOfBtn = new Color(255, 0, 0);
-
 
 
     public MainMenuPage() {
@@ -68,7 +66,7 @@ public class MainMenuPage extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String password = JOptionPane.showInputDialog("Please Enter your Password:");
-                Controller.getCurrentClient().sendDeletePlayerRequest(Controller.getCurrentPlayerUserName(),password);
+                Controller.getCurrentClient().sendDeletePlayerRequest(Controller.getCurrentPlayerUserName(), password);
 //                    PlayerManagement.DeletePlayer(password);
             }
         });
@@ -120,7 +118,7 @@ public class MainMenuPage extends JPanel {
         statusBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Controller.getCurrentClient().sendGoToPage(Controller.getCurrentPlayerUserName(),"StatusPage");
+                Controller.getCurrentClient().sendGoToPage(Controller.getCurrentPlayerUserName(), "StatusPage");
             }
         });
         menuPanel.add(statusBtn);
@@ -137,7 +135,7 @@ public class MainMenuPage extends JPanel {
         settingBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Controller.getCurrentClient().sendGoToPage(Controller.getCurrentPlayerUserName(),"SettingPage");
+                Controller.getCurrentClient().sendGoToPage(Controller.getCurrentPlayerUserName(), "SettingPage");
             }
         });
         menuPanel.add(settingBtn);
@@ -154,7 +152,7 @@ public class MainMenuPage extends JPanel {
         shopBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Controller.getCurrentClient().sendGoToPage(Controller.getCurrentPlayerUserName(),"ShopPage");
+                Controller.getCurrentClient().sendGoToPage(Controller.getCurrentPlayerUserName(), "ShopPage");
 //                ControllerOfMainComponents.setStatus(Status.SHOP_PAGE);
 //                Administer.writeLog("Navigate into shop page");
 //                Administer.setBuyableCard();
@@ -177,7 +175,7 @@ public class MainMenuPage extends JPanel {
         collectionBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Controller.getCurrentClient().sendGoToPage(Controller.getCurrentPlayerUserName(),"CollectionPage");
+                Controller.getCurrentClient().sendGoToPage(Controller.getCurrentPlayerUserName(), "CollectionPage");
 //                ControllerOfMainComponents.setStatus(Status.COLLECTIONS_PAGE);
 //                Administer.writeLog("Navigate into collection page");
 ////                CLI.currentPlayer.getLoggerOfMyPlayer().info("Navigate into collection page");
@@ -198,54 +196,51 @@ public class MainMenuPage extends JPanel {
         playBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Object[] possibilities = {"Normal Game", "Two Player", "Training Game", "Deck Reader"};
-                Icon questionError = UIManager.getIcon("OptionPane.questionIcon");
-                String gameMode = (String) JOptionPane.showInputDialog(
-                        null,
-                        "Select Your favorite Game Mode:",
-                        "Select GameMode",
-                        JOptionPane.PLAIN_MESSAGE,
-                        questionError,
-                        possibilities,
-                        "Two Player");
-                int mode = 0;
-                switch (gameMode) {
-                    case "Normal Game":
-                        mode = 1;
-                        break;
-                    case "Training Game":
-                        mode = 2;
-                        break;
-                    case "Deck Reader":
-                        mode = 3;
-                        break;
-                    case "Two Player":
-                        mode = 4;
-                        break;
 
-                }
-                GamePartController.setGameMode(mode);
+                Controller.getCurrentClient().sendShowGameModesRequest();
 
-                if (GamePartController.isCurrentPlayersCurrentDeckNull()) {
-                    JOptionPane.showMessageDialog(null, "First you should select your deck",
-                            "Error", JOptionPane.ERROR_MESSAGE);
-                    ControllerOfMainComponents.setStatus(Status.COLLECTION_PAGE_FROM_PLAY);
-                    MyMainFrame.getInstance().setContentPane(CollectionPage.getInstance());
+//                Object[] possibilities = {"Normal Game", "Two Player", "Training Game", "Deck Reader"};
+//                Icon questionError = UIManager.getIcon("OptionPane.questionIcon");
+//                String gameMode = (String) JOptionPane.showInputDialog(
+//                        null,
+//                        "Select Your favorite Game Mode:",
+//                        "Select GameMode",
+//                        JOptionPane.PLAIN_MESSAGE,
+//                        questionError,
+//                        possibilities,
+//                        "Two Player");
 
-                } else {
+
+//                int mode = 0;
+//                switch (gameMode) {
+//                    case "Normal Game":
+//                        mode = 1;
+//                        break;
+//                    case "Training Game":
+//                        mode = 2;
+//                        break;
+//                    case "Deck Reader":
+//                        mode = 3;
+//                        break;
+//                    case "Two Player":
+//                        mode = 4;
+//                        break;
+//
+//                }
+
 //                    Administer.playMainSound("src/main/resources/Sounds/SecondAudio.wav");
-//                    Administer.playMainSound("src/main/resources/Sounds/SecondAudio.wav");
-                    ControllerOfMainComponents.setStatus(Status.PLAY_PAGE);
-                    Administer.writeLog("Navigate into play page");
+//           c         Administer.playMainSound("src/main/resources/Sounds/SecondAudio.wav");
+//                ControllerOfMainComponents.setStatus(Status.PLAY_PAGE);
+//                Administer.writeLog("Navigate into play page");
 //                    CLI.currentPlayer.getLoggerOfMyPlayer().info("Navigate into play page");
 //                GraphicLoop.getInstance().start();
-                    InfoPassivePage.getInstance().repaint();
-                    InfoPassivePage.getInstance().revalidate();
-                    GamePartController.reStartFirstThreeCardsSetting();
+//                InfoPassivePage.getInstance().repaint();
+//                InfoPassivePage.getInstance().revalidate();
+//                GamePartController.reStartFirstThreeCardsSetting();
 //                    MyMainFrame.getInstance().setContentPane(InfoPassivePage.getInstance());
 //                    Controller.getCurrentClient().sendGoToPage("PlayPage");
-                }
             }
+
         });
         menuPanel.add(playBtn);
 

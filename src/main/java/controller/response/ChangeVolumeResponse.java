@@ -1,7 +1,6 @@
 package controller.response;
 
-import controller.Administer;
-import utility.constant.Constant;
+import controller.controllers.Administer;
 import view.gui.panels.SettingPanel.SettingPage;
 
 public class ChangeVolumeResponse extends Response {

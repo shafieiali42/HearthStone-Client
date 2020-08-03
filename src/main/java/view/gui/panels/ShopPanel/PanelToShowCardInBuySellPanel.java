@@ -1,6 +1,6 @@
 package view.gui.panels.ShopPanel;
 
-import controller.Administer;
+import controller.controllers.Administer;
 import utility.guiUtilities.LengthOfMessage;
 
 import javax.swing.*;

@@ -1,15 +1,14 @@
 package view.gui.panels.ShopPanel;
 
 
-import controller.Administer;
-import controller.Controller;
+import controller.controllers.Administer;
+import controller.controllers.Controller;
 import utility.constant.Constant;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 public class ButtonPanel extends JPanel {
 

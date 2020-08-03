@@ -2,8 +2,8 @@ package controller.response;
 
 
 import Main.ClientMain;
-import controller.Administer;
-import controller.Controller;
+import controller.controllers.Administer;
+import controller.controllers.Controller;
 import view.gui.panels.MenuPanel.MainMenuPage;
 
 import javax.swing.*;

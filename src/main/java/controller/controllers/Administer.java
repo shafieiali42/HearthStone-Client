@@ -1,4 +1,4 @@
-package controller;
+package controller.controllers;
 
 import utility.constant.Constant;
 import utility.guiUtilities.MethodsOfShowCardsOnPanel;

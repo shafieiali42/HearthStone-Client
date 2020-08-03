@@ -1,7 +1,7 @@
 package controller.response;
 
 import Main.ClientMain;
-import controller.Controller;
+import controller.controllers.Controller;
 import view.gui.panels.logInPage.LogInPage;
 
 public class LogOutResponse extends Response {

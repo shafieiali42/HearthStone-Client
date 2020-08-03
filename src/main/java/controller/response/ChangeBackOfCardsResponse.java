@@ -1,6 +1,6 @@
 package controller.response;
 
-import controller.Administer;
+import controller.controllers.Administer;
 
 import javax.swing.*;
 

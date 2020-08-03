@@ -1,7 +1,7 @@
 package view.gui.panels.logInPage;
 
 
-import controller.Controller;
+import controller.controllers.Controller;
 import utility.constant.Constant;
 import utility.guiUtilities.ImageBackGround;
 

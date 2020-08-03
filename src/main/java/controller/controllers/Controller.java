@@ -1,4 +1,6 @@
-package controller;
+package controller.controllers;
+
+import controller.Client;
 
 public class Controller {
 

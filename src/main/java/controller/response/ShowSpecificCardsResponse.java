@@ -1,6 +1,6 @@
 package controller.response;
 
-import controller.Administer;
+import controller.controllers.Administer;
 import utility.constant.Constant;
 import utility.guiUtilities.MethodsOfShowCardsOnPanel;
 import view.gui.panels.CollectionPages.CardPanel;

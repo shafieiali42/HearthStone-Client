@@ -1,6 +1,6 @@
 package controller.response;
 
-import controller.CollectionController;
+import controller.controllers.CollectionController;
 import utility.constant.Constant;
 import view.gui.panels.CollectionPages.DeckPage;
 import view.gui.panels.CollectionPages.DeckViewer;

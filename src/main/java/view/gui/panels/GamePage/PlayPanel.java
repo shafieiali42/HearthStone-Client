@@ -1,28 +1,19 @@
 package view.gui.panels.GamePage;
 
 
-import Controller.GamePartController;
-import Logic.PlayLogic.Alliance;
-import Utility.Config2.ConfigLoader;
-import Utility.MethodsOfShowCardsOnPanel;
-import View.CardView.CardImagePanel;
-import View.Gui.Animation.AnimationOfRotation;
 import utility.constant.Constant;
 import view.CardView.CardImagePanel;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Properties;
 
 
 public class PlayPanel extends JPanel {
 
-//    static int WIDTH_OF_PLAY_PANEL = Integer.parseInt(properties.getProperty("WIDTH_OF_PLAY_PANEL"));
-//    static int HEIGHT_OF_PLAY_PANEL = Integer.parseInt(properties.getProperty("HEIGHT_OF_PLAY_PANEL"));
+
 
     static int WIDTH_OF_PLAY_PANEL = 1115;
     static int HEIGHT_OF_PLAY_PANEL = 770;
@@ -53,15 +44,6 @@ public class PlayPanel extends JPanel {
     }
 
 
-//    public void defineImagesOfHeroAndHeroPower() throws IOException {
-//
-//        heroImage = ImageIO.read(new File(
-//                Constant.getInstance().getHeroImages().get(Administer.getNameOfFriendlyHeroOfGameState())));
-//
-//        heroPowerImage = ImageIO.read(
-//                new File(Constant.getInstance().getHeroPowerImages().get(Administer.getNameOfFriendlyHeroOfGameState())));
-//
-//    }
 
 
     public void showFriendlyHeroImage() {

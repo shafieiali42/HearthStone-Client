@@ -1,7 +1,7 @@
 package view.CardView;
 
 
-import controller.Controller;
+import controller.controllers.Controller;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -12,7 +12,6 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Objects;
 
 //import View.Gui.Loop.Loop.GraphicLoop;
 

@@ -1,12 +1,15 @@
 package view.gui.panels.GamePage;
 
+import controller.controllers.Controller;
 import utility.constant.Constant;
+import utility.guiUtilities.MethodsOfShowCardsOnPanel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class FirstThreeCardsPage extends JPanel {
@@ -14,8 +17,7 @@ public class FirstThreeCardsPage extends JPanel {
 
 
 
-    private static FirstThreeCardsPage firstThreeCardsPage=new FirstThreeCardsPage();
-    public static FirstThreeCardsPage getInstance(){return firstThreeCardsPage;}
+
     private String firstCard;
     private String secondCard;
     private String thirdCard;
@@ -25,12 +27,13 @@ public class FirstThreeCardsPage extends JPanel {
     private JButton okButton;
     private Color colorOfTextOfBtn = new Color(255, 0, 0);
     private Color colorOfBtn = new Color(48, 48, 45);
-
+    private ArrayList<String> firstThreeCardsName;
 
 
     private FirstThreeCardsPage(){
         setLayout(null);
         setBackground(Color.gray);
+        firstThreeCardsName=new ArrayList<>();
         firstCard="";
         secondCard="";
         thirdCard="";
@@ -61,8 +64,9 @@ public class FirstThreeCardsPage extends JPanel {
         okButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ControllerOfMainComponents.setStatus(Status.PLAY_PAGE);
-                MyMainFrame.getInstance().setContentPane(GamePage.getInstance());
+                Controller.getCurrentClient().sendOkButtonOnFirstThreeCardsPageRequest();
+//                ControllerOfMainComponents.setStatus(Status.PLAY_PAGE);
+//                MyMainFrame.getInstance().setContentPane(GamePage.getInstance());
 
             }
         });
@@ -75,7 +79,7 @@ public class FirstThreeCardsPage extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         try {
-            MethodsOfShowCardsOnPanel.showCards(GamePartController.getFirstFriendlyThreeCards(),this,3,200,300);
+            MethodsOfShowCardsOnPanel.showCards(firstThreeCardsName,this,3,200,300);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -129,4 +133,13 @@ public class FirstThreeCardsPage extends JPanel {
     public void setCanChangeThirdCard(boolean canChangeThirdCard) {
         this.canChangeThirdCard = canChangeThirdCard;
     }
+
+    public ArrayList<String> getFirstThreeCardsName() {
+        return firstThreeCardsName;
+    }
+
+    public void setFirstThreeCardsName(ArrayList<String> firstThreeCardsName) {
+        this.firstThreeCardsName = firstThreeCardsName;
+    }
+
 }

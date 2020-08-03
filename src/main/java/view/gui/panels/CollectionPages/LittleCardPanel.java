@@ -1,7 +1,7 @@
 package view.gui.panels.CollectionPages;
 
 
-import controller.Controller;
+import controller.controllers.Controller;
 import utility.constant.Constant;
 
 import javax.swing.*;

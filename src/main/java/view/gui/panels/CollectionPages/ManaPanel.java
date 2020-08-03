@@ -1,17 +1,13 @@
 package view.gui.panels.CollectionPages;
 
 
-import Main.ClientMain;
-import controller.Controller;
+import controller.controllers.Controller;
 import utility.constant.Constant;
-import view.gui.panels.MenuPanel.MainMenuPage;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.util.Properties;
 
 
 public class ManaPanel extends JPanel {

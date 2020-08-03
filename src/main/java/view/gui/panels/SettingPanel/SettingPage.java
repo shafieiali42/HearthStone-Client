@@ -1,8 +1,8 @@
 package view.gui.panels.SettingPanel;
 
 
-import controller.Administer;
-import controller.Controller;
+import controller.controllers.Administer;
+import controller.controllers.Controller;
 import utility.constant.Constant;
 import javax.swing.*;
 import java.awt.*;

@@ -1,11 +1,9 @@
 package view.gui.panels.StatusPanel;
 
 
-import Main.ClientMain;
-import controller.Administer;
-import controller.Controller;
+import controller.controllers.Administer;
+import controller.controllers.Controller;
 import utility.constant.Constant;
-import view.gui.panels.MenuPanel.MainMenuPage;
 
 import javax.swing.*;
 import java.awt.*;
