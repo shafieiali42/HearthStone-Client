@@ -1,5 +1,6 @@
 package view.gui.panels.GamePage;
 
+import Main.ClientMain;
 import controller.controllers.Controller;
 import utility.constant.Constant;
 import utility.guiUtilities.MethodsOfShowCardsOnPanel;
@@ -13,8 +14,6 @@ import java.util.ArrayList;
 
 
 public class FirstThreeCardsPage extends JPanel {
-
-
 
 
 
@@ -65,6 +64,8 @@ public class FirstThreeCardsPage extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Controller.getCurrentClient().sendOkButtonOnFirstThreeCardsPageRequest();
+                GamePage gamePage=(GamePage)Constant.getPanels().get("GamePage");
+                ClientMain.getMyMainFrame().setContentPane(gamePage);
 //                ControllerOfMainComponents.setStatus(Status.PLAY_PAGE);
 //                MyMainFrame.getInstance().setContentPane(GamePage.getInstance());
 
@@ -78,11 +79,7 @@ public class FirstThreeCardsPage extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        try {
-            MethodsOfShowCardsOnPanel.showCards(firstThreeCardsName,this,3,200,300);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        MethodsOfShowCardsOnPanel.showCards(firstThreeCardsName,this,3,200,300);
         add(okButton);
     }
 

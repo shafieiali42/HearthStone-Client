@@ -4,6 +4,7 @@ import Main.ClientMain;
 import utility.constant.Constant;
 import view.gui.panels.GamePage.FirstThreeCardsPage;
 import view.gui.panels.GamePage.InfoPassivePage;
+import view.gui.panels.GamePage.PlayPanel;
 
 import java.util.ArrayList;
 
@@ -40,6 +41,9 @@ public class PLayGameResponse extends Response {
         FirstThreeCardsPage firstThreeCardsPage=(FirstThreeCardsPage)Constant.getPanels().get("FirstThreeCardsPage");
         firstThreeCardsPage.reStartSetting();
         ClientMain.getMyMainFrame().setContentPane(infoPassivePage);
+        PlayPanel playPanel=(PlayPanel)Constant.getPanels().get("PlayPanel");
+        playPanel.setNameOfFriendlyHero(friendlyHeroName);
+        playPanel.setNameOfEnemyHero(enemyHeroName);
 
     }
 

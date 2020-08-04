@@ -1,6 +1,7 @@
 package controller.response;
 
 import controller.controllers.Controller;
+import controller.controllers.GamePartController;
 
 import javax.swing.*;
 
@@ -28,6 +29,7 @@ public class ShowGameModesResponse extends Response {
                 possibilities,
                 "Two Player");
 
+        GamePartController.setGameMode(gameMode);
         Controller.getCurrentClient().sendPlayGameRequest(gameMode);
     }
 

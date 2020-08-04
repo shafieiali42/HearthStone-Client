@@ -4,7 +4,9 @@ import com.google.gson.Gson;
 import controller.controllers.Controller;
 import controller.request.*;
 import controller.response.Response;
+import utility.constant.Constant;
 import utility.json.JsonDeSerializerForResponse;
+import view.gui.panels.GamePage.FirstThreeCardsPage;
 
 import java.io.IOException;
 import java.io.PrintStream;
@@ -110,6 +112,13 @@ public class Client extends Thread {
     }
 
 
+
+    public void sendQuitGameRequest(){
+
+    }
+
+
+
     public void sendGoToPage(String userName, String pageName) {
         Request request = new GoToPageRequest(authToken, userName, pageName);
         String message = new Gson().toJson(request);
@@ -121,6 +130,17 @@ public class Client extends Thread {
         Request request = new TransactionRequest(Controller.getCurrentPlayerUserName(), cardName);
         String message = new Gson().toJson(request);
         sendRequest(authToken, "TransactionRequest", message);
+    }
+
+
+    public void sendMousePressRequest(String cardName){
+        FirstThreeCardsPage firstThreeCardsPage=(FirstThreeCardsPage) Constant.getPanels().get("FirstThreeCardsPage");
+        Request request=new MousePressRequest(Controller.getCurrentPlayerUserName(),cardName,
+                firstThreeCardsPage.getFirstCard(),firstThreeCardsPage.getSecondCard(),firstThreeCardsPage.getThirdCard(),
+                firstThreeCardsPage.getCanChangeFirstCard(),firstThreeCardsPage.getCanChangeSecondCard(),
+                firstThreeCardsPage.getCanChangeThirdCard());
+        String meesage=new Gson().toJson(request);
+        sendRequest(authToken,"MousePressRequest",meesage);
     }
 
 
@@ -136,6 +156,15 @@ public class Client extends Thread {
         String message = new Gson().toJson(request);
         sendRequest(authToken, "SetPlayerInfoPassiveRequest", message);
     }
+
+
+
+    public void sendEndTurnRequest(){
+        Request request =new EndTurnRequest(Controller.getCurrentPlayerUserName());
+        String message =new Gson().toJson(request);
+        sendRequest(authToken,"EndTurnRequest",message);
+    }
+
 
 
     public void sendShowGameModesRequest() {

@@ -1,5 +1,8 @@
 package view.gui.panels.GamePage;
+import controller.controllers.Controller;
+import controller.controllers.GamePartController;
 import utility.constant.Constant;
+import utility.guiUtilities.DrawRotate;
 
 import javax.swing.*;
 import java.awt.*;
@@ -51,23 +54,20 @@ public class DeckAndEndTurnBtnPanel extends JPanel {
                         "Warning", JOptionPane.OK_CANCEL_OPTION);
 
                 if (result == JOptionPane.OK_OPTION) {
-                    try {
-                        GamePartController.initializeGameState();
-//                        GameState.getInstance().initGameState();
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
 
-                    PlayPanel.getInstance().removeAll();
-                    PlayPanel.getInstance().setNeedsToRepaint(true);
-                    PlayPanel.getInstance().repaint();
-                    PlayPanel.getInstance().revalidate();
-                    LogPanel.getInstance().removeAll();
-                    LogPanel.getInstance().setLog("");
-                    LogPanel.getInstance().repaint();
-                    LogPanel.getInstance().revalidate();
-//                    Administer.playMainSound("src/main/resources/Sounds/FirstAudio.wav");
-                    MyMainFrame.getInstance().setContentPane(MainMenuPage.getInstance());
+                    Controller.getCurrentClient().sendQuitGameRequest();
+//                        GamePartController.initializeGameState();
+//                        PlayPanel.getInstance().removeAll();
+//                        PlayPanel.getInstance().setNeedsToRepaint(true);
+//                        PlayPanel.getInstance().repaint();
+//                        PlayPanel.getInstance().revalidate();
+//                        LogPanel.getInstance().removeAll();
+//                        LogPanel.getInstance().setLog("");
+//                        LogPanel.getInstance().repaint();
+//                        LogPanel.getInstance().revalidate();
+////                    Administer.playMainSound("src/main/resources/Sounds/FirstAudio.wav");
+//                        MyMainFrame.getInstance().setContentPane(MainMenuPage.getInstance());
+
 
                 }
             }
@@ -87,7 +87,7 @@ public class DeckAndEndTurnBtnPanel extends JPanel {
         DeckViewerInPlay.getInstanceOfFirstDeck().setBounds(60, 550, DeckViewerInPlay.getWidthOfDeck(), DeckViewerInPlay.getHeightOfDeck());
 
         DeckViewerInPlay.getInstanceOfFirstDeck().setToolTipText("You have " +
-                GamePartController.getNumberOfFriendlyCardsOfDeckInGameState() + "cards in your deck");
+                GamePartController.getNumberOfCardsInDeck() + "cards in your deck");
         add(DeckViewerInPlay.getInstanceOfFirstDeck());
     }
 
@@ -103,10 +103,11 @@ public class DeckAndEndTurnBtnPanel extends JPanel {
         endTurnBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Mapper.getInstance().addRequest(Mapper.RequestTypes.END_TURN);
-                Mapper.getInstance().executeRequests();
-                DeckViewerInPlay.getInstanceOfFirstDeck().setToolTipText("You have " +
-                        GamePartController.getNumberOfFriendlyCardsOfDeckInGameState() + "cards in your deck");
+                Controller.getCurrentClient().sendEndTurnRequest();
+//                Mapper.getInstance().addRequest(Mapper.RequestTypes.END_TURN);
+//                Mapper.getInstance().executeRequests();
+//                DeckViewerInPlay.getInstanceOfFirstDeck().setToolTipText("You have " +
+//                        GamePartController.getNumberOfFriendlyCardsOfDeckInGameState() + "cards in your deck");
 
             }
         });
@@ -117,17 +118,17 @@ public class DeckAndEndTurnBtnPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.setFont(new Font("TimesRoman", Font.ITALIC, 30));
-        g.drawString(GamePartController.getManaOfCurrentPlayer() + "/" + "10", 60, 700);
+        g.drawString(GamePartController.getMana() + "/" + "10", 60, 700);
         g.setFont(new Font("TimesRoman", Font.ITALIC, 15));
 //        g.drawString(Administer.getEnemyImprovementOfQuest(), 50, 295);
         g.drawString(GamePartController.getFriendlyImprovementOfQuest(), 50, 495);
 
 
         DeckViewerInPlay.getInstanceOfFirstDeck().setToolTipText("You have " +
-                GamePartController.getNumberOfFriendlyCardsOfDeckInGameState() + "cards in your deck");
+                GamePartController.getNumberOfCardsInDeck() + "cards in your deck");
 
-        DeckViewerInPlay.getInstanceOfSecondDeck().setToolTipText("You have " +
-                GamePartController.getNumberOfEnemyCardsOfDeckInGameState() + "cards in your deck");
+//        DeckViewerInPlay.getInstanceOfSecondDeck().setToolTipText("You have " +
+//                GamePartController.getNumberOfEnemyCardsOfDeckInGameState() + "cards in your deck");
 
 
     }
