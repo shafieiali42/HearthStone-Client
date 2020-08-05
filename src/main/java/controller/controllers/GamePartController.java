@@ -9,9 +9,222 @@ import view.gui.panels.GamePage.PlayPanel;
 import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class GamePartController {
 
+
+
+
+//    private static int attacker;
+//    private static int target;
+//
+//    private static Alliance attackerAlliance;
+//    private static Alliance targetAlliance;
+//
+//    private static int targetOfSpell;
+//    private static Alliance allianceOfSpellsTarget;
+//
+//    private static int targetOfHeroPower;
+//    private static Alliance targetAllianceOfHeroPower;
+
+
+    private static String friendlyHeroHp;
+    private static String friendlyHeroAttackPower;
+    private static String enemyHeroHp;
+    private static String enemyHeroAttackPower;
+
+    private static String friendlyWeaponDurability;
+    private static String enemyWeaponDurability;
+
+    private static String friendlyWeaponAttackPower;
+    private static String enemyWeaponAttackPower;
+    private static HashMap<Integer,Integer> enemyHpHashMap =new HashMap<>();
+    private static HashMap<Integer,Integer> enemyAttackPowerHashMap =new HashMap<>();
+
+    public static HashMap<Integer, Integer> getEnemyHpHashMap() {
+        return enemyHpHashMap;
+    }
+    public static void setEnemyHpHashMap(HashMap<Integer, Integer> enemyHpHashMap) {
+        GamePartController.enemyHpHashMap = enemyHpHashMap;
+    }
+    public static HashMap<Integer, Integer> getEnemyAttackPowerHashMap() {
+        return enemyAttackPowerHashMap;
+    }
+    public static void setEnemyAttackPowerHashMap(HashMap<Integer, Integer> enemyAttackPowerHashMap) {
+        GamePartController.enemyAttackPowerHashMap = enemyAttackPowerHashMap;
+    }
+
+    public static String getFriendlyWeaponAttackPower() {
+        return friendlyWeaponAttackPower;
+    }
+
+    public static void setFriendlyWeaponAttackPower(String friendlyWeaponAttackPower) {
+        GamePartController.friendlyWeaponAttackPower = friendlyWeaponAttackPower;
+    }
+
+    public static String getEnemyWeaponAttackPower() {
+        return enemyWeaponAttackPower;
+    }
+
+    public static void setEnemyWeaponAttackPower(String enemyWeaponAttackPower) {
+        GamePartController.enemyWeaponAttackPower = enemyWeaponAttackPower;
+    }
+
+
+    public static String getFriendlyHeroHp() {
+        return friendlyHeroHp;
+    }
+
+    public static void setFriendlyHeroHp(String friendlyHeroHp) {
+        GamePartController.friendlyHeroHp = friendlyHeroHp;
+    }
+
+    public static String getFriendlyHeroAttackPower() {
+        return friendlyHeroAttackPower;
+    }
+
+    public static void setFriendlyHeroAttackPower(String friendlyHeroAttackPower) {
+        GamePartController.friendlyHeroAttackPower = friendlyHeroAttackPower;
+    }
+
+    public static String getEnemyHeroHp() {
+        return enemyHeroHp;
+    }
+
+    public static void setEnemyHeroHp(String enemyHeroHp) {
+        GamePartController.enemyHeroHp = enemyHeroHp;
+    }
+
+    public static String getEnemyHeroAttackPower() {
+        return enemyHeroAttackPower;
+    }
+
+    public static void setEnemyHeroAttackPower(String enemyHeroAttackPower) {
+        GamePartController.enemyHeroAttackPower = enemyHeroAttackPower;
+    }
+
+    public static int giveMinionHpWithName(int numberOfCardInBattleGround, Alliance alliance) {
+        if (alliance.equals(Alliance.WHITE)) {
+            return friendlyHpHashMap.get(numberOfCardInBattleGround - 1);
+
+        } else if (alliance.equals(Alliance.BLACK)) {
+            return enemyHpHashMap.get(numberOfCardInBattleGround - 1);
+        }
+        return -55555555;
+    }
+
+
+
+
+
+    public static int giveMinionAttackWithName(int numberOfCardInBattleGround, Alliance alliance) {
+
+        if (alliance.equals(Alliance.WHITE)) {
+            return friendlyAttackPowerHashMap.get(numberOfCardInBattleGround - 1);
+
+        } else if (alliance.equals(Alliance.BLACK)) {
+
+            return enemyAttackPowerHashMap.get(numberOfCardInBattleGround-1);
+        }
+        return -66666666;
+    }
+
+
+
+
+
+
+    private static HashMap<Integer,Integer> friendlyHpHashMap =new HashMap<>();
+    private static HashMap<Integer,Integer> friendlyAttackPowerHashMap =new HashMap<>();
+
+    public static HashMap<Integer, Integer> getFriendlyHpHashMap() {
+        return friendlyHpHashMap;
+    }
+    public static void setFriendlyHpHashMap(HashMap<Integer, Integer> friendlyHpHashMap) {
+        GamePartController.friendlyHpHashMap = friendlyHpHashMap;
+    }
+    public static HashMap<Integer, Integer> getFriendlyAttackPowerHashMap() {
+        return friendlyAttackPowerHashMap;
+    }
+    public static void setFriendlyAttackPowerHashMap(HashMap<Integer, Integer> friendlyAttackPowerHashMap) {
+        GamePartController.friendlyAttackPowerHashMap = friendlyAttackPowerHashMap;
+    }
+
+    public static String getFriendlyWeaponDurability() {
+        return friendlyWeaponDurability;
+    }
+
+    public static void setFriendlyWeaponDurability(String friendlyWeaponDurability) {
+        GamePartController.friendlyWeaponDurability = friendlyWeaponDurability;
+    }
+
+    public static String getEnemyWeaponDurability() {
+        return enemyWeaponDurability;
+    }
+
+    public static void setEnemyWeaponDurability(String enemyWeaponDurability) {
+        GamePartController.enemyWeaponDurability = enemyWeaponDurability;
+    }
+
+
+
+
+    public static int giveWeaponDurability(Alliance alliance) {
+
+        if (alliance.equals(Alliance.WHITE)) {
+            return Integer.parseInt(friendlyWeaponDurability);
+
+        } else if (alliance.equals(Alliance.BLACK)) {
+            return Integer.parseInt(enemyWeaponDurability);
+        }
+        return -555555;
+    }
+
+    public static int giveWeaponAttackPower(Alliance alliance) {
+
+        if (alliance.equals(Alliance.WHITE)) {
+            return Integer.parseInt(friendlyWeaponAttackPower);
+
+        } else if (alliance.equals(Alliance.BLACK)) {
+            return Integer.parseInt(enemyWeaponAttackPower);
+        }
+        return -555555;
+    }
+
+
+
+
+    public static int giveHeroHp(Alliance alliance) {
+        if (alliance.equals(Alliance.WHITE)) {
+            return Integer.parseInt(friendlyHeroHp);
+        } else if (alliance.equals(Alliance.BLACK)) {
+            return Integer.parseInt(enemyHeroHp);
+        }
+        return -888888;
+    }
+
+    public static int giveHeroAttackPower(Alliance alliance) {
+        if (alliance.equals(Alliance.WHITE)) {
+            return Integer.parseInt(friendlyHeroAttackPower);
+        } else if (alliance.equals(Alliance.BLACK)) {
+            return Integer.parseInt(enemyHeroAttackPower);
+        }
+        return -888888;
+    }
+
+
+    public static boolean canDragCard(int y) {
+        if (Game.getInstance().getCurrentAlliance().equals(Alliance.FRIENDLY)) {
+            return y >= 670;
+        } else {
+            return y <= 100;
+        }
+    }
+
+
+    //*****************************************************************************
 
     private static ArrayList<String> whiteHandCards = new ArrayList<>();
     private static ArrayList<String> blackHandCards = new ArrayList<>();
@@ -185,4 +398,69 @@ public class GamePartController {
     public static void setGetManaNeededForQuest(String getManaNeededForQuest) {
         GamePartController.getManaNeededForQuest = getManaNeededForQuest;
     }
+
+
+//    public static int getAttacker() {
+//        return attacker;
+//    }
+//
+//    public static void setAttacker(int attacker) {
+//        GamePartController.attacker = attacker;
+//    }
+//
+//    public static int getTarget() {
+//        return target;
+//    }
+//
+//    public static void setTarget(int target) {
+//        GamePartController.target = target;
+//    }
+//
+//    public static Alliance getAttackerAlliance() {
+//        return attackerAlliance;
+//    }
+//
+//    public static void setAttackerAlliance(Alliance attackerAlliance) {
+//        GamePartController.attackerAlliance = attackerAlliance;
+//    }
+//
+//    public static Alliance getTargetAlliance() {
+//        return targetAlliance;
+//    }
+//
+//    public static void setTargetAlliance(Alliance targetAlliance) {
+//        GamePartController.targetAlliance = targetAlliance;
+//    }
+//
+//    public static int getTargetOfSpell() {
+//        return targetOfSpell;
+//    }
+//
+//    public static void setTargetOfSpell(int targetOfSpell) {
+//        GamePartController.targetOfSpell = targetOfSpell;
+//    }
+//
+//    public static Alliance getAllianceOfSpellsTarget() {
+//        return allianceOfSpellsTarget;
+//    }
+//
+//    public static void setAllianceOfSpellsTarget(Alliance allianceOfSpellsTarget) {
+//        GamePartController.allianceOfSpellsTarget = allianceOfSpellsTarget;
+//    }
+//
+//    public static int getTargetOfHeroPower() {
+//        return targetOfHeroPower;
+//    }
+//
+//    public static void setTargetOfHeroPower(int targetOfHeroPower) {
+//        GamePartController.targetOfHeroPower = targetOfHeroPower;
+//    }
+//
+//    public static Alliance getTargetAllianceOfHeroPower() {
+//        return targetAllianceOfHeroPower;
+//    }
+//
+//    public static void setTargetAllianceOfHeroPower(Alliance targetAllianceOfHeroPower) {
+//        GamePartController.targetAllianceOfHeroPower = targetAllianceOfHeroPower;
+//    }
 }

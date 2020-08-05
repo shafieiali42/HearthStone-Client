@@ -112,11 +112,9 @@ public class Client extends Thread {
     }
 
 
-
-    public void sendQuitGameRequest(){
+    public void sendQuitGameRequest() {
 
     }
-
 
 
     public void sendGoToPage(String userName, String pageName) {
@@ -133,14 +131,14 @@ public class Client extends Thread {
     }
 
 
-    public void sendMousePressRequest(String cardName){
-        FirstThreeCardsPage firstThreeCardsPage=(FirstThreeCardsPage) Constant.getPanels().get("FirstThreeCardsPage");
-        Request request=new MousePressRequest(Controller.getCurrentPlayerUserName(),cardName,
-                firstThreeCardsPage.getFirstCard(),firstThreeCardsPage.getSecondCard(),firstThreeCardsPage.getThirdCard(),
-                firstThreeCardsPage.getCanChangeFirstCard(),firstThreeCardsPage.getCanChangeSecondCard(),
+    public void sendMousePressRequest(String cardName) {
+        FirstThreeCardsPage firstThreeCardsPage = (FirstThreeCardsPage) Constant.getPanels().get("FirstThreeCardsPage");
+        Request request = new MousePressRequest(Controller.getCurrentPlayerUserName(), cardName,
+                firstThreeCardsPage.getFirstCard(), firstThreeCardsPage.getSecondCard(), firstThreeCardsPage.getThirdCard(),
+                firstThreeCardsPage.getCanChangeFirstCard(), firstThreeCardsPage.getCanChangeSecondCard(),
                 firstThreeCardsPage.getCanChangeThirdCard());
-        String meesage=new Gson().toJson(request);
-        sendRequest(authToken,"MousePressRequest",meesage);
+        String meesage = new Gson().toJson(request);
+        sendRequest(authToken, "MousePressRequest", meesage);
     }
 
 
@@ -158,13 +156,11 @@ public class Client extends Thread {
     }
 
 
-
-    public void sendEndTurnRequest(){
-        Request request =new EndTurnRequest(Controller.getCurrentPlayerUserName());
-        String message =new Gson().toJson(request);
-        sendRequest(authToken,"EndTurnRequest",message);
+    public void sendEndTurnRequest() {
+        Request request = new EndTurnRequest(Controller.getCurrentPlayerUserName());
+        String message = new Gson().toJson(request);
+        sendRequest(authToken, "EndTurnRequest", message);
     }
-
 
 
     public void sendShowGameModesRequest() {
@@ -270,12 +266,26 @@ public class Client extends Thread {
 
 
     public void sendDoneCreatDeckRequest() {
+        Request request = new DoneCreatDeckRequest();
+        String message = new Gson().toJson(request);
+        sendRequest(authToken, "DoneCreatDeckRequest", message);
+    }
 
+
+    public void sendMouseClickedRequest(String cardName, String typeOfCard, boolean clicked,
+                                        int xCoordinateOfCard, int yCoordinateOfCard,
+                                        Alliance alliance, String typeOfClick) {
+
+        Request request = new MouseClickRequest(Controller.getCurrentPlayerUserName(), cardName, typeOfCard,
+                clicked, xCoordinateOfCard, yCoordinateOfCard, alliance, typeOfClick);
+
+        String message = new Gson().toJson(request);
+        sendRequest(authToken, "MouseClickRequest", message);
     }
 
 
     public void sendLeftClickRequest(String cardName, boolean isLock) {
-        Request request = new LeftClickRequest(authToken, Controller.getCurrentPlayerUserName(), isLock);
+        Request request = new LeftClickRequest(cardName, Controller.getCurrentPlayerUserName(), isLock);
         String message = new Gson().toJson(request);
         sendRequest(authToken, "LeftClickRequest", message);
     }
