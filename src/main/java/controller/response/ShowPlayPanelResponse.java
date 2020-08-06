@@ -42,6 +42,7 @@ public class ShowPlayPanelResponse extends Response {
     }
 
 
+
     @Override
     public void execute() {
         if (state.equalsIgnoreCase("EndTurn")){

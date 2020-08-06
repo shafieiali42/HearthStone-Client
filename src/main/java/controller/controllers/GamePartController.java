@@ -4,6 +4,7 @@ import controller.Alliance;
 import utility.constant.Constant;
 import utility.guiUtilities.MethodsOfShowCardsOnPanel;
 import view.CardView.CardImagePanel;
+import view.gui.panels.GamePage.DiscoverCardsPage;
 import view.gui.panels.GamePage.PlayPanel;
 
 import javax.swing.*;
@@ -14,6 +15,20 @@ import java.util.List;
 
 public class GamePartController {
 
+
+    public static ArrayList<String> getListOfWeapons() {
+        ArrayList<String> weaponsNames = new ArrayList<>();
+        DiscoverCardsPage discoverCardsPage = (DiscoverCardsPage) Constant.getPanels().get("DiscoverCardsPage");
+        weaponsNames.add(discoverCardsPage.getFirstCard());
+        weaponsNames.add(discoverCardsPage.getSecondCard());
+        weaponsNames.add(discoverCardsPage.getThirdCard());
+        return weaponsNames;
+    }
+
+    public static void reStartDiscoverPageSetting() {
+        DiscoverCardsPage discoverCardsPage = (DiscoverCardsPage) Constant.getPanels().get("DiscoverCardsPage");
+        discoverCardsPage.reStartSetting();
+    }
 
 //    private static int attacker;
 //    private static int target;
@@ -145,7 +160,8 @@ public class GamePartController {
         return friendlyAttackPowerHashMap;
     }
 
-    public static void setFriendlyAttackPowerHashMap(HashMap<Integer, Integer> friendlyAttackPowerHashMap) {
+    public static void setFriendlyAttackPowerHashMap
+            (HashMap<Integer, Integer> friendlyAttackPowerHashMap) {
         GamePartController.friendlyAttackPowerHashMap = friendlyAttackPowerHashMap;
     }
 

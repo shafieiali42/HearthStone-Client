@@ -4,6 +4,8 @@ package view.gui.panels.SettingPanel;
 import controller.controllers.Administer;
 import controller.controllers.Controller;
 import utility.constant.Constant;
+import view.gui.panels.GamePage.PlayPanel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -46,7 +48,8 @@ public class SettingPage extends JPanel {
         changeBackOfCardsBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int a = PlayPanel.getInstance().getTypeOfBackOfCards() + 1;
+                PlayPanel playPanel=(PlayPanel)Constant.getPanels().get("PlayPanel");
+                int a = playPanel.getTypeOfBackOfCards() + 1;
                 Controller.getCurrentClient().sendChangeBackOfCardRequest(a + "");
 
 

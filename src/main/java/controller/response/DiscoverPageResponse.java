@@ -16,8 +16,8 @@ public class DiscoverPageResponse extends Response {
     @Override
     public void execute() {
         DiscoverCardsPage discoverPage=(DiscoverCardsPage) Constant.getPanels().get("DiscoverCardsPage");
-        DiscoverCardsPage.getInstance().setSelectedWeapon(this.cardName);
-        DiscoverCardsPage.getInstance().setWaiting(false);
+        discoverPage.setSelectedWeapon(this.cardName);
+        discoverPage.setWaiting(false);
     }
 
 

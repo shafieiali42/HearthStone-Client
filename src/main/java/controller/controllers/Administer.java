@@ -53,7 +53,7 @@ public class Administer {
 
     public static void goBack() {
 //        ControllerOfMainComponents.setStatus(Status.MAIN_MENU_PAGE);
-        Controller.getCurrentClient().sendGoToPage(Controller.getCurrentPlayerUserName(),"MainMenuPage");
+        Controller.getCurrentClient().sendGoToPageRequest(Controller.getCurrentPlayerUserName(),"MainMenuPage");
 
     }
 

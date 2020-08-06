@@ -118,7 +118,7 @@ public class MainMenuPage extends JPanel {
         statusBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Controller.getCurrentClient().sendGoToPage(Controller.getCurrentPlayerUserName(), "StatusPage");
+                Controller.getCurrentClient().sendGoToPageRequest(Controller.getCurrentPlayerUserName(), "StatusPage");
             }
         });
         menuPanel.add(statusBtn);
@@ -135,7 +135,7 @@ public class MainMenuPage extends JPanel {
         settingBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Controller.getCurrentClient().sendGoToPage(Controller.getCurrentPlayerUserName(), "SettingPage");
+                Controller.getCurrentClient().sendGoToPageRequest(Controller.getCurrentPlayerUserName(), "SettingPage");
             }
         });
         menuPanel.add(settingBtn);
@@ -152,7 +152,7 @@ public class MainMenuPage extends JPanel {
         shopBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Controller.getCurrentClient().sendGoToPage(Controller.getCurrentPlayerUserName(), "ShopPage");
+                Controller.getCurrentClient().sendGoToPageRequest(Controller.getCurrentPlayerUserName(), "ShopPage");
 //                ControllerOfMainComponents.setStatus(Status.SHOP_PAGE);
 //                Administer.writeLog("Navigate into shop page");
 //                Administer.setBuyableCard();
@@ -175,7 +175,7 @@ public class MainMenuPage extends JPanel {
         collectionBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Controller.getCurrentClient().sendGoToPage(Controller.getCurrentPlayerUserName(), "CollectionPage");
+                Controller.getCurrentClient().sendGoToPageRequest(Controller.getCurrentPlayerUserName(), "CollectionPage");
 //                ControllerOfMainComponents.setStatus(Status.COLLECTIONS_PAGE);
 //                Administer.writeLog("Navigate into collection page");
 ////                CLI.currentPlayer.getLoggerOfMyPlayer().info("Navigate into collection page");

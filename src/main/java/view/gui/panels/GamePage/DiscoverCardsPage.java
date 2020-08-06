@@ -2,13 +2,15 @@ package view.gui.panels.GamePage;
 
 
 
+import controller.controllers.Controller;
+import controller.controllers.GamePartController;
 import utility.constant.Constant;
+import utility.guiUtilities.MethodsOfShowCardsOnPanel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 
 public class DiscoverCardsPage extends JPanel {
@@ -77,8 +79,9 @@ public class DiscoverCardsPage extends JPanel {
         okButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ControllerOfMainComponents.setStatus(Status.PLAY_PAGE);
-                MyMainFrame.getInstance().setContentPane(GamePage.getInstance());
+                Controller.getCurrentClient().sendOkButtonDiscoverPageRequest();
+//                ControllerOfMainComponents.setStatus(Status.PLAY_PAGE);
+//                MyMainFrame.getInstance().setContentPane(GamePage.getInstance());
 
             }
         });
@@ -90,12 +93,8 @@ public class DiscoverCardsPage extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        try {
-            MethodsOfShowCardsOnPanel.showCards(GamePartController.getListOfWeapons(),this,3,200,300);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-//        add(okButton);
+        MethodsOfShowCardsOnPanel.showCards(GamePartController.getListOfWeapons(),this,3,200,300);
+        //        add(okButton);
     }
 
     public String getFirstCard() {

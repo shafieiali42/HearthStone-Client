@@ -117,7 +117,13 @@ public class Client extends Thread {
     }
 
 
-    public void sendGoToPage(String userName, String pageName) {
+    public void sendOkButtonDiscoverPageRequest(){
+        Request request=new OkButtonDiscoverPageRequest(Controller.getCurrentPlayerUserName());
+        String message =new Gson().toJson(request);
+        sendRequest(authToken,"OkButtonDiscoverPageRequest",message);
+    }
+
+    public void sendGoToPageRequest(String userName, String pageName) {
         Request request = new GoToPageRequest(authToken, userName, pageName);
         String message = new Gson().toJson(request);
         sendRequest(authToken, "GoToPageRequest", message);
