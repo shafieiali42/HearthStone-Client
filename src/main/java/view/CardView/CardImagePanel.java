@@ -1,9 +1,11 @@
 package view.CardView;
 
 
+import Main.ClientMain;
 import controller.Alliance;
 import controller.controllers.Controller;
 import controller.controllers.GamePartController;
+import controller.controllers.Status;
 import view.gui.panels.GamePage.DiscoverCardsPage;
 import view.gui.panels.GamePage.PlayPanel;
 import view.gui.panels.myMainFrame.MyMainFrame;
@@ -401,8 +403,8 @@ public class CardImagePanel extends JPanel implements MouseListener, MouseMotion
         Controller.getCurrentClient().sendMousePressRequest(cardName);
 
 
-        if (ControllerOfMainComponents.getStatus().equals(Status.PLAY_PAGE_MY_TURN) ||
-                ControllerOfMainComponents.getStatus().equals(Status.PLAY_PAGE)) {
+        if (ClientMain.getCurrentPage().equals(Status.PLAY_PAGE_MY_TURN) ||
+                ClientMain.getCurrentPage().equals(Status.PLAY_PAGE)) {
 
             if (GamePartController.canDragCard(e.getComponent().getY())) {
                 x = e.getX();
@@ -430,75 +432,76 @@ public class CardImagePanel extends JPanel implements MouseListener, MouseMotion
             return;
         }
 
-        if (ControllerOfMainComponents.getStatus().equals(Status.PLAY_PAGE_MY_TURN) ||
-                ControllerOfMainComponents.getStatus().equals(Status.PLAY_PAGE)) {
-
-            if (!GamePartController.checkThatCanReleaseCard(e.getComponent().getX(), e.getComponent().getY())) {
-                JOptionPane.showMessageDialog(MyMainFrame.getInstance(), "Its Not Your Turn:))", "Error", JOptionPane.ERROR_MESSAGE);
-                PlayPanel.getInstance().setNeedsToRepaint(true);
-                return;
-            }
-
-            Mapper.getInstance().setAddedBeforeForBeingBetween(false);
-
-            if (!Objects.requireNonNull(Administer.getTypeOfGivenCard(this.cardName)).equalsIgnoreCase("minion")) {
-
-                GamePartController.setPlayingCardOfGameState(this.cardName);
-                Mapper.getInstance().addRequest(Mapper.RequestTypes.PLAY_CARDS);
-                Mapper.getInstance().executeRequests();
-                dragging = false;
-            } else if (GamePartController.canAddMinionToBattleGround()) {
-
-                if (e.getComponent().getX() < 50) {
-                    GamePartController.setPlayingCardOfGameState(this.cardName);
-                    Mapper.getInstance().addRequest(Mapper.RequestTypes.PLAY_CARDS_ONE);
-                    Mapper.getInstance().executeRequests();
-
-                } else if (e.getComponent().getX() > 125 && e.getComponent().getX() < 220) {
-
-                    GamePartController.setPlayingCardOfGameState(this.cardName);
-                    Mapper.getInstance().addRequest(Mapper.RequestTypes.PLAY_CARDS_TWO);
-                    Mapper.getInstance().executeRequests();
-
-                } else if (e.getComponent().getX() > 265 && e.getComponent().getX() < 365) {
-
-                    GamePartController.setPlayingCardOfGameState(this.cardName);
-                    Mapper.getInstance().addRequest(Mapper.RequestTypes.PLAY_CARDS_THREE);
-                    Mapper.getInstance().executeRequests();
-
-                } else if (e.getComponent().getX() > 410 && e.getComponent().getX() < 510) {
-
-                    GamePartController.setPlayingCardOfGameState(this.cardName);
-                    Mapper.getInstance().addRequest(Mapper.RequestTypes.PLAY_CARDS_FOUR);
-                    Mapper.getInstance().executeRequests();
-
-                } else if (e.getComponent().getX() > 555 && e.getComponent().getX() < 655) {
-                    GamePartController.setPlayingCardOfGameState(this.cardName);
-                    Mapper.getInstance().addRequest(Mapper.RequestTypes.PLAY_CARDS_FIVE);
-                    Mapper.getInstance().executeRequests();
-                } else if (e.getComponent().getX() > 700 && e.getComponent().getX() < 800) {
-                    GamePartController.setPlayingCardOfGameState(this.cardName);
-                    Mapper.getInstance().addRequest(Mapper.RequestTypes.PLAY_CARDS_SIX);
-                    Mapper.getInstance().executeRequests();
-                }
-                if (!Mapper.getInstance().isAddedBeforeForBeingBetween()) {
-                    GamePartController.setPlayingCardOfGameState(this.cardName);
-                    Mapper.getInstance().addRequest(Mapper.RequestTypes.PLAY_CARDS);
-                    Mapper.getInstance().executeRequests();
-                }
-                dragging = false;
-            } else {
-                JOptionPane.showMessageDialog(null,
-                        "It's illegal to have more than 7 cards in the battleGround.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
+//        if (ControllerOfMainComponents.getStatus().equals(Status.PLAY_PAGE_MY_TURN) ||
+//                ControllerOfMainComponents.getStatus().equals(Status.PLAY_PAGE)) {
+//
+//            if (!GamePartController.checkThatCanReleaseCard(e.getComponent().getX(), e.getComponent().getY())) {
+//                JOptionPane.showMessageDialog(MyMainFrame.getInstance(), "Its Not Your Turn:))", "Error", JOptionPane.ERROR_MESSAGE);
+//                PlayPanel.getInstance().setNeedsToRepaint(true);
+//                return;
+//            }
+//
+//            Mapper.getInstance().setAddedBeforeForBeingBetween(false);
+//
+//            if (!Objects.requireNonNull(Administer.getTypeOfGivenCard(this.cardName)).equalsIgnoreCase("minion")) {
+//
+//                GamePartController.setPlayingCardOfGameState(this.cardName);
+//                Mapper.getInstance().addRequest(Mapper.RequestTypes.PLAY_CARDS);
+//                Mapper.getInstance().executeRequests();
+//                dragging = false;
+//            } else if (GamePartController.canAddMinionToBattleGround()) {
+//
+//                if (e.getComponent().getX() < 50) {
+//                    GamePartController.setPlayingCardOfGameState(this.cardName);
+//                    Mapper.getInstance().addRequest(Mapper.RequestTypes.PLAY_CARDS_ONE);
+//                    Mapper.getInstance().executeRequests();
+//
+//                } else if (e.getComponent().getX() > 125 && e.getComponent().getX() < 220) {
+//
+//                    GamePartController.setPlayingCardOfGameState(this.cardName);
+//                    Mapper.getInstance().addRequest(Mapper.RequestTypes.PLAY_CARDS_TWO);
+//                    Mapper.getInstance().executeRequests();
+//
+//                } else if (e.getComponent().getX() > 265 && e.getComponent().getX() < 365) {
+//
+//                    GamePartController.setPlayingCardOfGameState(this.cardName);
+//                    Mapper.getInstance().addRequest(Mapper.RequestTypes.PLAY_CARDS_THREE);
+//                    Mapper.getInstance().executeRequests();
+//
+//                } else if (e.getComponent().getX() > 410 && e.getComponent().getX() < 510) {
+//
+//                    GamePartController.setPlayingCardOfGameState(this.cardName);
+//                    Mapper.getInstance().addRequest(Mapper.RequestTypes.PLAY_CARDS_FOUR);
+//                    Mapper.getInstance().executeRequests();
+//
+//                } else if (e.getComponent().getX() > 555 && e.getComponent().getX() < 655) {
+//                    GamePartController.setPlayingCardOfGameState(this.cardName);
+//                    Mapper.getInstance().addRequest(Mapper.RequestTypes.PLAY_CARDS_FIVE);
+//                    Mapper.getInstance().executeRequests();
+//                } else if (e.getComponent().getX() > 700 && e.getComponent().getX() < 800) {
+//                    GamePartController.setPlayingCardOfGameState(this.cardName);
+//                    Mapper.getInstance().addRequest(Mapper.RequestTypes.PLAY_CARDS_SIX);
+//                    Mapper.getInstance().executeRequests();
+//                }
+//                if (!Mapper.getInstance().isAddedBeforeForBeingBetween()) {
+//                    GamePartController.setPlayingCardOfGameState(this.cardName);
+//                    Mapper.getInstance().addRequest(Mapper.RequestTypes.PLAY_CARDS);
+//                    Mapper.getInstance().executeRequests();
+//                }
+//                dragging = false;
+//            } else {
+//                JOptionPane.showMessageDialog(null,
+//                        "It's illegal to have more than 7 cards in the battleGround.", "Error", JOptionPane.ERROR_MESSAGE);
+//            }
+//        }
     }
 
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        if (ControllerOfMainComponents.getStatus().equals(Status.PLAY_PAGE_MY_TURN) ||
-                ControllerOfMainComponents.getStatus().equals(Status.PLAY_PAGE)) {
+
+        if (ClientMain.getCurrentPage().equals(Status.PLAY_PAGE_MY_TURN) ||
+                ClientMain.getCurrentPage().equals(Status.PLAY_PAGE)) {
 
             dragging = true;
             e.getComponent().setLocation(e.getX() + e.getComponent().getX() - x, e.getY() + e.getComponent().getY() - y);
@@ -537,9 +540,10 @@ public class CardImagePanel extends JPanel implements MouseListener, MouseMotion
         g.drawImage(imageOfCard, 0, 0, this.getWidth(), this.getHeight(), null);
         Graphics2D graphics2D = (Graphics2D) g;
 
-        if (ControllerOfMainComponents.getStatus().equals(Status.PLAY_PAGE)
-                || ControllerOfMainComponents.getStatus().equals(Status.CHOOSE_TARGET_FOR_SPELL)
-                || ControllerOfMainComponents.getStatus().equals(Status.CHOOSE_TARGET_FOR_HERO_POWERS)) {
+        if (ClientMain.getCurrentPage().equals(Status.PLAY_PAGE)
+                ||ClientMain.getCurrentPage().equals(Status.CHOOSE_TARGET_FOR_SPELL)
+                || ClientMain.getCurrentPage().equals(Status.CHOOSE_TARGET_FOR_HERO_POWERS)) {
+
 
 
             graphics2D.setFont(new Font("TimesRoman", Font.ITALIC, 20));
@@ -558,7 +562,7 @@ public class CardImagePanel extends JPanel implements MouseListener, MouseMotion
                 graphics2D.setFont(new Font("TimesRoman", Font.ITALIC, 15));
                 graphics2D.drawString(this.hp + "", 68, 93);
                 graphics2D.drawString(this.attackPower + "", 7, 93);
-                graphics2D.drawString(this.mana + "", 10, 15);
+//                graphics2D.drawString(this.mana + "", 10, 15);//todo mana
             } else if (this.typeOfCard.equalsIgnoreCase("hero")) {
                 graphics2D.drawString(this.hp + "", 115, 98);
                 graphics2D.drawString(this.attackPower + "", 12, 98);
@@ -567,7 +571,7 @@ public class CardImagePanel extends JPanel implements MouseListener, MouseMotion
             } else {
                 graphics2D.drawString(this.hp + "", 73, 98);
                 graphics2D.drawString(this.attackPower + "", 10, 98);
-                graphics2D.drawString(this.mana + "", 10, 15);
+//                graphics2D.drawString(this.mana + "", 10, 15);//todo mana
             }
 
 

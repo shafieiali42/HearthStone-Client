@@ -30,6 +30,7 @@ public class PlayPanel extends JPanel {
     private boolean needTimer = false;
     private int typeOfBackOfCards = 1;
     private boolean endTurn = false;
+    private String playingCardName;
 
 
     private String nameOfFriendlyHero;
@@ -107,6 +108,7 @@ public class PlayPanel extends JPanel {
 
         if (needAnimation) {
             String[] strings = new String[1];
+            AnimationOfRotation.setCardName(playingCardName);
             AnimationOfRotation.main(strings);
             needAnimation = false;
             needsToRepaint = true;
@@ -253,5 +255,13 @@ public class PlayPanel extends JPanel {
 
     public void setNameOfEnemyWeapon(String nameOfEnemyWeapon) {
         this.nameOfEnemyWeapon = nameOfEnemyWeapon;
+    }
+
+    public String getPlayingCardName() {
+        return playingCardName;
+    }
+
+    public void setPlayingCardName(String playingCardName) {
+        this.playingCardName = playingCardName;
     }
 }

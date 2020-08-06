@@ -3,6 +3,7 @@ package Main;
 
 import controller.Client;
 import controller.controllers.Controller;
+import controller.controllers.Status;
 import utility.constant.Constant;
 import view.gui.panels.logInPage.LogInPage;
 import view.gui.panels.myMainFrame.MyMainFrame;
@@ -17,7 +18,7 @@ public class ClientMain {
     }
 
     private static MyMainFrame myMainFrame = new MyMainFrame();
-
+    private static Status currentPage;
 
     public static void main(String[] args) {
 
@@ -42,5 +43,14 @@ public class ClientMain {
 
     public static void setMyMainFrame(MyMainFrame myMainFrame) {
         ClientMain.myMainFrame = myMainFrame;
+    }
+
+
+    public static Status getCurrentPage() {
+        return currentPage;
+    }
+
+    public static void setCurrentPage(Status currentPage) {
+        ClientMain.currentPage = currentPage;
     }
 }

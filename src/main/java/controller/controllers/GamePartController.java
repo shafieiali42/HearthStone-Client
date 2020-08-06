@@ -15,8 +15,6 @@ import java.util.List;
 public class GamePartController {
 
 
-
-
 //    private static int attacker;
 //    private static int target;
 //
@@ -40,18 +38,21 @@ public class GamePartController {
 
     private static String friendlyWeaponAttackPower;
     private static String enemyWeaponAttackPower;
-    private static HashMap<Integer,Integer> enemyHpHashMap =new HashMap<>();
-    private static HashMap<Integer,Integer> enemyAttackPowerHashMap =new HashMap<>();
+    private static HashMap<Integer, Integer> enemyHpHashMap = new HashMap<>();
+    private static HashMap<Integer, Integer> enemyAttackPowerHashMap = new HashMap<>();
 
     public static HashMap<Integer, Integer> getEnemyHpHashMap() {
         return enemyHpHashMap;
     }
+
     public static void setEnemyHpHashMap(HashMap<Integer, Integer> enemyHpHashMap) {
         GamePartController.enemyHpHashMap = enemyHpHashMap;
     }
+
     public static HashMap<Integer, Integer> getEnemyAttackPowerHashMap() {
         return enemyAttackPowerHashMap;
     }
+
     public static void setEnemyAttackPowerHashMap(HashMap<Integer, Integer> enemyAttackPowerHashMap) {
         GamePartController.enemyAttackPowerHashMap = enemyAttackPowerHashMap;
     }
@@ -116,9 +117,6 @@ public class GamePartController {
     }
 
 
-
-
-
     public static int giveMinionAttackWithName(int numberOfCardInBattleGround, Alliance alliance) {
 
         if (alliance.equals(Alliance.WHITE)) {
@@ -126,28 +124,27 @@ public class GamePartController {
 
         } else if (alliance.equals(Alliance.BLACK)) {
 
-            return enemyAttackPowerHashMap.get(numberOfCardInBattleGround-1);
+            return enemyAttackPowerHashMap.get(numberOfCardInBattleGround - 1);
         }
         return -66666666;
     }
 
 
-
-
-
-
-    private static HashMap<Integer,Integer> friendlyHpHashMap =new HashMap<>();
-    private static HashMap<Integer,Integer> friendlyAttackPowerHashMap =new HashMap<>();
+    private static HashMap<Integer, Integer> friendlyHpHashMap = new HashMap<>();
+    private static HashMap<Integer, Integer> friendlyAttackPowerHashMap = new HashMap<>();
 
     public static HashMap<Integer, Integer> getFriendlyHpHashMap() {
         return friendlyHpHashMap;
     }
+
     public static void setFriendlyHpHashMap(HashMap<Integer, Integer> friendlyHpHashMap) {
         GamePartController.friendlyHpHashMap = friendlyHpHashMap;
     }
+
     public static HashMap<Integer, Integer> getFriendlyAttackPowerHashMap() {
         return friendlyAttackPowerHashMap;
     }
+
     public static void setFriendlyAttackPowerHashMap(HashMap<Integer, Integer> friendlyAttackPowerHashMap) {
         GamePartController.friendlyAttackPowerHashMap = friendlyAttackPowerHashMap;
     }
@@ -167,8 +164,6 @@ public class GamePartController {
     public static void setEnemyWeaponDurability(String enemyWeaponDurability) {
         GamePartController.enemyWeaponDurability = enemyWeaponDurability;
     }
-
-
 
 
     public static int giveWeaponDurability(Alliance alliance) {
@@ -194,8 +189,6 @@ public class GamePartController {
     }
 
 
-
-
     public static int giveHeroHp(Alliance alliance) {
         if (alliance.equals(Alliance.WHITE)) {
             return Integer.parseInt(friendlyHeroHp);
@@ -216,11 +209,7 @@ public class GamePartController {
 
 
     public static boolean canDragCard(int y) {
-        if (Game.getInstance().getCurrentAlliance().equals(Alliance.FRIENDLY)) {
-            return y >= 670;
-        } else {
-            return y <= 100;
-        }
+        return y >= 670;
     }
 
 
@@ -252,7 +241,7 @@ public class GamePartController {
 
 
     public static void setNeedTimer(boolean show) {
-        PlayPanel playPanel=(PlayPanel) Constant.getPanels().get("PlayPanel");
+        PlayPanel playPanel = (PlayPanel) Constant.getPanels().get("PlayPanel");
         playPanel.setNeedTimer(show);
     }
 

@@ -10,6 +10,7 @@ import java.io.IOException;
 
 
 public class AnimationOfRotation extends JPanel  {
+    private static String cardName;
     static final double fps = 20;
     public static boolean running=true;
     public static void main(String[] args){
@@ -54,7 +55,7 @@ public class AnimationOfRotation extends JPanel  {
         }
         CardImagePanel back = null;
         try {
-            back = new CardImagePanel(GamePartController.getPlayingCardName(),100,100,true,1,null);
+            back = new CardImagePanel(cardName,100,100,true,1,null);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -66,5 +67,14 @@ public class AnimationOfRotation extends JPanel  {
         g2d.drawString("Playing Card:)",550,600);
 ////        new RotatedPic(0, 500, 500, 0,
 //                new SimplePainter(back)).paint(g2d,frame);
+    }
+
+
+    public static String getCardName() {
+        return cardName;
+    }
+
+    public static void setCardName(String cardName) {
+        AnimationOfRotation.cardName = cardName;
     }
 }

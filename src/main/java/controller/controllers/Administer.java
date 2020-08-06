@@ -4,6 +4,7 @@ import utility.constant.Constant;
 import utility.guiUtilities.MethodsOfShowCardsOnPanel;
 import utility.guiUtilities.Sounds;
 import view.CardView.CardImagePanel;
+import view.gui.panels.GamePage.PlayPanel;
 import view.gui.panels.ShopPanel.PanelToShowCardInBuySellPanel;
 
 import javax.swing.*;
@@ -29,7 +30,8 @@ public class Administer {
 
 
     public static void changeBackOfCards(int typeOfBackOfCards) {
-        PlayPanel.getInstance().setTypeOfBackOfCards(typeOfBackOfCards);
+        PlayPanel playPanel=(PlayPanel)Constant.getPanels().get("PlayPanel");
+        playPanel.setTypeOfBackOfCards(typeOfBackOfCards);
     }
 
     public static void changeStatusOfSound(int numberOfPushMuteBtn) {

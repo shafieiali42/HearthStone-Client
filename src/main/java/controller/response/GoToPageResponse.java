@@ -50,13 +50,16 @@ public class GoToPageResponse extends Response {
                 ClientMain.getMyMainFrame().setContentPane(new MainMenuPage());
                 break;
             case "GamePage":
-                ClientMain.getMyMainFrame().setContentPane(GamePage.getInstance());
+                GamePage gamePage=(GamePage)Constant.getPanels().get("GamePage");
+                ClientMain.getMyMainFrame().setContentPane(gamePage);
                 break;
             case "FirstThreeCardsPage":
-                ClientMain.getMyMainFrame().setContentPane(FirstThreeCardsPage.getInstance());
+                FirstThreeCardsPage firstThreeCardsPage=(FirstThreeCardsPage)Constant.getPanels().get("FirstThreeCardsPage");
+                ClientMain.getMyMainFrame().setContentPane(firstThreeCardsPage);
                 break;
             case "InfoPassivePage":
-                ClientMain.getMyMainFrame().setContentPane(InfoPassivePage.getInstance());
+                InfoPassivePage infoPassivePage=(InfoPassivePage)Constant.getPanels().get("InfoPassivePage");
+                ClientMain.getMyMainFrame().setContentPane(infoPassivePage);
                 break;
 
 
