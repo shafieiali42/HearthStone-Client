@@ -2,13 +2,13 @@ package controller.request;
 
 public class DeletePlayerRequest extends Request {
 
-    String userName;
-    String password;
+
+    private String password;
 
     public DeletePlayerRequest(String sendersToken,String userName, String password) {
-        setRequestType("LogInRequest");
+        setUserName(userName);
+        setRequestType("DeletePlayerRequest");
         setRequestSendersToken(sendersToken);
-        this.userName = userName;
         this.password = password;
     }
 
@@ -17,13 +17,6 @@ public class DeletePlayerRequest extends Request {
     //getter and setters
     //********************
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 
     public String getPassword() {
         return password;

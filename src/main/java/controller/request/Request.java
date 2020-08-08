@@ -2,7 +2,7 @@ package controller.request;
 
 import controller.response.Response;
 
-public abstract class Request {
+public  class Request {
 
     private String requestSendersToken;
     private String requestType;

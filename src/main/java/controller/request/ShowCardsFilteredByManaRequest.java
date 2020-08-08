@@ -8,11 +8,11 @@ import java.util.ArrayList;
 public class ShowCardsFilteredByManaRequest extends Request {
 
 
-    private String userName;
     private int mana;
 
     public ShowCardsFilteredByManaRequest(String userName, int mana) {
-        this.userName = userName;
+        setUserName(userName);
+        setRequestType("ShowCardsFilteredByManaRequest");
         this.mana = mana;
     }
 
@@ -26,11 +26,4 @@ public class ShowCardsFilteredByManaRequest extends Request {
         this.mana = mana;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 }

@@ -1,6 +1,7 @@
 package controller.response;
 
 import Main.ClientMain;
+import controller.controllers.Status;
 import utility.constant.Constant;
 import view.gui.panels.CollectionPages.CollectionPage;
 import view.gui.panels.GamePage.FirstThreeCardsPage;
@@ -52,6 +53,7 @@ public class GoToPageResponse extends Response {
             case "GamePage":
                 GamePage gamePage=(GamePage)Constant.getPanels().get("GamePage");
                 ClientMain.getMyMainFrame().setContentPane(gamePage);
+                ClientMain.setCurrentPage(Status.PLAY_PAGE);
                 break;
             case "FirstThreeCardsPage":
                 FirstThreeCardsPage firstThreeCardsPage=(FirstThreeCardsPage)Constant.getPanels().get("FirstThreeCardsPage");

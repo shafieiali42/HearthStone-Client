@@ -4,12 +4,12 @@ import utility.constant.Constant;
 import view.gui.panels.ShopPanel.BuySellPanel;
 import view.gui.panels.ShopPanel.PanelToShowCardInBuySellPanel;
 
-public class ShowBuyableCardResponse extends Response {
+public class ShowBuyAndSellCardResponse extends Response {
 
 
     private String cardName;
 
-    public ShowBuyableCardResponse(String cardName) {
+    public ShowBuyAndSellCardResponse(String cardName) {
         this.cardName = cardName;
     }
 

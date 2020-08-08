@@ -9,6 +9,8 @@ import view.gui.panels.GamePage.GamePage;
 public class ReStartDiscoverPageSetting extends Response {
 
 
+
+
     @Override
     public void execute() {
         GamePage gamePage=(GamePage) Constant.getPanels().get("GamePage");

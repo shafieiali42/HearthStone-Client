@@ -6,7 +6,6 @@ import controller.response.Response;
 public class MousePressRequest extends Request {
 
 
-    private String userName;
     private String cardName;
     private String firstCardNameOfThreeCards;
     private String secondCardNameOfThreeCards;
@@ -20,7 +19,8 @@ public class MousePressRequest extends Request {
                              boolean firstCardCanChangeInThreeCards, boolean secondCardCanChangeInThreeCards,
                              boolean thirdCardCanChangeInThreeCards) {
 
-        this.userName = userName;
+        setUserName(userName);
+        setRequestType("MousePressRequest");
         this.cardName = cardName;
         this.firstCardNameOfThreeCards = firstCardNameOfThreeCards;
         this.secondCardNameOfThreeCards = secondCardNameOfThreeCards;
@@ -30,18 +30,6 @@ public class MousePressRequest extends Request {
         this.thirdCardCanChangeInThreeCards = thirdCardCanChangeInThreeCards;
     }
 
-
-
-
-    @Override
-    public String getUserName() {
-        return userName;
-    }
-
-    @Override
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 
     public String getCardName() {
         return cardName;

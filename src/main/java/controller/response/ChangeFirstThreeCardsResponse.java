@@ -13,7 +13,8 @@ public class ChangeFirstThreeCardsResponse extends Response {
     private int changedCardIndex;
     private ArrayList<String> firstThreeCardsName;
 
-    public ChangeFirstThreeCardsResponse(int changedCardIndex, ArrayList<String> firstThreeCardsName) {
+    public ChangeFirstThreeCardsResponse(int changedCardIndex,
+                                         ArrayList<String> firstThreeCardsName) {
         this.changedCardIndex = changedCardIndex;
         this.firstThreeCardsName = firstThreeCardsName;
     }

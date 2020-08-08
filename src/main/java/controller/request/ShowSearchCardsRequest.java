@@ -3,13 +3,12 @@ package controller.request;
 
 public class ShowSearchCardsRequest extends Request {
 
-
-    private String userName;
     private String searchTextField;
 
 
     public ShowSearchCardsRequest(String userName, String searchTextField) {
-        this.userName = userName;
+        setUserName(userName);
+        setRequestType("ShowSearchCardsRequest");
         this.searchTextField = searchTextField;
     }
 
@@ -23,12 +22,5 @@ public class ShowSearchCardsRequest extends Request {
         this.searchTextField = searchTextField;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 
 }

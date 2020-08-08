@@ -3,27 +3,16 @@ package controller.request;
 public class MouseReleasedRequest extends Request {
 
 
-    private String userName;
     private String cardName;
     private String xCoordinateOfReleased;
     private String yCoordinateOfReleased;
 
     public MouseReleasedRequest(String userName, String cardName, String xCoordinateOfReleased, String yCoordinateOfReleased) {
-        this.userName = userName;
+        setUserName(userName);
+        setRequestType("MouseReleasedRequest");
         this.cardName = cardName;
         this.xCoordinateOfReleased = xCoordinateOfReleased;
         this.yCoordinateOfReleased = yCoordinateOfReleased;
-    }
-
-
-    @Override
-    public String getUserName() {
-        return userName;
-    }
-
-    @Override
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public String getCardName() {

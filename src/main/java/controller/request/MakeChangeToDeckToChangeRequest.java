@@ -3,26 +3,17 @@ package controller.request;
 public class MakeChangeToDeckToChangeRequest extends Request {
 
 
-    private String userName;
     private String typeOfRequest;
     private String newFiled;
 
 
     public MakeChangeToDeckToChangeRequest(String userName, String typeOfRequest, String newFiled) {
-        this.userName = userName;
+        setUserName(userName);
+        setRequestType("MakeChangeToDeckToChangeRequest");
         this.typeOfRequest = typeOfRequest;
         this.newFiled = newFiled;
     }
 
-
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 
     public String getTypeOfRequest() {
         return typeOfRequest;

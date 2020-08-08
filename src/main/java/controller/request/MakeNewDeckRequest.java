@@ -5,11 +5,11 @@ public class MakeNewDeckRequest extends Request {
 
     private String deckName;
     private String heroName;
-    private String userName;
 
 
     public MakeNewDeckRequest(String userName,String deckName, String heroName) {
-        this.userName=userName;
+        setUserName(userName);
+        setRequestType("MakeNewDeckRequest");
         this.deckName = deckName;
         this.heroName = heroName;
     }
@@ -31,11 +31,4 @@ public class MakeNewDeckRequest extends Request {
         this.heroName = heroName;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 }

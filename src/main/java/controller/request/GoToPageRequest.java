@@ -4,15 +4,14 @@ public class GoToPageRequest extends Request {
 
 
     private String pageName;
-    private String userName;
 
 
 
     public GoToPageRequest(String sendersToken,String userName, String pageName) {
+        setUserName(userName);
         setRequestType("GoToPageRequest");
         setRequestSendersToken(sendersToken);
         this.pageName = pageName;
-        this.userName=userName;
     }
 
 
@@ -26,11 +25,4 @@ public class GoToPageRequest extends Request {
         this.pageName = pageName;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 }

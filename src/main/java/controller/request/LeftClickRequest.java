@@ -5,26 +5,16 @@ import java.util.HashMap;
 public class LeftClickRequest extends Request {
 
 
-    private String userName;
     private String cardName;
     private boolean isLock;
 
     public LeftClickRequest(String userName, String cardName, boolean isLock) {
-        this.userName = userName;
+        setUserName(userName);
+        setRequestType("LeftClickRequest");
         this.cardName = cardName;
         this.isLock = isLock;
     }
 
-
-
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 
 
     public String getCardName() {

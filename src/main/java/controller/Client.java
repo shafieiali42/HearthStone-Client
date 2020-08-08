@@ -272,7 +272,7 @@ public class Client extends Thread {
 
 
     public void sendDoneCreatDeckRequest() {
-        Request request = new DoneCreatDeckRequest();
+        Request request = new DoneCreatDeckRequest(authToken,Controller.getCurrentPlayerUserName());
         String message = new Gson().toJson(request);
         sendRequest(authToken, "DoneCreatDeckRequest", message);
     }

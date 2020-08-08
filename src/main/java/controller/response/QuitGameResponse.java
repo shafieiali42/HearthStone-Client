@@ -10,8 +10,6 @@ public class QuitGameResponse extends Response {
 
 
 
-
-
     @Override
     public void execute() {
         PlayPanel playPanel = (PlayPanel) Constant.getPanels().get("PlayPanel");

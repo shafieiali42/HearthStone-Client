@@ -1,11 +1,11 @@
 package controller.response;
 
-public abstract class Response {
+public  class Response {
 
 
     private String responseReceiversToken;
     private String responseType;
-    public abstract void execute();
+    public  void execute(){}
 
 
 

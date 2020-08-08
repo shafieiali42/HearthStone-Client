@@ -14,7 +14,8 @@ public class RemoveCardFromDeckToChangeResponse extends Response {
     private HashMap<String, Integer> usesMap;
 
 
-    public RemoveCardFromDeckToChangeResponse(String userName, HashMap<String, Integer> usesMap) {
+    public RemoveCardFromDeckToChangeResponse(String userName,
+                                              HashMap<String, Integer> usesMap) {
         this.userName = userName;
         this.usesMap = usesMap;
     }

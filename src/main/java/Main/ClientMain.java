@@ -30,7 +30,7 @@ public class ClientMain {
         };
 
         int option = JOptionPane.showConfirmDialog(null, message, "Login", JOptionPane.OK_CANCEL_OPTION);
-        Client client = new Client(portField.getText(), Integer.parseInt(ipField.getText()));
+        Client client = new Client(ipField.getText(), Integer.parseInt(portField.getText()));
         Controller.setCurrentClient(client);
         myMainFrame.setContentPane(new LogInPage());
 

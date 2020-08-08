@@ -4,9 +4,6 @@ import controller.Alliance;
 
 public class MouseClickRequest extends Request {
 
-
-
-    private String userName;
     private String cardName;
     private String typeOfCard;
     private boolean clicked;
@@ -19,7 +16,8 @@ public class MouseClickRequest extends Request {
     public MouseClickRequest(String userName, String cardName, String typeOfCard, boolean clicked,
                              int xCoordinateOfCard, int yCoordinateOfCard, Alliance alliance,String typeOfClick) {
 
-        this.userName = userName;
+        setUserName(userName);
+        setRequestType("MouseClickRequest");
         this.cardName = cardName;
         this.typeOfCard = typeOfCard;
         this.clicked = clicked;
@@ -27,17 +25,6 @@ public class MouseClickRequest extends Request {
         this.yCoordinateOfCard = yCoordinateOfCard;
         this.alliance = alliance;
         this.typeOfClick=typeOfClick;
-    }
-
-
-    @Override
-    public String getUserName() {
-        return userName;
-    }
-
-    @Override
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public String getCardName() {

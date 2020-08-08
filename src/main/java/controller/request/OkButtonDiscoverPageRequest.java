@@ -5,22 +5,12 @@ package controller.request;
 public class OkButtonDiscoverPageRequest extends Request {
 
 
-    private String userName;
 
     public OkButtonDiscoverPageRequest(String userName) {
-        this.userName = userName;
+        setUserName(userName);
+        setRequestType("OkButtonDiscoverPageRequest");
     }
 
-
-    @Override
-    public String getUserName() {
-        return userName;
-    }
-
-    @Override
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 
 
 }
