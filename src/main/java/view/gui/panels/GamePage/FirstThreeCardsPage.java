@@ -29,7 +29,7 @@ public class FirstThreeCardsPage extends JPanel {
     private ArrayList<String> firstThreeCardsName;
 
 
-    private FirstThreeCardsPage(){
+    public FirstThreeCardsPage(){
         setLayout(null);
         setBackground(Color.gray);
         firstThreeCardsName=new ArrayList<>();

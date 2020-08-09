@@ -55,6 +55,9 @@ public class Client extends Thread {
                             break;
                         case 2:
                             message = text;
+                            System.out.println(authtoken);
+                            System.out.println(responseName);
+                            System.out.println(message);
                             Response response = JsonDeSerializerForResponse.deSerializeResponse(authtoken, responseName, message);
                             this.responses.add(response);
                             executeResponse();
@@ -92,6 +95,15 @@ public class Client extends Thread {
     }
 
 
+
+    public void sendShowRankRequest(String typeOfRank){
+        Request request=new ShowRankRequest(Controller.getCurrentPlayerUserName(),typeOfRank);
+        String message =new Gson().toJson(request);
+        sendRequest(authToken,"ShowRankRequest",message);
+    }
+
+
+
     public void sendLogInRequest(String userName, String password, String mode) {
         Request request = new LogInRequest(authToken, userName, password, mode);
         String message = new Gson().toJson(request);
@@ -105,11 +117,20 @@ public class Client extends Thread {
         sendRequest(authToken, "DeletePlayerRequest", message);
     }
 
-    public void sendLogOutRequest(String userName) {
-        Request request = new LogOutRequest(authToken, userName);
+    public void sendLogOutRequest(String userName,boolean exit) {
+        Request request = new LogOutRequest(authToken, userName,exit);
         String message = new Gson().toJson(request);
         sendRequest(authToken, "LogOutRequest", message);
     }
+
+
+
+    public void sendTextRequest(String text){
+        Request request=new SendTextRequest(Controller.getCurrentPlayerUserName(),text);
+        String message =new Gson().toJson(request);
+        sendRequest(authToken,"sendTextRequest",message);
+    }
+
 
 
     public void sendQuitGameRequest() {
@@ -124,6 +145,7 @@ public class Client extends Thread {
     }
 
     public void sendGoToPageRequest(String userName, String pageName) {
+        System.out.println("send go to setting page request");
         Request request = new GoToPageRequest(authToken, userName, pageName);
         String message = new Gson().toJson(request);
         sendRequest(authToken, "GoToPageRequest", message);
@@ -280,10 +302,10 @@ public class Client extends Thread {
 
     public void sendMouseClickedRequest(String cardName, String typeOfCard, boolean clicked,
                                         int xCoordinateOfCard, int yCoordinateOfCard,
-                                        Alliance alliance, String typeOfClick) {
+                                        Alliance alliance, String typeOfClick,boolean isLock) {
 
         Request request = new MouseClickRequest(Controller.getCurrentPlayerUserName(), cardName, typeOfCard,
-                clicked, xCoordinateOfCard, yCoordinateOfCard, alliance, typeOfClick);
+                clicked, xCoordinateOfCard, yCoordinateOfCard, alliance, typeOfClick,isLock);
 
         String message = new Gson().toJson(request);
         sendRequest(authToken, "MouseClickRequest", message);

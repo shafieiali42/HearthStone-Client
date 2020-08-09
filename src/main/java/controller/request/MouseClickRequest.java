@@ -11,10 +11,11 @@ public class MouseClickRequest extends Request {
     private int yCoordinateOfCard;
     private Alliance alliance;
     private String typeOfClick;
+    private boolean isLock;
 
 
     public MouseClickRequest(String userName, String cardName, String typeOfCard, boolean clicked,
-                             int xCoordinateOfCard, int yCoordinateOfCard, Alliance alliance,String typeOfClick) {
+                             int xCoordinateOfCard, int yCoordinateOfCard, Alliance alliance,String typeOfClick,boolean isLock) {
 
         setUserName(userName);
         setRequestType("MouseClickRequest");
@@ -25,6 +26,7 @@ public class MouseClickRequest extends Request {
         this.yCoordinateOfCard = yCoordinateOfCard;
         this.alliance = alliance;
         this.typeOfClick=typeOfClick;
+        this.isLock=isLock;
     }
 
     public String getCardName() {
@@ -81,5 +83,13 @@ public class MouseClickRequest extends Request {
 
     public void setTypeOfClick(String typeOfClick) {
         this.typeOfClick = typeOfClick;
+    }
+
+    public boolean isLock() {
+        return isLock;
+    }
+
+    public void setLock(boolean lock) {
+        isLock = lock;
     }
 }

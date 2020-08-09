@@ -22,7 +22,7 @@ public class ChangeVolumeResponse extends Response {
         } else {
             int modeInt = Integer.parseInt(mode);
             Administer.changeStatusOfSound(modeInt);
-            SettingPage.setNumberOfPushMuteBtn(SettingPage.getNumberOfPushMuteBtn()+1);
+//            SettingPage.setNumberOfPushMuteBtn(SettingPage.getNumberOfPushMuteBtn()+1);
         }
     }
 

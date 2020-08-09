@@ -24,12 +24,14 @@ public class GoToPageResponse extends Response {
 
     @Override
     public void execute() {
+        System.out.println(pageName+"**********************");
         switch (pageName) {
             case "StatusPage":
                 ClientMain.getMyMainFrame().setContentPane(new StatusPage());
                 break;
             case "SettingPage":
                 ClientMain.getMyMainFrame().setContentPane(new SettingPage());
+                System.out.println("GoToSettingpage");
                 break;
             case "ShopPage":
                 ClientMain.getMyMainFrame().setContentPane(new ShopPage());
@@ -38,7 +40,9 @@ public class GoToPageResponse extends Response {
                 ClientMain.getMyMainFrame().setContentPane(Constant.getPanels().get("CollectionPage"));
                 break;
             case "DeckPage":
+                System.out.println("1234567890987654321");
                 ClientMain.getMyMainFrame().setContentPane(Constant.getPanels().get("DeckPage"));
+                break;
             case "MainMenuPage":
                 ShowDeckInfoPanel showDeckInfoPanel = (ShowDeckInfoPanel) Constant.getPanels().get("ShowDeckInfoPanel");
                 showDeckInfoPanel.setReadyToShow(false);

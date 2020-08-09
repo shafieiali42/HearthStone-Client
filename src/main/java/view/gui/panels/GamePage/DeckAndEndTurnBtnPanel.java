@@ -1,4 +1,5 @@
 package view.gui.panels.GamePage;
+
 import controller.controllers.Controller;
 import controller.controllers.GamePartController;
 import utility.constant.Constant;
@@ -8,8 +9,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-
 
 
 public class DeckAndEndTurnBtnPanel extends JPanel {
@@ -19,9 +18,11 @@ public class DeckAndEndTurnBtnPanel extends JPanel {
     private static final int HEIGHT_OF_BTN = 80;
     private Color colorOfTextOfBtn = new Color(255, 0, 0);
     private Color colorOfBtn = new Color(48, 48, 45);
-
+    private JTextField chatField;
+    private JButton sendBtn;
     private JButton endTurnBtn;
     private JButton quitGameBtn;
+    private String chatText;
     private static DeckAndEndTurnBtnPanel deckAndEndTurnBtnPanel = new DeckAndEndTurnBtnPanel();
 
     public static DeckAndEndTurnBtnPanel getInstance() {
@@ -37,6 +38,7 @@ public class DeckAndEndTurnBtnPanel extends JPanel {
         initFirstDeck();
         initSecondDeck();
         initQuitGameBtn();
+        initSearchTools();
     }
 
     private void initQuitGameBtn() {
@@ -114,6 +116,28 @@ public class DeckAndEndTurnBtnPanel extends JPanel {
         add(endTurnBtn);
     }
 
+
+
+    private void initSearchTools() {
+        chatField = new JTextField(20);
+        chatField.setBounds(5,290,190,20);
+        sendBtn = new JButton("Send");
+        sendBtn.setSize(40, 20);
+        sendBtn.setBounds(20,310,150,30);
+        sendBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Controller.getCurrentClient().sendTextRequest(chatField.getText());
+                //                    Administer.writeLog("Search for card: " + searchField.getText());
+//                    CLI.currentPlayer.getLoggerOfMyPlayer().info("Search for card: "+searchField.getText());
+//                searchInCards(searchField.getText());
+            }
+        });
+        add(chatField);
+        add(sendBtn);
+    }
+
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -122,21 +146,30 @@ public class DeckAndEndTurnBtnPanel extends JPanel {
         g.setFont(new Font("TimesRoman", Font.ITALIC, 15));
 //        g.drawString(Administer.getEnemyImprovementOfQuest(), 50, 295);
         g.drawString(GamePartController.getFriendlyImprovementOfQuest(), 50, 495);
-
-
+        g.drawString(chatText,5,250);
         DeckViewerInPlay.getInstanceOfFirstDeck().setToolTipText("You have " +
                 GamePartController.getNumberOfCardsInDeck() + "cards in your deck");
+
+
 
 //        DeckViewerInPlay.getInstanceOfSecondDeck().setToolTipText("You have " +
 //                GamePartController.getNumberOfEnemyCardsOfDeckInGameState() + "cards in your deck");
 
-
     }
 
+
+    public String getChatText() {
+        return chatText;
+    }
+
+    public void setChatText(String chatText) {
+        this.chatText = chatText;
+    }
 }
 
 
 class DeckViewerInPlay extends JPanel {
+
     public static int getWidthOfDeck() {
         return WIDTH_OF_DECK;
     }
@@ -166,6 +199,8 @@ class DeckViewerInPlay extends JPanel {
         setSize(WIDTH_OF_DECK, HEIGHT_OF_DECK);
         this.witchPanel = witchPanel;
     }
+
+
 
 
     @Override

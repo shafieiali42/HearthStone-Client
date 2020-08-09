@@ -26,7 +26,8 @@ public class MakeNewDeckResponse extends Response {
         ((DeckPage) Constant.getPanels().get("DeckPage")).
                 setListOfLittleCardsPanelOfDeckToChange(LittleCardPanel.getAllLittleCardPanels());
 
-        ClientMain.getMyMainFrame().setContentPane(Constant.getPanels().get("DeckPage"));
+        System.out.println("set deckPage Content pane");
+//        ClientMain.getMyMainFrame().setContentPane(Constant.getPanels().get("DeckPage"));
         Controller.getCurrentClient().sendGoToPageRequest(Controller.getCurrentPlayerUserName(), "DeckPage");
     }
 

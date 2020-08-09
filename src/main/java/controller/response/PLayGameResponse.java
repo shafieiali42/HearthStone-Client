@@ -35,10 +35,12 @@ public class PLayGameResponse extends Response {
 
     @Override
     public void execute() {
+        Constant.getPanels().put("InfoPassivePage",new InfoPassivePage());
         InfoPassivePage infoPassivePage=(InfoPassivePage) Constant.getPanels().get("InfoPassivePage");
         infoPassivePage.setNameOfPassives(passiveNames);
         infoPassivePage.repaint();
         infoPassivePage.revalidate();
+        Constant.getPanels().put("FirstThreeCardsPage",new FirstThreeCardsPage());
         FirstThreeCardsPage firstThreeCardsPage=(FirstThreeCardsPage)Constant.getPanels().get("FirstThreeCardsPage");
         firstThreeCardsPage.reStartSetting();
         ClientMain.getMyMainFrame().setContentPane(infoPassivePage);

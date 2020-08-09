@@ -223,11 +223,11 @@ public class CardImagePanel extends JPanel implements MouseListener, MouseMotion
 
         if (SwingUtilities.isRightMouseButton(e)) {
             Controller.getCurrentClient().sendMouseClickedRequest(cardName, typeOfCard, clicked, xCoordinateOfCard,
-                    yCoordinateOfCard, alliance, "Right");
+                    yCoordinateOfCard, alliance, "Right",isLock);
         } else if (SwingUtilities.isLeftMouseButton(e)) {
 
             Controller.getCurrentClient().sendMouseClickedRequest(cardName, typeOfCard, clicked, xCoordinateOfCard,
-                    yCoordinateOfCard, alliance, "Left");
+                    yCoordinateOfCard, alliance, "Left",isLock);
         }
 
 
@@ -362,19 +362,19 @@ public class CardImagePanel extends JPanel implements MouseListener, MouseMotion
 //                GamePartController.setAllianceOfTarget(null);
 //            }
 
-        if (SwingUtilities.isRightMouseButton(e)) {
-            UIManager UI = new UIManager();
-            UI.put("OptionPane.background", Color.cyan);
-            UI.put("Panel.background", Color.cyan);
-            UIManager.put("OptionPane.minimumSize", new Dimension(this.getWidth() * 3, this.getHeight() * 3));
-            JOptionPane.showMessageDialog(null, this, "Information", JOptionPane.INFORMATION_MESSAGE);
-            UI.put("OptionPane.background", Color.white);
-            UI.put("Panel.background", Color.white);
-            UIManager.put("OptionPane.minimumSize", new Dimension(200, 80));
-            UIManager.put("OptionPane.minimumSize", UIManager.getDefaults().getDimension("OptionPane.minimumSize"));
-        } else if (SwingUtilities.isLeftMouseButton(e)) {
-            Controller.getCurrentClient().sendLeftClickRequest(cardName, isLock);
-        }
+//        if (SwingUtilities.isRightMouseButton(e)) {
+//            UIManager UI = new UIManager();
+//            UI.put("OptionPane.background", Color.cyan);
+//            UI.put("Panel.background", Color.cyan);
+//            UIManager.put("OptionPane.minimumSize", new Dimension(this.getWidth() * 3, this.getHeight() * 3));
+//            JOptionPane.showMessageDialog(null, this, "Information", JOptionPane.INFORMATION_MESSAGE);
+//            UI.put("OptionPane.background", Color.white);
+//            UI.put("Panel.background", Color.white);
+//            UIManager.put("OptionPane.minimumSize", new Dimension(200, 80));
+//            UIManager.put("OptionPane.minimumSize", UIManager.getDefaults().getDimension("OptionPane.minimumSize"));
+//        } else if (SwingUtilities.isLeftMouseButton(e)) {
+//            Controller.getCurrentClient().sendLeftClickRequest(cardName, isLock);
+//        }
 
     }
 
@@ -400,12 +400,12 @@ public class CardImagePanel extends JPanel implements MouseListener, MouseMotion
 //                GamePartController.ChangeThisCardFromHands(cardName);
 //            }
 
-        Controller.getCurrentClient().sendMousePressRequest(cardName);
 
 
         if (ClientMain.getCurrentPage().equals(Status.PLAY_PAGE_MY_TURN) ||
                 ClientMain.getCurrentPage().equals(Status.PLAY_PAGE)) {
 
+            Controller.getCurrentClient().sendMousePressRequest(cardName);//todoooo
             if (GamePartController.canDragCard(e.getComponent().getY())) {
                 x = e.getX();
                 y = e.getY();

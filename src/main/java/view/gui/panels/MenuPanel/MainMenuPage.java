@@ -25,6 +25,7 @@ public class MainMenuPage extends JPanel {
     private JButton settingBtn;
     private JButton logOutBtn;
     private JButton deletePlayerBtn;
+    private JButton rankButton;
     private JButton exitBtn;
     private Color colorOfBtn = new Color(48, 48, 45);
     private Color colorOfTextOfBtn = new Color(255, 0, 0);
@@ -51,6 +52,40 @@ public class MainMenuPage extends JPanel {
         initLogOutBtn();
         initExitBtn();
         initDeleteBtn();
+        initRankBtn();
+    }
+
+
+    public void designBtn(JButton btn) {
+        btn.setFont(new Font("TimesRoman", Font.ITALIC, 20));
+        btn.setForeground(colorOfTextOfBtn);
+        btn.setBackground(colorOfBtn);
+    }
+
+
+    private void initRankBtn() {
+        rankButton = new JButton("Rank");
+        designBtn(rankButton);
+        rankButton.setSize(this.getWidth() / 2, this.getHeight() / 8);
+        rankButton.setBounds(0, menuPanel.getHeight() * 4 / 8, rankButton.getWidth(), rankButton.getHeight());
+        rankButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Object[] possibilities = {"MyRank", "Top10"};
+                Icon questionError = UIManager.getIcon("OptionPane.questionIcon");
+                String typeOfRank = (String) JOptionPane.showInputDialog(
+                        null,
+                        "Select Your favorite Rank:",
+                        "Select Rank",
+                        JOptionPane.PLAIN_MESSAGE,
+                        questionError,
+                        possibilities,
+                        "MyRank");
+
+                Controller.getCurrentClient().sendShowRankRequest(typeOfRank);
+            }
+        });
+        menuPanel.add(rankButton);
     }
 
 
@@ -59,8 +94,8 @@ public class MainMenuPage extends JPanel {
         deletePlayerBtn.setFont(new Font("TimesRoman", Font.ITALIC, 30));
         deletePlayerBtn.setForeground(colorOfTextOfBtn);
         deletePlayerBtn.setBackground(colorOfBtn);
-        deletePlayerBtn.setSize(this.getWidth() / 4, this.getHeight() / 7);
-        deletePlayerBtn.setBounds(menuPanel.getWidth() / 2, menuPanel.getHeight() * 5 / 7, deletePlayerBtn.getWidth(),
+        deletePlayerBtn.setSize(this.getWidth() / 4, this.getHeight() / 8);
+        deletePlayerBtn.setBounds(menuPanel.getWidth() / 2, menuPanel.getHeight() * 6 / 8, deletePlayerBtn.getWidth(),
                 deletePlayerBtn.getHeight());
         deletePlayerBtn.addActionListener(new ActionListener() {
             @Override
@@ -78,12 +113,12 @@ public class MainMenuPage extends JPanel {
         logOutBtn.setFont(new Font("TimesRoman", Font.ITALIC, 30));
         logOutBtn.setForeground(colorOfTextOfBtn);
         logOutBtn.setBackground(colorOfBtn);
-        logOutBtn.setSize(this.getWidth() / 4, this.getHeight() / 7);
-        logOutBtn.setBounds(0, menuPanel.getHeight() * 5 / 7, logOutBtn.getWidth(), logOutBtn.getHeight());
+        logOutBtn.setSize(this.getWidth() / 4, this.getHeight() / 8);
+        logOutBtn.setBounds(0, menuPanel.getHeight() * 6 / 8, logOutBtn.getWidth(), logOutBtn.getHeight());
         logOutBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Controller.getCurrentClient().sendLogOutRequest(Controller.getCurrentPlayerUserName());
+                Controller.getCurrentClient().sendLogOutRequest(Controller.getCurrentPlayerUserName(), false);
             }
         });
         menuPanel.add(logOutBtn);
@@ -95,14 +130,12 @@ public class MainMenuPage extends JPanel {
         exitBtn.setFont(new Font("TimesRoman", Font.ITALIC, 30));
         exitBtn.setForeground(colorOfTextOfBtn);
         exitBtn.setBackground(colorOfBtn);
-        exitBtn.setSize(this.getWidth() / 2, this.getHeight() / 7);
-        exitBtn.setBounds(0, menuPanel.getHeight() * 6 / 7, exitBtn.getWidth(), exitBtn.getHeight() - 30);
+        exitBtn.setSize(this.getWidth() / 2, this.getHeight() / 8);
+        exitBtn.setBounds(0, menuPanel.getHeight() * 7 / 8, exitBtn.getWidth(), exitBtn.getHeight() - 30);
         exitBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Controller.getCurrentClient().sendLogOutRequest(Controller.getCurrentPlayerUserName());
-                GraphicLoop.getInstance().stop();
-                System.exit(0);
+                Controller.getCurrentClient().sendLogOutRequest(Controller.getCurrentPlayerUserName(), true);
             }
         });
         menuPanel.add(exitBtn);
@@ -113,8 +146,8 @@ public class MainMenuPage extends JPanel {
         statusBtn.setFont(new Font("TimesRoman", Font.ITALIC, 30));
         statusBtn.setForeground(colorOfTextOfBtn);
         statusBtn.setBackground(colorOfBtn);
-        statusBtn.setSize(this.getWidth() / 2, this.getHeight() / 7);
-        statusBtn.setBounds(0, menuPanel.getHeight() * 3 / 7, statusBtn.getWidth(), statusBtn.getHeight());
+        statusBtn.setSize(this.getWidth() / 2, this.getHeight() / 8);
+        statusBtn.setBounds(0, menuPanel.getHeight() * 3 / 8, statusBtn.getWidth(), statusBtn.getHeight());
         statusBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -130,8 +163,8 @@ public class MainMenuPage extends JPanel {
         settingBtn.setFont(new Font("TimesRoman", Font.ITALIC, 30));
         settingBtn.setForeground(colorOfTextOfBtn);
         settingBtn.setBackground(colorOfBtn);
-        settingBtn.setSize(this.getWidth() / 2, this.getHeight() / 7);
-        settingBtn.setBounds(0, menuPanel.getHeight() * 4 / 7, settingBtn.getWidth(), settingBtn.getHeight());
+        settingBtn.setSize(this.getWidth() / 2, this.getHeight() / 8);
+        settingBtn.setBounds(0, menuPanel.getHeight() * 5 / 8, settingBtn.getWidth(), settingBtn.getHeight());
         settingBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -147,8 +180,8 @@ public class MainMenuPage extends JPanel {
         shopBtn.setFont(new Font("TimesRoman", Font.ITALIC, 30));
         shopBtn.setForeground(colorOfTextOfBtn);
         shopBtn.setBackground(colorOfBtn);
-        shopBtn.setSize(this.getWidth() / 2, this.getHeight() / 7);
-        shopBtn.setBounds(0, menuPanel.getHeight() * 2 / 7, shopBtn.getWidth(), shopBtn.getHeight());
+        shopBtn.setSize(this.getWidth() / 2, this.getHeight() / 8);
+        shopBtn.setBounds(0, menuPanel.getHeight() * 2 /8, shopBtn.getWidth(), shopBtn.getHeight());
         shopBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -170,8 +203,8 @@ public class MainMenuPage extends JPanel {
         collectionBtn.setFont(new Font("TimesRoman", Font.ITALIC, 30));
         collectionBtn.setForeground(Color.RED);
         collectionBtn.setBackground(colorOfBtn);
-        collectionBtn.setSize(this.getWidth() / 2, this.getHeight() / 7);
-        collectionBtn.setBounds(0, menuPanel.getHeight() / 7, collectionBtn.getWidth(), collectionBtn.getHeight());
+        collectionBtn.setSize(this.getWidth() / 2, this.getHeight() / 8);
+        collectionBtn.setBounds(0, menuPanel.getHeight() / 8, collectionBtn.getWidth(), collectionBtn.getHeight());
         collectionBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -191,7 +224,7 @@ public class MainMenuPage extends JPanel {
         playBtn.setFont(new Font("TimesRoman", Font.ITALIC, 30));
         playBtn.setForeground(Color.RED);
         playBtn.setBackground(colorOfBtn);
-        playBtn.setSize(this.getWidth() / 2, this.getHeight() / 7);
+        playBtn.setSize(this.getWidth() / 2, this.getHeight() / 8);
         playBtn.setBounds(0, 0, playBtn.getWidth(), playBtn.getHeight());
         playBtn.addActionListener(new ActionListener() {
             @Override

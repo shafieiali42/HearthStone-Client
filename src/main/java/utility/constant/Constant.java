@@ -3,6 +3,7 @@ package utility.constant;
 
 import utility.config.ConfigLoader;
 import view.gui.panels.CollectionPages.*;
+import view.gui.panels.GamePage.InfoPassivePage;
 import view.gui.panels.SettingPanel.SettingPage;
 import view.gui.panels.ShopPanel.ButtonPanel;
 import view.gui.panels.ShopPanel.BuySellPanel;
@@ -10,6 +11,7 @@ import view.gui.panels.ShopPanel.PanelToShowCardInBuySellPanel;
 import view.gui.panels.ShopPanel.ShopCardPanel;
 import view.gui.panels.StatusPanel.RankedPanel;
 import view.gui.panels.StatusPanel.ShowDeckInfoPanel;
+import view.gui.panels.StatusPanel.StatusPage;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -24,25 +26,27 @@ public class Constant {
 
     private static HashMap<String, JPanel> panels = new HashMap<>();
 
+
+
     public static void setPanelsMap() {
         panels.put("cardPanelOfCollectionPage", new CardPanel());
         panels.put("cardPanelOfDeckPage", new CardPanel());
-        panels.put("DeckPanel", new DeckPanel());
-        panels.put("CollectionPage", new CollectionPage());
-        panels.put("CategoryPanel", new CategoryPanel());
-        panels.put("CategoryPanelOfChangeDeck", new CategoryPanelOfChangeDeck());
-        panels.put("DeckPage", new DeckPage());
-        panels.put("DeckViewer", new DeckViewer());
         panels.put("manaPanelForCollectionPage", new ManaPanel());
         panels.put("manaPanelForDeckPage", new ManaPanel());
+        panels.put("DeckPanel", new DeckPanel());
+        panels.put("CategoryPanel", new CategoryPanel());
+        panels.put("CollectionPage", new CollectionPage());
+        panels.put("CategoryPanelOfChangeDeck", new CategoryPanelOfChangeDeck());
+        panels.put("DeckViewer", new DeckViewer());
+        panels.put("DeckPage", new DeckPage());
         panels.put("ShowDeckInfoPanel", new ShowDeckInfoPanel());
         panels.put("RankedPanel", new RankedPanel());
+        panels.put("StatusPage", new StatusPage());
         panels.put("SettingPage", new SettingPage());
         panels.put("ButtonPanel", new ButtonPanel());
         panels.put("ShopCardPanel", new ShopCardPanel());
         panels.put("PanelToShowCardInBuySellPanel", new PanelToShowCardInBuySellPanel());
         panels.put("BuySellPanel", new BuySellPanel());
-
     }
 
     public static HashMap<String, JPanel> getPanels() {
@@ -104,7 +108,7 @@ public class Constant {
 
     static {
         try {
-            properties = ConfigLoader.getInstance().readProperties("src/main/resources/ConfigFiles/graphicConfigFiles/Panels/StatusPanel/RankedPanel.properties");
+            properties = ConfigLoader.getInstance().readProperties("src/main/resources/configFiles/graphicConfigFiles/Panels/StatusPanel/RankedPanel.properties");
             WIDE_OF_RANKED_PANEL = Integer.parseInt(properties.getProperty("WIDE_OF_RANKED_PANEL"));
             HEIGHT_OF_RANKED_PANEL = Integer.parseInt(properties.getProperty("HEIGHT_OF_RANKED_PANEL"));
         } catch (IOException e) {
@@ -314,6 +318,10 @@ public class Constant {
 
     public static int WIDTH_OF_QIT_BTN = Integer.parseInt(properties.getProperty("WIDTH_OF_QIT_BTN"));
     public static int HEIGHT_OF_QUIT_BTN = Integer.parseInt(properties.getProperty("HEIGHT_OF_QUIT_BTN"));
+
+    static {
+        setPanelsMap();
+    }
 
 
 }

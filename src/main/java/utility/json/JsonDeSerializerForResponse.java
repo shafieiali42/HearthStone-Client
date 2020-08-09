@@ -33,7 +33,7 @@ public class JsonDeSerializerForResponse {
         map.put("RemoveCardFromDeckToChangeResponse", RemoveCardFromDeckToChangeResponse.class);
         map.put("ReStartDiscoverPageSetting", ReStartDiscoverPageSetting.class);
         map.put("SetAllLittleCardsPanelsResponse", SetAllLittleCardsPanelsResponse.class);
-        map.put("ShowBuyableCardResponse", ShowBuyAndSellCardResponse.class);
+        map.put("ShowBuyAndSellCardResponse", ShowBuyAndSellCardResponse.class);
         map.put("ShowDeckButtonsResponse", ShowDeckButtonsResponse.class);
         map.put("ShowDeckNumberResponse", ShowDeckNumberResponse.class);
         map.put("ShowDeckResponse", ShowDeckResponse.class);
@@ -45,6 +45,8 @@ public class JsonDeSerializerForResponse {
         map.put("ShowTimerResponse", ShowTimerResponse.class);
         map.put("ShowWalletResponse", ShowWalletResponse.class);
         map.put("TransactionResponse", TransactionResponse.class);
+        map.put("ShowRankResponse", ShowRankResponse.class);
+        map.put("ShowChatResponse", ShowChatResponse.class);
     }
 
 

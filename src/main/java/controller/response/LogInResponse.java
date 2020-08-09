@@ -21,10 +21,13 @@ public class LogInResponse extends Response {
 
     @Override
     public void execute() {
+        System.out.println(" IN loginRESPONSE");
         if (successful){
+            Controller.getCurrentClient().setAuthToken(this.getResponseReceiversToken());
             Controller.setCurrentPlayerUserName(answer);
             Administer.playMainSound("src/main/resources/Sounds/FirstAudio.wav");
             ClientMain.getMyMainFrame().setContentPane(new MainMenuPage());
+            System.out.println("set menu for content pane");
         }else{
             JOptionPane.showMessageDialog(ClientMain.getMyMainFrame(),answer,"Error",JOptionPane.ERROR_MESSAGE);
         }
