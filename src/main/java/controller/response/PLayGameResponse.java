@@ -33,6 +33,7 @@ public class PLayGameResponse extends Response {
 
 
 
+
     @Override
     public void execute() {
         Constant.getPanels().put("InfoPassivePage",new InfoPassivePage());
@@ -49,7 +50,6 @@ public class PLayGameResponse extends Response {
         playPanel.setNameOfEnemyHero(enemyHeroName);
 
     }
-
 
 
 

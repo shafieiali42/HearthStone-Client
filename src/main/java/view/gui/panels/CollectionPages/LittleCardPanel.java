@@ -93,6 +93,7 @@ public class LittleCardPanel extends JPanel implements MouseListener, Serializab
         add(manaLabel);
         add(nameLabel);
         add(usedLabel);
+        this.addMouseListener(this);
     }
 
     public static void setAllLittleCardPanels() {
@@ -108,6 +109,7 @@ public class LittleCardPanel extends JPanel implements MouseListener, Serializab
     @Override
     public void mouseClicked(MouseEvent e) {
         if (SwingUtilities.isLeftMouseButton(e)) {
+            System.out.println("click on little card .....");
             Controller.getCurrentClient().sendRemoveCardFromDeckToChangeRequest(this.nameLabel.getText());
 //            CollectionController.removeThisCardFromCollectionStatesDeck(LittleCardPanel.this);
 //            ((DeckViewer)Constant.getPanels().get("DeckViewer")).showCardsInDecK();

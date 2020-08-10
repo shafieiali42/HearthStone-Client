@@ -89,6 +89,12 @@ public class RankPage extends JPanel {
         for (int i = 0; i < names.size(); i++) {
             if (names.get(i) != null) {
                 String playerState = names.get(i) + xSpace + cups.get(i);
+                if (Controller.getTypeOfRank().equalsIgnoreCase("MyRank")){
+                    if (names.get(i).equalsIgnoreCase(Controller.getCurrentPlayerUserName())){
+                        System.out.println("*******************"+Controller.getMyRank());
+                        playerState= Controller.getMyRank()+"  "+names.get(i) + xSpace + cups.get(i);
+                    }
+                }
                 int xCoordinate = (Constant.widthOfMainFrame - LengthOfMessage.lengthOfMessage(playerState, g2d)) / 2;
                 g2d.drawString(playerState, xCoordinate, (i + 1) * ySpace);
 

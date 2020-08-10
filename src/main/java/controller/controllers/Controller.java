@@ -11,9 +11,28 @@ public class Controller {
 
     private static ArrayList<String> rankedNames=new ArrayList<>();
     private static ArrayList<String> rankedCups=new ArrayList<>();
+    private static String typeOfRank="";
+    private static String myRank="";
 
     //getter and setters
     //*********************
+
+
+    public static String getTypeOfRank() {
+        return typeOfRank;
+    }
+
+    public static void setTypeOfRank(String typeOfRank) {
+        Controller.typeOfRank = typeOfRank;
+    }
+
+    public static String getMyRank() {
+        return myRank;
+    }
+
+    public static void setMyRank(String myRank) {
+        Controller.myRank = myRank;
+    }
 
     public static Client getCurrentClient() {
         return currentClient;

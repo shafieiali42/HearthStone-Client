@@ -5,6 +5,7 @@ import utility.constant.Constant;
 import view.gui.panels.CollectionPages.DeckPage;
 import view.gui.panels.CollectionPages.DeckViewer;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class RemoveCardFromDeckToChangeResponse extends Response {
@@ -25,7 +26,7 @@ public class RemoveCardFromDeckToChangeResponse extends Response {
         DeckViewer deckViewer = (DeckViewer) Constant.getPanels().get("DeckViewer");
         DeckPage deckPage = (DeckPage) Constant.getPanels().get("DeckPage");
         deckPage.setListOfLittleCardsPanelOfDeckToChange(deckViewer.setLittleCardsListFromHashMap(usesMap));
-        CollectionController.setListOfCardOfDeckToChange(null);
+        CollectionController.setListOfCardOfDeckToChange(new ArrayList<>());
         for (String cardName:usesMap.keySet()){
             if (usesMap.get(cardName)>0){
                 CollectionController.getListOfCardOfDeckToChange().add(cardName);

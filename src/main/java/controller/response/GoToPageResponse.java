@@ -4,6 +4,7 @@ import Main.ClientMain;
 import controller.controllers.Status;
 import utility.constant.Constant;
 import view.gui.panels.CollectionPages.CollectionPage;
+import view.gui.panels.CollectionPages.DeckPanel;
 import view.gui.panels.GamePage.FirstThreeCardsPage;
 import view.gui.panels.GamePage.GamePage;
 import view.gui.panels.GamePage.InfoPassivePage;
@@ -38,6 +39,7 @@ public class GoToPageResponse extends Response {
                 break;
             case "CollectionPage":
                 ClientMain.getMyMainFrame().setContentPane(Constant.getPanels().get("CollectionPage"));
+                ((DeckPanel) Constant.getPanels().get("DeckPanel")).showDeckButtons();
                 break;
             case "DeckPage":
                 System.out.println("1234567890987654321");

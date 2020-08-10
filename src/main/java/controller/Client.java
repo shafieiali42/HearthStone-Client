@@ -273,6 +273,7 @@ public class Client extends Thread {
 
 
     public void sendRemoveCardFromDeckToChangeRequest(String cardName) {
+        System.out.println("send remove card from deck");
         Request request = new RemoveCardFromDeckToChangeRequest(Controller.getCurrentPlayerUserName(), cardName);
         String message = new Gson().toJson(request);
         sendRequest(authToken, "RemoveCardFromDeckToChangeRequest", message);
