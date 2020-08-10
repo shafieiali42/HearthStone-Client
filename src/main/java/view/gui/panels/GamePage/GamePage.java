@@ -9,11 +9,9 @@ public class GamePage extends JPanel {
 
 
 
-    private static GamePage gamePage =new GamePage();
-    public static GamePage getInstance(){return gamePage;}
 
 
-    private GamePage(){
+    public GamePage(){
         setSize(Constant.widthOfMainFrame,Constant.heightOfMainFrame);
         setLayout(null);
         LogPanel.getInstance().setPreferredSize(new Dimension(LogPanel.getInstance().getWidthOfLogPanel(),1600));
@@ -28,11 +26,12 @@ public class GamePage extends JPanel {
         LogPanel.getInstance().getJScrollPane().setFocusable(false);
         this.add(LogPanel.getInstance().getJScrollPane());
 
-        this.addPanel(PlayPanel.getInstance(),LogPanel.getInstance().getWidthOfLogPanel(),0,
+        PlayPanel playPanel=(PlayPanel)Constant.getPanels().get("PlayPanel");
+        this.addPanel(playPanel,LogPanel.getInstance().getWidthOfLogPanel(),0,
                 PlayPanel.getWidthOfPlayPanel(),PlayPanel.getHeightOfPlayPanel());
 
 
-        this.addPanel(DeckAndEndTurnBtnPanel.getInstance(),LogPanel.getInstance().getWidthOfLogPanel()+PlayPanel.getInstance().getWidthOfPlayPanel(),0,
+        this.addPanel(DeckAndEndTurnBtnPanel.getInstance(),LogPanel.getInstance().getWidthOfLogPanel()+playPanel.getWidthOfPlayPanel(),0,
                 Constant.WIDTH_OF_END_TURN_PANEL, Constant.HEIGHT_OF_END_TURN_PANEL);
 
     }

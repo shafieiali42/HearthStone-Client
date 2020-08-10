@@ -16,16 +16,15 @@ public class PlayCardResponse extends Response {
 
     @Override
     public void execute() {
-        PlayPanel playPanel=(PlayPanel) Constant.getPanels().get("PlayPanel");
-        if (message.equalsIgnoreCase("NonSpell")){
-            PlayPanel.getInstance().setNeedAnimation(true);
-        }else {
+        PlayPanel playPanel = (PlayPanel) Constant.getPanels().get("PlayPanel");
+        if (message.equalsIgnoreCase("NonSpell")) {
+            playPanel.setNeedAnimation(true);
+        } else {
             playPanel.repaint();
-           playPanel.revalidate();
+            playPanel.revalidate();
             Sounds.playActionSounds("src/main/resources/Sounds/ActionVoices/PlayCards.wav");
         }
     }
-
 
 
     public String getMessage() {

@@ -6,6 +6,7 @@ import controller.Alliance;
 import controller.controllers.Controller;
 import controller.controllers.GamePartController;
 import controller.controllers.Status;
+import utility.constant.Constant;
 import view.gui.panels.GamePage.DiscoverCardsPage;
 import view.gui.panels.GamePage.PlayPanel;
 import view.gui.panels.myMainFrame.MyMainFrame;
@@ -34,8 +35,8 @@ public class CardImagePanel extends JPanel implements MouseListener, MouseMotion
     boolean entered = false;
     static boolean clicked = false;
     static boolean doubleClick = false;
-    private int hp;
-    private int attackPower;
+    private String hp;
+    private String attackPower;
 //    private int mana;
     private boolean isInited = false;
     private String typeOfCard = "minionOrSpell";
@@ -170,6 +171,7 @@ public class CardImagePanel extends JPanel implements MouseListener, MouseMotion
                 imageOfCard = ImageIO.read(new File("src/main/resources/Assets/GreyCardImage/" + cardName + ".png"));
             } else {
                 imageOfCard = ImageIO.read(new File("src/main/resources/Assets/CardsImage/" + cardName + ".png"));
+
             }
         }
     }
@@ -401,9 +403,9 @@ public class CardImagePanel extends JPanel implements MouseListener, MouseMotion
 //            }
 
 
-
-        if (ClientMain.getCurrentPage().equals(Status.PLAY_PAGE_MY_TURN) ||
-                ClientMain.getCurrentPage().equals(Status.PLAY_PAGE)) {
+//
+//        if (ClientMain.getCurrentPage().equals(Status.PLAY_PAGE_MY_TURN) ||
+//                ClientMain.getCurrentPage().equals(Status.PLAY_PAGE)) {
 
             Controller.getCurrentClient().sendMousePressRequest(cardName);//todoooo
             if (GamePartController.canDragCard(e.getComponent().getY())) {
@@ -414,7 +416,7 @@ public class CardImagePanel extends JPanel implements MouseListener, MouseMotion
                 int yCoordinate = e.getComponent().getY();
                 e.getComponent().setLocation(xCoordinate, yCoordinate);
                 canReleased = false;
-            }
+//            }
 
         }
 
@@ -425,10 +427,11 @@ public class CardImagePanel extends JPanel implements MouseListener, MouseMotion
 
     public void mouseReleased(MouseEvent e) {
         if (!canReleased) {
+            PlayPanel playPanel= (PlayPanel)Constant.getPanels().get("PlayPanel");
 //            System.out.println("cant released");
-            PlayPanel.getInstance().setNeedsToRepaint(true);
-            PlayPanel.getInstance().repaint();
-            PlayPanel.getInstance().revalidate();
+            playPanel.setNeedsToRepaint(true);
+            playPanel.repaint();
+            playPanel.revalidate();
             return;
         }
 

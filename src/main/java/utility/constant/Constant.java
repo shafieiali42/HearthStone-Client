@@ -3,7 +3,8 @@ package utility.constant;
 
 import utility.config.ConfigLoader;
 import view.gui.panels.CollectionPages.*;
-import view.gui.panels.GamePage.InfoPassivePage;
+import view.gui.panels.GamePage.GamePage;
+import view.gui.panels.GamePage.PlayPanel;
 import view.gui.panels.SettingPanel.SettingPage;
 import view.gui.panels.ShopPanel.ButtonPanel;
 import view.gui.panels.ShopPanel.BuySellPanel;
@@ -47,6 +48,8 @@ public class Constant {
         panels.put("ShopCardPanel", new ShopCardPanel());
         panels.put("PanelToShowCardInBuySellPanel", new PanelToShowCardInBuySellPanel());
         panels.put("BuySellPanel", new BuySellPanel());
+        panels.put("PlayPanel",new PlayPanel());
+        panels.put("GamePage",new GamePage());
     }
 
     public static HashMap<String, JPanel> getPanels() {

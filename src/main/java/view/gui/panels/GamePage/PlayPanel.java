@@ -33,22 +33,17 @@ public class PlayPanel extends JPanel {
     private String playingCardName;
 
 
-    private String nameOfFriendlyHero;
-    private String nameOfEnemyHero;
-    private String nameOfFriendlyWeapon;
-    private String nameOfEnemyWeapon;
+    private String nameOfFriendlyHero="";
+    private String nameOfEnemyHero="";
+    private String nameOfFriendlyWeapon="";
+    private String nameOfEnemyWeapon="";
 
 
-    private static PlayPanel playPanel = new PlayPanel();
-
-    public static PlayPanel getInstance() {
-        return playPanel;
-    }
 
     String time = "";
     boolean needAnimation = false;
 
-    private PlayPanel() {
+    public PlayPanel() {
         setLayout(null);
         setBackground(Color.gray);
         setSize(WIDTH_OF_PLAY_PANEL, HEIGHT_OF_PLAY_PANEL);

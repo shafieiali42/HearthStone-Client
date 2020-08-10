@@ -1,11 +1,13 @@
 package controller.response;
 
 import Main.ClientMain;
+import controller.controllers.Status;
 import utility.constant.Constant;
 import view.gui.panels.GamePage.FirstThreeCardsPage;
 import view.gui.panels.GamePage.InfoPassivePage;
 import view.gui.panels.GamePage.PlayPanel;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class PLayGameResponse extends Response {
@@ -36,18 +38,25 @@ public class PLayGameResponse extends Response {
 
     @Override
     public void execute() {
-        Constant.getPanels().put("InfoPassivePage",new InfoPassivePage());
-        InfoPassivePage infoPassivePage=(InfoPassivePage) Constant.getPanels().get("InfoPassivePage");
-        infoPassivePage.setNameOfPassives(passiveNames);
-        infoPassivePage.repaint();
-        infoPassivePage.revalidate();
-        Constant.getPanels().put("FirstThreeCardsPage",new FirstThreeCardsPage());
-        FirstThreeCardsPage firstThreeCardsPage=(FirstThreeCardsPage)Constant.getPanels().get("FirstThreeCardsPage");
-        firstThreeCardsPage.reStartSetting();
-        ClientMain.getMyMainFrame().setContentPane(infoPassivePage);
-        PlayPanel playPanel=(PlayPanel)Constant.getPanels().get("PlayPanel");
-        playPanel.setNameOfFriendlyHero(friendlyHeroName);
-        playPanel.setNameOfEnemyHero(enemyHeroName);
+        if (!successful){
+            JOptionPane.showMessageDialog(ClientMain.getMyMainFrame(),"Waiting....",
+                    "Wait",JOptionPane.ERROR_MESSAGE);
+        }else {
+            ClientMain.setCurrentPage(Status.PLAY_PAGE);
+            Constant.getPanels().put("InfoPassivePage",new InfoPassivePage());
+            InfoPassivePage infoPassivePage=(InfoPassivePage) Constant.getPanels().get("InfoPassivePage");
+            infoPassivePage.setNameOfPassives(passiveNames);
+            infoPassivePage.initButtons();
+            infoPassivePage.repaint();
+            infoPassivePage.revalidate();
+            Constant.getPanels().put("FirstThreeCardsPage",new FirstThreeCardsPage());
+            FirstThreeCardsPage firstThreeCardsPage=(FirstThreeCardsPage)Constant.getPanels().get("FirstThreeCardsPage");
+            firstThreeCardsPage.reStartSetting();
+            ClientMain.getMyMainFrame().setContentPane(infoPassivePage);
+            PlayPanel playPanel=(PlayPanel)Constant.getPanels().get("PlayPanel");
+            playPanel.setNameOfFriendlyHero(friendlyHeroName);
+            playPanel.setNameOfEnemyHero(enemyHeroName);
+        }
 
     }
 

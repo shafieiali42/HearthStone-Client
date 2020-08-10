@@ -31,9 +31,9 @@ public class RotatedPic {
 
         if ((x - destinationX) < 10 && (y - destinationY) < 10) {
             AnimationOfRotation.running = false;
-            ClientMain.getMyMainFrame().setContentPane(GamePage.getInstance());
             PlayPanel playPanel = (PlayPanel) Constant.getPanels().get("PlayPanel");
             GamePage gamePage = (GamePage) Constant.getPanels().get("GamePage");
+            ClientMain.getMyMainFrame().setContentPane(gamePage);
             playPanel.setNeedsToRepaint(true);
             gamePage.repaint();
             gamePage.revalidate();

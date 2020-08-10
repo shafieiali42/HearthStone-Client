@@ -22,9 +22,9 @@ public class ShowTimerResponse extends Response {
             playPanel.setNeedTimer(true);
         } else {
             playPanel.setNeedTimer(false);
-            PlayPanel.getInstance().setNeedsToRepaint(true);
-            PlayPanel.getInstance().repaint();
-            PlayPanel.getInstance().revalidate();
+            playPanel.setNeedsToRepaint(true);
+            playPanel.repaint();
+            playPanel.revalidate();
         }
     }
 

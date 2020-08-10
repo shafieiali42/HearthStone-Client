@@ -31,14 +31,13 @@ public class InfoPassivePage extends JPanel {
     public InfoPassivePage() {
         setLayout(null);
         setBackground(Color.gray);
-        initButtons();
         nameOfPassives=new ArrayList<>();
         nameOfPassives.add("");
         nameOfPassives.add("");
         nameOfPassives.add("");
     }
 
-    private void initButtons() {
+    public void initButtons() {
         initFirstBtn();
         initSecondBtn();
         initThirdBtn();

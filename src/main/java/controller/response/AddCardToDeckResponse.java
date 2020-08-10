@@ -15,6 +15,7 @@ public class AddCardToDeckResponse extends Response {
 
 
     public AddCardToDeckResponse(String userName, HashMap<String, Integer> usesMap) {
+        setResponseType("AddCardToDeckResponse");
         this.userName = userName;
         this.usesMap = usesMap;
     }

@@ -121,27 +121,27 @@ public class GamePartController {
         GamePartController.enemyHeroAttackPower = enemyHeroAttackPower;
     }
 
-    public static int giveMinionHpWithName(int numberOfCardInBattleGround, Alliance alliance) {
+    public static String giveMinionHpWithName(int numberOfCardInBattleGround, Alliance alliance) {
         if (alliance.equals(Alliance.WHITE)) {
-            return friendlyHpHashMap.get(numberOfCardInBattleGround - 1);
+            return friendlyHpHashMap.get(numberOfCardInBattleGround - 1) + "";
 
         } else if (alliance.equals(Alliance.BLACK)) {
-            return enemyHpHashMap.get(numberOfCardInBattleGround - 1);
+            return enemyHpHashMap.get(numberOfCardInBattleGround - 1) + "";
         }
-        return -55555555;
+        return "-55555555";
     }
 
 
-    public static int giveMinionAttackWithName(int numberOfCardInBattleGround, Alliance alliance) {
+    public static String giveMinionAttackWithName(int numberOfCardInBattleGround, Alliance alliance) {
 
         if (alliance.equals(Alliance.WHITE)) {
-            return friendlyAttackPowerHashMap.get(numberOfCardInBattleGround - 1);
+            return friendlyAttackPowerHashMap.get(numberOfCardInBattleGround - 1)+"";
 
         } else if (alliance.equals(Alliance.BLACK)) {
 
-            return enemyAttackPowerHashMap.get(numberOfCardInBattleGround - 1);
+            return enemyAttackPowerHashMap.get(numberOfCardInBattleGround - 1)+"";
         }
-        return -66666666;
+        return "-66666666";
     }
 
 
@@ -182,45 +182,45 @@ public class GamePartController {
     }
 
 
-    public static int giveWeaponDurability(Alliance alliance) {
+    public static String giveWeaponDurability(Alliance alliance) {
 
         if (alliance.equals(Alliance.WHITE)) {
-            return Integer.parseInt(friendlyWeaponDurability);
+            return friendlyWeaponDurability;
 
         } else if (alliance.equals(Alliance.BLACK)) {
-            return Integer.parseInt(enemyWeaponDurability);
+            return enemyWeaponDurability;
         }
-        return -555555;
+        return "-555555";
     }
 
-    public static int giveWeaponAttackPower(Alliance alliance) {
+    public static String giveWeaponAttackPower(Alliance alliance) {
 
         if (alliance.equals(Alliance.WHITE)) {
-            return Integer.parseInt(friendlyWeaponAttackPower);
+            return friendlyWeaponAttackPower;
 
         } else if (alliance.equals(Alliance.BLACK)) {
-            return Integer.parseInt(enemyWeaponAttackPower);
+            return enemyWeaponAttackPower;
         }
-        return -555555;
+        return "-555555";
     }
 
 
-    public static int giveHeroHp(Alliance alliance) {
+    public static String giveHeroHp(Alliance alliance) {
         if (alliance.equals(Alliance.WHITE)) {
-            return Integer.parseInt(friendlyHeroHp);
+            return friendlyHeroHp;
         } else if (alliance.equals(Alliance.BLACK)) {
-            return Integer.parseInt(enemyHeroHp);
+            return enemyHeroHp;
         }
-        return -888888;
+        return "-888888";
     }
 
-    public static int giveHeroAttackPower(Alliance alliance) {
+    public static String giveHeroAttackPower(Alliance alliance) {
         if (alliance.equals(Alliance.WHITE)) {
-            return Integer.parseInt(friendlyHeroAttackPower);
+            return friendlyHeroAttackPower;
         } else if (alliance.equals(Alliance.BLACK)) {
-            return Integer.parseInt(enemyHeroAttackPower);
+            return enemyHeroAttackPower;
         }
-        return -888888;
+        return "-888888";
     }
 
 
@@ -283,7 +283,7 @@ public class GamePartController {
     public static void showWeaponOfGameState(JPanel panel, int widthOfWeaponImage, int heightOfWeaponImage,
                                              int xCoordinateOfWeapon, int yCoordinateOfWeapon,
                                              String weaponName, Alliance alliance) {
-        if (weaponName != null) {
+        if (weaponName != null && !weaponName.equalsIgnoreCase("")) {
             try {
                 CardImagePanel cardImagePanel = new CardImagePanel(weaponName,
                         widthOfWeaponImage, heightOfWeaponImage, "weapon", alliance);

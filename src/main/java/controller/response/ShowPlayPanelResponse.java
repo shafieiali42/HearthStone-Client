@@ -20,13 +20,26 @@ public class ShowPlayPanelResponse extends Response {
     private String whitePlayerWeaponName;
     private String blackPlayerWeaponName;
     private String state;
+    private String friendlyHeroHp;
+    private String enemyHeroHp;
+    private String friendlyHeroAttackPower;
+    private String enemyHeroAttackPower;
+    private String whiteWeaponDurability;
+    private String blackWeaponDurability;
+    private String whiteWeaponAttackPower;
+    private String blackWeaponAttackPower;
+
 
     public ShowPlayPanelResponse(String userName, ArrayList<String> nameOfWhiteHandsCards,
                                  ArrayList<String> nameOfBlackHandsCards,
                                  ArrayList<String> nameOfWhiteBattleGroundCards,
                                  ArrayList<String> nameOfBlackBattleGroundCards,
                                  String whitePlayerHeroName, String blackPlayerHeroName,
-                                 String whitePlayerWeaponName, String blackPlayerWeaponName, String state) {
+                                 String whitePlayerWeaponName, String blackPlayerWeaponName, String state,
+                                 String friendlyHeroHp, String enemyHeroHp,
+                                 String friendlyHeroAttackPower, String enemyHeroAttackPower,
+                                 String whiteWeaponDurability,String blackWeaponDurability,
+                                 String whiteWeaponAttackPower,String blackWeaponAttackPower) {
 
 
         this.userName = userName;
@@ -38,22 +51,38 @@ public class ShowPlayPanelResponse extends Response {
         this.blackPlayerHeroName = blackPlayerHeroName;
         this.whitePlayerWeaponName = whitePlayerWeaponName;
         this.blackPlayerWeaponName = blackPlayerWeaponName;
-        this.state=state;
+        this.state = state;
+        this.friendlyHeroHp = friendlyHeroHp;
+        this.enemyHeroHp = enemyHeroHp;
+        this.friendlyHeroAttackPower = friendlyHeroAttackPower;
+        this.enemyHeroAttackPower = enemyHeroAttackPower;
+        this.whiteWeaponDurability = whiteWeaponDurability;
+        this.blackWeaponDurability = blackWeaponDurability;
+        this.whiteWeaponAttackPower = whiteWeaponAttackPower;
+        this.blackWeaponAttackPower = blackWeaponAttackPower;
     }
 
 
 
     @Override
     public void execute() {
-        if (state.equalsIgnoreCase("EndTurn")){
+        if (state.equalsIgnoreCase("EndTurn")) {
             GamePartController.setNeedTimer(false);
             Sounds.playActionSounds("src/main/resources/Sounds/ActionVoices/EndTurn.wav");
         }
-        PlayPanel playPanel=(PlayPanel) Constant.getPanels().get("PlayPanel");
+        PlayPanel playPanel = (PlayPanel) Constant.getPanels().get("PlayPanel");
         playPanel.setNameOfFriendlyHero(whitePlayerHeroName);
         playPanel.setNameOfEnemyHero(blackPlayerHeroName);
         playPanel.setNameOfFriendlyWeapon(whitePlayerWeaponName);
         playPanel.setNameOfEnemyWeapon(blackPlayerWeaponName);
+        GamePartController.setFriendlyWeaponDurability(whiteWeaponDurability);
+        GamePartController.setEnemyWeaponDurability(blackWeaponDurability);
+        GamePartController.setFriendlyWeaponAttackPower(whiteWeaponAttackPower);
+        GamePartController.setEnemyWeaponAttackPower(blackWeaponAttackPower);
+        GamePartController.setFriendlyHeroHp(friendlyHeroHp);
+        GamePartController.setEnemyHeroHp(enemyHeroHp);
+        GamePartController.setFriendlyHeroAttackPower(friendlyHeroAttackPower);
+        GamePartController.setEnemyHeroAttackPower(enemyHeroAttackPower);
         GamePartController.setWhiteHandCards(nameOfWhiteHandsCards);
         GamePartController.setBlackHandCards(nameOfBlackHandsCards);
         GamePartController.setWhiteBattleGround(nameOfWhiteBattleGroundCards);
@@ -62,7 +91,6 @@ public class ShowPlayPanelResponse extends Response {
         playPanel.repaint();
         playPanel.revalidate();
     }
-
 
 
     //getter and setters
@@ -146,5 +174,69 @@ public class ShowPlayPanelResponse extends Response {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public String getFriendlyHeroHp() {
+        return friendlyHeroHp;
+    }
+
+    public void setFriendlyHeroHp(String friendlyHeroHp) {
+        this.friendlyHeroHp = friendlyHeroHp;
+    }
+
+    public String getEnemyHeroHp() {
+        return enemyHeroHp;
+    }
+
+    public void setEnemyHeroHp(String enemyHeroHp) {
+        this.enemyHeroHp = enemyHeroHp;
+    }
+
+    public String getFriendlyHeroAttackPower() {
+        return friendlyHeroAttackPower;
+    }
+
+    public void setFriendlyHeroAttackPower(String friendlyHeroAttackPower) {
+        this.friendlyHeroAttackPower = friendlyHeroAttackPower;
+    }
+
+    public String getEnemyHeroAttackPower() {
+        return enemyHeroAttackPower;
+    }
+
+    public void setEnemyHeroAttackPower(String enemyHeroAttackPower) {
+        this.enemyHeroAttackPower = enemyHeroAttackPower;
+    }
+
+    public String getWhiteWeaponDurability() {
+        return whiteWeaponDurability;
+    }
+
+    public void setWhiteWeaponDurability(String whiteWeaponDurability) {
+        this.whiteWeaponDurability = whiteWeaponDurability;
+    }
+
+    public String getBlackWeaponDurability() {
+        return blackWeaponDurability;
+    }
+
+    public void setBlackWeaponDurability(String blackWeaponDurability) {
+        this.blackWeaponDurability = blackWeaponDurability;
+    }
+
+    public String getWhiteWeaponAttackPower() {
+        return whiteWeaponAttackPower;
+    }
+
+    public void setWhiteWeaponAttackPower(String whiteWeaponAttackPower) {
+        this.whiteWeaponAttackPower = whiteWeaponAttackPower;
+    }
+
+    public String getBlackWeaponAttackPower() {
+        return blackWeaponAttackPower;
+    }
+
+    public void setBlackWeaponAttackPower(String blackWeaponAttackPower) {
+        this.blackWeaponAttackPower = blackWeaponAttackPower;
     }
 }

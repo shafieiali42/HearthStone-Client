@@ -22,7 +22,7 @@ public class DeckAndEndTurnBtnPanel extends JPanel {
     private JButton sendBtn;
     private JButton endTurnBtn;
     private JButton quitGameBtn;
-    private String chatText;
+    private String chatText=" ";
     private static DeckAndEndTurnBtnPanel deckAndEndTurnBtnPanel = new DeckAndEndTurnBtnPanel();
 
     public static DeckAndEndTurnBtnPanel getInstance() {
