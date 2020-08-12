@@ -7,7 +7,8 @@ public class MouseReleasedRequest extends Request {
     private String xCoordinateOfReleased;
     private String yCoordinateOfReleased;
 
-    public MouseReleasedRequest(String userName, String cardName, String xCoordinateOfReleased, String yCoordinateOfReleased) {
+    public MouseReleasedRequest(String userName, String cardName, String xCoordinateOfReleased,
+                                String yCoordinateOfReleased) {
         setUserName(userName);
         setRequestType("MouseReleasedRequest");
         this.cardName = cardName;

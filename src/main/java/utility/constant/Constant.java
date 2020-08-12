@@ -3,6 +3,7 @@ package utility.constant;
 
 import utility.config.ConfigLoader;
 import view.gui.panels.CollectionPages.*;
+import view.gui.panels.GamePage.DeckAndEndTurnBtnPanel;
 import view.gui.panels.GamePage.GamePage;
 import view.gui.panels.GamePage.PlayPanel;
 import view.gui.panels.SettingPanel.SettingPage;
@@ -49,6 +50,7 @@ public class Constant {
         panels.put("PanelToShowCardInBuySellPanel", new PanelToShowCardInBuySellPanel());
         panels.put("BuySellPanel", new BuySellPanel());
         panels.put("PlayPanel",new PlayPanel());
+        panels.put("DeckAndEndTurnBtnPanel",new DeckAndEndTurnBtnPanel());
         panels.put("GamePage",new GamePage());
     }
 

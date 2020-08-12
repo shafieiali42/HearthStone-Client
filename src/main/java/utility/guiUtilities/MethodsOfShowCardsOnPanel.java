@@ -143,7 +143,7 @@ public class MethodsOfShowCardsOnPanel {
         if (alliance.equals(Alliance.WHITE)) {
             yCoordinate = 395;
         } else if (alliance.equals(Alliance.BLACK)) {
-            yCoordinate = 385 - 10 - Constant.HEIGHT_OF_EACH_CARD_HANDS_CARDS;
+            yCoordinate = 385 - 10 - Constant.HEIGHT_OF_EACH_CARD_GAME_PANEL;
         }
         int xSapce = 50;
         int ySpace = 10;
@@ -154,8 +154,8 @@ public class MethodsOfShowCardsOnPanel {
             CardImagePanel cardImagePanel = null;
             try {
                 cardImagePanel = new CardImagePanel(cardsName,
-                        Constant.WIDTH_OF_EACH_CARD_HANDS_CARDS,
-                        Constant.HEIGHT_OF_EACH_CARD_HANDS_CARDS,
+                        Constant.WIDTH_OF_EACH_CARD_GAME_PANEL,
+                        Constant.HEIGHT_OF_EACH_CARD_GAME_PANEL,
                         true, 2, alliance, i + 1);
                 cardImagePanel.repaint();
                 cardImagePanel.revalidate();

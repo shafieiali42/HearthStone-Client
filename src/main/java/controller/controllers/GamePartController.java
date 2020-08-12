@@ -11,10 +11,22 @@ import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class GamePartController {
 
+    private static ArrayList<String> allCardsOfPlayerNames = new ArrayList<>();
+
+    public static boolean isThisCardLock(String cardName) {
+        return !allCardsOfPlayerNames.contains(cardName);
+    }
+
+    public static ArrayList<String> getAllCardsOfPlayerNames() {
+        return allCardsOfPlayerNames;
+    }
+
+    public static void setAllCardsOfPlayerNames(ArrayList<String> allCardsOfPlayerNames) {
+        GamePartController.allCardsOfPlayerNames = allCardsOfPlayerNames;
+    }
 
     public static ArrayList<String> getListOfWeapons() {
         ArrayList<String> weaponsNames = new ArrayList<>();
@@ -53,22 +65,22 @@ public class GamePartController {
 
     private static String friendlyWeaponAttackPower;
     private static String enemyWeaponAttackPower;
-    private static HashMap<Integer, Integer> enemyHpHashMap = new HashMap<>();
-    private static HashMap<Integer, Integer> enemyAttackPowerHashMap = new HashMap<>();
+    private static HashMap<String, String> enemyHpHashMap = new HashMap<>();
+    private static HashMap<String, String> enemyAttackPowerHashMap = new HashMap<>();
 
-    public static HashMap<Integer, Integer> getEnemyHpHashMap() {
+    public static HashMap<String, String> getEnemyHpHashMap() {
         return enemyHpHashMap;
     }
 
-    public static void setEnemyHpHashMap(HashMap<Integer, Integer> enemyHpHashMap) {
+    public static void setEnemyHpHashMap(HashMap<String, String> enemyHpHashMap) {
         GamePartController.enemyHpHashMap = enemyHpHashMap;
     }
 
-    public static HashMap<Integer, Integer> getEnemyAttackPowerHashMap() {
+    public static HashMap<String, String> getEnemyAttackPowerHashMap() {
         return enemyAttackPowerHashMap;
     }
 
-    public static void setEnemyAttackPowerHashMap(HashMap<Integer, Integer> enemyAttackPowerHashMap) {
+    public static void setEnemyAttackPowerHashMap(HashMap<String, String> enemyAttackPowerHashMap) {
         GamePartController.enemyAttackPowerHashMap = enemyAttackPowerHashMap;
     }
 
@@ -123,10 +135,10 @@ public class GamePartController {
 
     public static String giveMinionHpWithName(int numberOfCardInBattleGround, Alliance alliance) {
         if (alliance.equals(Alliance.WHITE)) {
-            return friendlyHpHashMap.get(numberOfCardInBattleGround - 1) + "";
+            return friendlyHpHashMap.get((numberOfCardInBattleGround ) + "") + "";
 
         } else if (alliance.equals(Alliance.BLACK)) {
-            return enemyHpHashMap.get(numberOfCardInBattleGround - 1) + "";
+            return enemyHpHashMap.get((numberOfCardInBattleGround ) + "") + "";
         }
         return "-55555555";
     }
@@ -135,33 +147,33 @@ public class GamePartController {
     public static String giveMinionAttackWithName(int numberOfCardInBattleGround, Alliance alliance) {
 
         if (alliance.equals(Alliance.WHITE)) {
-            return friendlyAttackPowerHashMap.get(numberOfCardInBattleGround - 1)+"";
+            return friendlyAttackPowerHashMap.get((numberOfCardInBattleGround ) + "") + "";
 
         } else if (alliance.equals(Alliance.BLACK)) {
 
-            return enemyAttackPowerHashMap.get(numberOfCardInBattleGround - 1)+"";
+            return enemyAttackPowerHashMap.get((numberOfCardInBattleGround ) + "") + "";
         }
         return "-66666666";
     }
 
 
-    private static HashMap<Integer, Integer> friendlyHpHashMap = new HashMap<>();
-    private static HashMap<Integer, Integer> friendlyAttackPowerHashMap = new HashMap<>();
+    private static HashMap<String, String> friendlyHpHashMap = new HashMap<>();
+    private static HashMap<String, String> friendlyAttackPowerHashMap = new HashMap<>();
 
-    public static HashMap<Integer, Integer> getFriendlyHpHashMap() {
+    public static HashMap<String, String> getFriendlyHpHashMap() {
         return friendlyHpHashMap;
     }
 
-    public static void setFriendlyHpHashMap(HashMap<Integer, Integer> friendlyHpHashMap) {
+    public static void setFriendlyHpHashMap(HashMap<String, String> friendlyHpHashMap) {
         GamePartController.friendlyHpHashMap = friendlyHpHashMap;
     }
 
-    public static HashMap<Integer, Integer> getFriendlyAttackPowerHashMap() {
+    public static HashMap<String, String> getFriendlyAttackPowerHashMap() {
         return friendlyAttackPowerHashMap;
     }
 
     public static void setFriendlyAttackPowerHashMap
-            (HashMap<Integer, Integer> friendlyAttackPowerHashMap) {
+            (HashMap<String, String> friendlyAttackPowerHashMap) {
         GamePartController.friendlyAttackPowerHashMap = friendlyAttackPowerHashMap;
     }
 

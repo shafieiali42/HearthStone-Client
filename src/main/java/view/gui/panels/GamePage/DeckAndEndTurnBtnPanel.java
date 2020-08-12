@@ -23,6 +23,7 @@ public class DeckAndEndTurnBtnPanel extends JPanel {
     private JButton endTurnBtn;
     private JButton quitGameBtn;
     private String chatText=" ";
+    private String mana="0";
     private static DeckAndEndTurnBtnPanel deckAndEndTurnBtnPanel = new DeckAndEndTurnBtnPanel();
 
     public static DeckAndEndTurnBtnPanel getInstance() {
@@ -30,7 +31,7 @@ public class DeckAndEndTurnBtnPanel extends JPanel {
     }
 
 
-    private DeckAndEndTurnBtnPanel() {
+    public DeckAndEndTurnBtnPanel() {
         setBackground(Color.gray);
         setLayout(null);
         setSize(Constant.WIDTH_OF_END_TURN_PANEL, Constant.HEIGHT_OF_END_TURN_PANEL);
@@ -142,7 +143,7 @@ public class DeckAndEndTurnBtnPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.setFont(new Font("TimesRoman", Font.ITALIC, 30));
-        g.drawString(GamePartController.getMana() + "/" + "10", 60, 700);
+        g.drawString(mana + "/" + "10", 60, 700);
         g.setFont(new Font("TimesRoman", Font.ITALIC, 15));
 //        g.drawString(Administer.getEnemyImprovementOfQuest(), 50, 295);
         g.drawString(GamePartController.getFriendlyImprovementOfQuest(), 50, 495);
@@ -164,6 +165,15 @@ public class DeckAndEndTurnBtnPanel extends JPanel {
 
     public void setChatText(String chatText) {
         this.chatText = chatText;
+    }
+
+
+    public String getMana() {
+        return mana;
+    }
+
+    public void setMana(String mana) {
+        this.mana = mana;
     }
 }
 

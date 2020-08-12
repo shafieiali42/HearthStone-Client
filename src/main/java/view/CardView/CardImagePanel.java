@@ -37,7 +37,7 @@ public class CardImagePanel extends JPanel implements MouseListener, MouseMotion
     static boolean doubleClick = false;
     private String hp;
     private String attackPower;
-//    private int mana;
+    //    private int mana;
     private boolean isInited = false;
     private String typeOfCard = "minionOrSpell";
     int x, y;
@@ -47,7 +47,7 @@ public class CardImagePanel extends JPanel implements MouseListener, MouseMotion
     }
 
     public void setIsLock(String cardName) throws IOException {
-//        isLock = Administer.isThisCardLock(cardName);
+        isLock = GamePartController.isThisCardLock(cardName);
     }
 
     public BufferedImage getImageOfCard() {
@@ -71,6 +71,7 @@ public class CardImagePanel extends JPanel implements MouseListener, MouseMotion
     }
 
     public CardImagePanel(int width, int height, int typeOfBackOfCard) throws IOException {
+        System.out.println("BackOFCards////////////////////////");
         setLayout(null);
         setSize(width, height);
         this.addMouseListener(this);
@@ -118,7 +119,8 @@ public class CardImagePanel extends JPanel implements MouseListener, MouseMotion
 
     }
 
-    public CardImagePanel(String cardName, int width, int height, boolean showLockCards, int type, Alliance alliance, int numberOfCardInBattleGround) throws IOException {
+    public CardImagePanel(String cardName, int width, int height, boolean showLockCards,
+                          int type, Alliance alliance, int numberOfCardInBattleGround) throws IOException {
         if (showLockCards) {
             setLayout(null);
             setSize(width, height);
@@ -225,11 +227,11 @@ public class CardImagePanel extends JPanel implements MouseListener, MouseMotion
 
         if (SwingUtilities.isRightMouseButton(e)) {
             Controller.getCurrentClient().sendMouseClickedRequest(cardName, typeOfCard, clicked, xCoordinateOfCard,
-                    yCoordinateOfCard, alliance, "Right",isLock);
+                    yCoordinateOfCard, alliance, "Right", isLock);
         } else if (SwingUtilities.isLeftMouseButton(e)) {
 
             Controller.getCurrentClient().sendMouseClickedRequest(cardName, typeOfCard, clicked, xCoordinateOfCard,
-                    yCoordinateOfCard, alliance, "Left",isLock);
+                    yCoordinateOfCard, alliance, "Left", isLock);
         }
 
 
@@ -404,8 +406,8 @@ public class CardImagePanel extends JPanel implements MouseListener, MouseMotion
 
 
 //
-//        if (ClientMain.getCurrentPage().equals(Status.PLAY_PAGE_MY_TURN) ||
-//                ClientMain.getCurrentPage().equals(Status.PLAY_PAGE)) {
+        if (ClientMain.getCurrentPage().equals(Status.PLAY_PAGE_MY_TURN) ||
+                ClientMain.getCurrentPage().equals(Status.PLAY_PAGE)) {
 
             Controller.getCurrentClient().sendMousePressRequest(cardName);//todoooo
             if (GamePartController.canDragCard(e.getComponent().getY())) {
@@ -416,7 +418,7 @@ public class CardImagePanel extends JPanel implements MouseListener, MouseMotion
                 int yCoordinate = e.getComponent().getY();
                 e.getComponent().setLocation(xCoordinate, yCoordinate);
                 canReleased = false;
-//            }
+            }
 
         }
 
@@ -427,7 +429,7 @@ public class CardImagePanel extends JPanel implements MouseListener, MouseMotion
 
     public void mouseReleased(MouseEvent e) {
         if (!canReleased) {
-            PlayPanel playPanel= (PlayPanel)Constant.getPanels().get("PlayPanel");
+            PlayPanel playPanel = (PlayPanel) Constant.getPanels().get("PlayPanel");
 //            System.out.println("cant released");
             playPanel.setNeedsToRepaint(true);
             playPanel.repaint();
@@ -435,6 +437,12 @@ public class CardImagePanel extends JPanel implements MouseListener, MouseMotion
             return;
         }
 
+        if (ClientMain.getCurrentPage().equals(Status.PLAY_PAGE_MY_TURN) ||
+                ClientMain.getCurrentPage().equals(Status.PLAY_PAGE)) {
+            String xCoordinateOfReleased = e.getComponent().getX() + "";
+            String yCoordinateOfRelease = e.getComponent().getY() + "";
+            Controller.getCurrentClient().sendMouseReleasedRequest(cardName, xCoordinateOfReleased, yCoordinateOfRelease);
+        }
 //        if (ControllerOfMainComponents.getStatus().equals(Status.PLAY_PAGE_MY_TURN) ||
 //                ControllerOfMainComponents.getStatus().equals(Status.PLAY_PAGE)) {
 //
@@ -544,9 +552,8 @@ public class CardImagePanel extends JPanel implements MouseListener, MouseMotion
         Graphics2D graphics2D = (Graphics2D) g;
 
         if (ClientMain.getCurrentPage().equals(Status.PLAY_PAGE)
-                ||ClientMain.getCurrentPage().equals(Status.CHOOSE_TARGET_FOR_SPELL)
+                || ClientMain.getCurrentPage().equals(Status.CHOOSE_TARGET_FOR_SPELL)
                 || ClientMain.getCurrentPage().equals(Status.CHOOSE_TARGET_FOR_HERO_POWERS)) {
-
 
 
             graphics2D.setFont(new Font("TimesRoman", Font.ITALIC, 20));
@@ -595,4 +602,11 @@ public class CardImagePanel extends JPanel implements MouseListener, MouseMotion
     }
 
 
+    public static boolean isClicked() {
+        return clicked;
+    }
+
+    public static void setClicked(boolean clicked) {
+        CardImagePanel.clicked = clicked;
+    }
 }

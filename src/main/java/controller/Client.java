@@ -95,13 +95,11 @@ public class Client extends Thread {
     }
 
 
-
-    public void sendShowRankRequest(String typeOfRank){
-        Request request=new ShowRankRequest(Controller.getCurrentPlayerUserName(),typeOfRank);
-        String message =new Gson().toJson(request);
-        sendRequest(authToken,"ShowRankRequest",message);
+    public void sendShowRankRequest(String typeOfRank) {
+        Request request = new ShowRankRequest(Controller.getCurrentPlayerUserName(), typeOfRank);
+        String message = new Gson().toJson(request);
+        sendRequest(authToken, "ShowRankRequest", message);
     }
-
 
 
     public void sendLogInRequest(String userName, String password, String mode) {
@@ -117,20 +115,35 @@ public class Client extends Thread {
         sendRequest(authToken, "DeletePlayerRequest", message);
     }
 
-    public void sendLogOutRequest(String userName,boolean exit) {
-        Request request = new LogOutRequest(authToken, userName,exit);
+    public void sendLogOutRequest(String userName, boolean exit) {
+        Request request = new LogOutRequest(authToken, userName, exit);
         String message = new Gson().toJson(request);
         sendRequest(authToken, "LogOutRequest", message);
     }
 
 
-
-    public void sendTextRequest(String text){
-        Request request=new SendTextRequest(Controller.getCurrentPlayerUserName(),text);
+    public void sendShowPlayPanelRequest(){
+        Request request=new ShowPlayPanelRequest(Controller.getCurrentPlayerUserName(),"");
         String message =new Gson().toJson(request);
-        sendRequest(authToken,"sendTextRequest",message);
+        sendRequest(authToken,"ShowPlayPanelRequest",message);
     }
 
+    public void sendMouseReleasedRequest(String cardName, String xCoordinateOfReleased,
+                                         String yCoordinateOfReleased) {
+        System.out.println("send mouse Released Request");
+        Request request = new MouseReleasedRequest(Controller.getCurrentPlayerUserName(), cardName,
+                xCoordinateOfReleased, yCoordinateOfReleased);
+
+        String message =new Gson().toJson(request);
+        sendRequest(authToken,"MouseReleasedRequest",message);
+    }
+
+
+    public void sendTextRequest(String text) {
+        Request request = new SendTextRequest(Controller.getCurrentPlayerUserName(), text);
+        String message = new Gson().toJson(request);
+        sendRequest(authToken, "sendTextRequest", message);
+    }
 
 
     public void sendQuitGameRequest() {
@@ -138,10 +151,10 @@ public class Client extends Thread {
     }
 
 
-    public void sendOkButtonDiscoverPageRequest(){
-        Request request=new OkButtonDiscoverPageRequest(Controller.getCurrentPlayerUserName());
-        String message =new Gson().toJson(request);
-        sendRequest(authToken,"OkButtonDiscoverPageRequest",message);
+    public void sendOkButtonDiscoverPageRequest() {
+        Request request = new OkButtonDiscoverPageRequest(Controller.getCurrentPlayerUserName());
+        String message = new Gson().toJson(request);
+        sendRequest(authToken, "OkButtonDiscoverPageRequest", message);
     }
 
     public void sendGoToPageRequest(String userName, String pageName) {
@@ -295,7 +308,7 @@ public class Client extends Thread {
 
 
     public void sendDoneCreatDeckRequest() {
-        Request request = new DoneCreatDeckRequest(authToken,Controller.getCurrentPlayerUserName());
+        Request request = new DoneCreatDeckRequest(authToken, Controller.getCurrentPlayerUserName());
         String message = new Gson().toJson(request);
         sendRequest(authToken, "DoneCreatDeckRequest", message);
     }
@@ -303,10 +316,11 @@ public class Client extends Thread {
 
     public void sendMouseClickedRequest(String cardName, String typeOfCard, boolean clicked,
                                         int xCoordinateOfCard, int yCoordinateOfCard,
-                                        Alliance alliance, String typeOfClick,boolean isLock) {
+                                        Alliance alliance, String typeOfClick, boolean isLock) {
 
+        System.out.println("send mouse Click Request");
         Request request = new MouseClickRequest(Controller.getCurrentPlayerUserName(), cardName, typeOfCard,
-                clicked, xCoordinateOfCard, yCoordinateOfCard, alliance, typeOfClick,isLock);
+                clicked, xCoordinateOfCard, yCoordinateOfCard, alliance, typeOfClick, isLock);
 
         String message = new Gson().toJson(request);
         sendRequest(authToken, "MouseClickRequest", message);

@@ -27,7 +27,7 @@ public class ShowGameModesResponse extends Response {
                 JOptionPane.PLAIN_MESSAGE,
                 questionError,
                 possibilities,
-                "Two Player");
+                "OnlineGame");
 
         GamePartController.setGameMode(gameMode);
         Controller.getCurrentClient().sendPlayGameRequest(gameMode);

@@ -2,22 +2,26 @@ package controller.response;
 
 import controller.controllers.Administer;
 import controller.controllers.Controller;
+import controller.controllers.GamePartController;
 import utility.constant.Constant;
 import view.gui.panels.ShopPanel.BuySellPanel;
 import view.gui.panels.ShopPanel.PanelToShowCardInBuySellPanel;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class TransactionResponse extends Response {
 
 
     private boolean successful;
     private String transactionType;
+    private ArrayList<String> allCardsNames;
 
 
-    public TransactionResponse(boolean successful, String transactionType) {
+    public TransactionResponse(boolean successful, String transactionType,ArrayList<String> allCardsNames) {
         this.successful = successful;
         this.transactionType = transactionType;
+        this.allCardsNames=allCardsNames;
     }
 
 
@@ -26,6 +30,7 @@ public class TransactionResponse extends Response {
         if (successful) {
             PanelToShowCardInBuySellPanel panelToShowCardInBuySellPanel =
                     (PanelToShowCardInBuySellPanel) Constant.getPanels().get("PanelToShowCardInBuySellPanel");
+            GamePartController.setAllCardsOfPlayerNames(allCardsNames);
             if (transactionType.equalsIgnoreCase("Buy")) {
                 Administer.playActionSounds("BuyCard");
                 panelToShowCardInBuySellPanel.setCardToShowName(null);
@@ -82,5 +87,13 @@ public class TransactionResponse extends Response {
 
     public void setTransactionType(String transactionType) {
         this.transactionType = transactionType;
+    }
+
+    public ArrayList<String> getAllCardsNames() {
+        return allCardsNames;
+    }
+
+    public void setAllCardsNames(ArrayList<String> allCardsNames) {
+        this.allCardsNames = allCardsNames;
     }
 }
