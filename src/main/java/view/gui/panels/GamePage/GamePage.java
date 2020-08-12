@@ -12,26 +12,27 @@ public class GamePage extends JPanel {
     public GamePage() {
         setSize(Constant.widthOfMainFrame, Constant.heightOfMainFrame);
         setLayout(null);
-        LogPanel.getInstance().setPreferredSize(new Dimension(LogPanel.getInstance().getWidthOfLogPanel(), 1600));
-        LogPanel.getInstance().setFocusable(true);
-        LogPanel.getInstance().requestFocus();
-        LogPanel.getInstance().setJScrollPane(new JScrollPane(LogPanel.getInstance()));
-        LogPanel.getInstance().getJScrollPane().setBounds(0,
-                0, LogPanel.getInstance().getWidthOfLogPanel(), LogPanel.getInstance().getHeightOfLogPanel());
-        LogPanel.getInstance().getJScrollPane().setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        LogPanel.getInstance().getJScrollPane().setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        LogPanel.getInstance().getJScrollPane().setBorder(null);
-        LogPanel.getInstance().getJScrollPane().setFocusable(false);
-        this.add(LogPanel.getInstance().getJScrollPane());
+        LogPanel logPanel = (LogPanel) Constant.getPanels().get("LogPanel");
+        logPanel.setPreferredSize(new Dimension(logPanel.getWidthOfLogPanel(), 1600));
+        logPanel.setFocusable(true);
+        logPanel.requestFocus();
+        logPanel.setJScrollPane(new JScrollPane(logPanel));
+        logPanel.getJScrollPane().setBounds(0,
+                0, logPanel.getWidthOfLogPanel(), logPanel.getHeightOfLogPanel());
+        logPanel.getJScrollPane().setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        logPanel.getJScrollPane().setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        logPanel.getJScrollPane().setBorder(null);
+        logPanel.getJScrollPane().setFocusable(false);
+        this.add(logPanel.getJScrollPane());
 
         PlayPanel playPanel = (PlayPanel) Constant.getPanels().get("PlayPanel");
-        this.addPanel(playPanel, LogPanel.getInstance().getWidthOfLogPanel(), 0,
+        this.addPanel(playPanel, logPanel.getWidthOfLogPanel(), 0,
                 PlayPanel.getWidthOfPlayPanel(), PlayPanel.getHeightOfPlayPanel());
 
         DeckAndEndTurnBtnPanel deckAndEndTurnBtnPanel =
                 (DeckAndEndTurnBtnPanel) Constant.getPanels().get("DeckAndEndTurnBtnPanel");
 
-        this.addPanel(deckAndEndTurnBtnPanel, LogPanel.getInstance().getWidthOfLogPanel() + playPanel.getWidthOfPlayPanel(), 0,
+        this.addPanel(deckAndEndTurnBtnPanel, logPanel.getWidthOfLogPanel() + playPanel.getWidthOfPlayPanel(), 0,
                 Constant.WIDTH_OF_END_TURN_PANEL, Constant.HEIGHT_OF_END_TURN_PANEL);
 
     }

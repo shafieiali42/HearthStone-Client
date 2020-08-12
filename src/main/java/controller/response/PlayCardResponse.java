@@ -2,6 +2,7 @@ package controller.response;
 
 import Main.ClientMain;
 import controller.controllers.Controller;
+import controller.controllers.GamePartController;
 import utility.constant.Constant;
 import utility.guiUtilities.Sounds;
 import view.gui.panels.GamePage.PlayPanel;
@@ -40,6 +41,7 @@ public class PlayCardResponse extends Response {
             Sounds.playActionSounds("src/main/resources/Sounds/ActionVoices/PlayCards.wav");
             Controller.getCurrentClient().sendShowPlayPanelRequest();
         }
+        GamePartController.writeOnLogPanel("Play "+playingCardName);
     }
 
 

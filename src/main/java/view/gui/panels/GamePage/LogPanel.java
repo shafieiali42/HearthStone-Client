@@ -29,14 +29,8 @@ public class LogPanel extends JPanel {
         this.log = log;
     }
 
-    private static LogPanel logPanel = new LogPanel();
 
-    public static LogPanel getInstance() {
-        return logPanel;
-    }
-
-
-    private LogPanel() {
+    public LogPanel() {
         setLayout(null);
         setSize(Constant.WIDTH_OF_LOG_PANEL, Constant.HEIGHT_OF_LOG_PANEL);
         setBackground(Color.green);
@@ -55,6 +49,7 @@ public class LogPanel extends JPanel {
         removeAll();
         drawString(g, log, 0, 0);
     }
+
 
 
     public JScrollPane getJScrollPane() {

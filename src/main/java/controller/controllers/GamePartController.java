@@ -5,6 +5,7 @@ import utility.constant.Constant;
 import utility.guiUtilities.MethodsOfShowCardsOnPanel;
 import view.CardView.CardImagePanel;
 import view.gui.panels.GamePage.DiscoverCardsPage;
+import view.gui.panels.GamePage.LogPanel;
 import view.gui.panels.GamePage.PlayPanel;
 
 import javax.swing.*;
@@ -41,6 +42,10 @@ public class GamePartController {
         DiscoverCardsPage discoverCardsPage = (DiscoverCardsPage) Constant.getPanels().get("DiscoverCardsPage");
         discoverCardsPage.reStartSetting();
     }
+
+
+
+
 
 //    private static int attacker;
 //    private static int target;
@@ -241,7 +246,27 @@ public class GamePartController {
     }
 
 
-    //*****************************************************************************
+
+
+    public static void writeOnLogPanel(String log) {
+        LogPanel logPanel=(LogPanel)Constant.getPanels().get("LogPanel");
+        StringBuilder addToLog = new StringBuilder(logPanel.getLog());
+        for (int i = 0; i < log.length(); i++) {
+            char c = log.charAt(i);
+            if (Character.isUpperCase(c)) {
+                addToLog.append("\n");
+                addToLog.append(c);
+            } else {
+                addToLog.append(c);
+            }
+        }
+        logPanel.setLog(addToLog.toString() + "\n\n");
+        logPanel.repaint();
+        logPanel.revalidate();
+
+    }
+
+        //*****************************************************************************
 
     private static ArrayList<String> whiteHandCards = new ArrayList<>();
     private static ArrayList<String> blackHandCards = new ArrayList<>();
