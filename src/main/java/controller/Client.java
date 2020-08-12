@@ -142,12 +142,14 @@ public class Client extends Thread {
     public void sendTextRequest(String text) {
         Request request = new SendTextRequest(Controller.getCurrentPlayerUserName(), text);
         String message = new Gson().toJson(request);
-        sendRequest(authToken, "sendTextRequest", message);
+        sendRequest(authToken, "SendTextRequest", message);
     }
 
 
     public void sendQuitGameRequest() {
-
+        Request request =new QuitGameRequest(Controller.getCurrentPlayerUserName());
+        String message =new Gson().toJson(request);
+        sendRequest(authToken,"QuitGameRequest",message);
     }
 
 
@@ -165,10 +167,10 @@ public class Client extends Thread {
     }
 
 
-    public void sendTransactionRequest(String cardName) {
-        Request request = new TransactionRequest(Controller.getCurrentPlayerUserName(), cardName);
+    public void sendBuyOrSellRequest(String cardName) {
+        Request request = new BuyOrSellRequest(Controller.getCurrentPlayerUserName(), cardName);
         String message = new Gson().toJson(request);
-        sendRequest(authToken, "TransactionRequest", message);
+        sendRequest(authToken, "BuyOrSellRequest", message);
     }
 
 

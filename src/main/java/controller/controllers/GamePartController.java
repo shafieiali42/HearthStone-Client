@@ -44,22 +44,6 @@ public class GamePartController {
     }
 
 
-
-
-
-//    private static int attacker;
-//    private static int target;
-//
-//    private static Alliance attackerAlliance;
-//    private static Alliance targetAlliance;
-//
-//    private static int targetOfSpell;
-//    private static Alliance allianceOfSpellsTarget;
-//
-//    private static int targetOfHeroPower;
-//    private static Alliance targetAllianceOfHeroPower;
-
-
     private static String friendlyHeroHp;
     private static String friendlyHeroAttackPower;
     private static String enemyHeroHp;
@@ -241,7 +225,11 @@ public class GamePartController {
     }
 
 
+
     public static boolean canDragCard(int y) {
+        if (gameMode.equalsIgnoreCase("OfflineGame")){
+            return true;
+        }
         return y >= 670;
     }
 
@@ -441,68 +429,4 @@ public class GamePartController {
         GamePartController.getManaNeededForQuest = getManaNeededForQuest;
     }
 
-
-//    public static int getAttacker() {
-//        return attacker;
-//    }
-//
-//    public static void setAttacker(int attacker) {
-//        GamePartController.attacker = attacker;
-//    }
-//
-//    public static int getTarget() {
-//        return target;
-//    }
-//
-//    public static void setTarget(int target) {
-//        GamePartController.target = target;
-//    }
-//
-//    public static Alliance getAttackerAlliance() {
-//        return attackerAlliance;
-//    }
-//
-//    public static void setAttackerAlliance(Alliance attackerAlliance) {
-//        GamePartController.attackerAlliance = attackerAlliance;
-//    }
-//
-//    public static Alliance getTargetAlliance() {
-//        return targetAlliance;
-//    }
-//
-//    public static void setTargetAlliance(Alliance targetAlliance) {
-//        GamePartController.targetAlliance = targetAlliance;
-//    }
-//
-//    public static int getTargetOfSpell() {
-//        return targetOfSpell;
-//    }
-//
-//    public static void setTargetOfSpell(int targetOfSpell) {
-//        GamePartController.targetOfSpell = targetOfSpell;
-//    }
-//
-//    public static Alliance getAllianceOfSpellsTarget() {
-//        return allianceOfSpellsTarget;
-//    }
-//
-//    public static void setAllianceOfSpellsTarget(Alliance allianceOfSpellsTarget) {
-//        GamePartController.allianceOfSpellsTarget = allianceOfSpellsTarget;
-//    }
-//
-//    public static int getTargetOfHeroPower() {
-//        return targetOfHeroPower;
-//    }
-//
-//    public static void setTargetOfHeroPower(int targetOfHeroPower) {
-//        GamePartController.targetOfHeroPower = targetOfHeroPower;
-//    }
-//
-//    public static Alliance getTargetAllianceOfHeroPower() {
-//        return targetAllianceOfHeroPower;
-//    }
-//
-//    public static void setTargetAllianceOfHeroPower(Alliance targetAllianceOfHeroPower) {
-//        GamePartController.targetAllianceOfHeroPower = targetAllianceOfHeroPower;
-//    }
 }

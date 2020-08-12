@@ -62,7 +62,6 @@ public class CategoryPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Controller.getCurrentClient().sendShowSpecificCardsRequest("LockCards","cardPanelOfCollectionPage");
-//                    CollectionController.showLockCards(Constant.getPanels().get("cardPanelOfCollectionPage"), CardPanel.getNumOfCardInEveryRow());
             }
         });
         add(lockBtn);
@@ -76,7 +75,6 @@ public class CategoryPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Controller.getCurrentClient().sendShowSpecificCardsRequest("UnLockCards","cardPanelOfCollectionPage");
-//                CollectionController.showUnLockCards(Constant.getPanels().get("cardPanelOfCollectionPage"), CardPanel.getNumOfCardInEveryRow());
             }
         });
         add(unLockBtn);
@@ -89,7 +87,6 @@ public class CategoryPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Controller.getCurrentClient().sendShowSpecificCardsRequest("AllCards","cardPanelOfCollectionPage");
-//                CollectionController.showAllCards(Constant.getPanels().get("cardPanelOfCollectionPage"), CardPanel.getNumOfCardInEveryRow());
             }
         });
         add(allCardBtn);
@@ -102,8 +99,6 @@ public class CategoryPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Controller.getCurrentClient().sendShowSpecificCardsRequest("NeutralCards","cardPanelOfCollectionPage");
-                //                    CollectionController.showCardsOnCardPanelWithSpecifiedClass("Neutral",
-//                            Constant.getPanels().get("cardPanelOfCollectionPage"), CardPanel.getNumOfCardInEveryRow());
             }
         });
         add(neutralBtn);
@@ -116,8 +111,6 @@ public class CategoryPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Controller.getCurrentClient().sendShowSpecificCardsRequest("PriestCards","cardPanelOfCollectionPage");
-                //                    CollectionController.showCardsOnCardPanelWithSpecifiedClass("Priest",
-//                            Constant.getPanels().get("cardPanelOfCollectionPage"), CardPanel.getNumOfCardInEveryRow());
             }
         });
         add(priestBtn);

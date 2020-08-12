@@ -62,7 +62,7 @@ public class BuySellPanel extends JPanel {
                 PanelToShowCardInBuySellPanel panelToShowCardInBuySellPanel = (PanelToShowCardInBuySellPanel)
                         Constant.getPanels().get("PanelToShowCardInBuySellPanel");
 
-                Controller.getCurrentClient().sendTransactionRequest(panelToShowCardInBuySellPanel.getCardToShowName());
+                Controller.getCurrentClient().sendBuyOrSellRequest(panelToShowCardInBuySellPanel.getCardToShowName());
             }
         });
         add(transactionBtn);

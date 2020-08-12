@@ -1,13 +1,13 @@
 package controller.request;
 
-public class TransactionRequest extends Request {
+public class BuyOrSellRequest extends Request {
 
 
     private String cardName;
 
-    public TransactionRequest(String userName, String cardName) {
+    public BuyOrSellRequest(String userName, String cardName) {
         setUserName(userName);
-        setRequestType("TransactionRequest");
+        setRequestType("BuyOrSellRequest");
         this.cardName = cardName;
     }
 

@@ -90,9 +90,6 @@ public class ButtonPanel extends JPanel {
         buyableCardsBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //                    Administer.writeLog("Show buyable cards");
-//                    CLI.currentPlayer.getLoggerOfMyPlayer().info("Show buyable cards");
-//                    showBuyableCards();
                 Controller.getCurrentClient().sendShowSpecificCardsRequest("Buyable","ShopCardPanel");
             }
         });
@@ -105,12 +102,7 @@ public class ButtonPanel extends JPanel {
         walletBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                Administer.writeLog("Show Wallet");
-//                CLI.currentPlayer.getLoggerOfMyPlayer().info("Show Wallet");
-//                ControllerOfMainComponents.setStatus(Status.WALLET_PAGE);
                 Controller.getCurrentClient().sendShowWalletRequest(Controller.getCurrentPlayerUserName());
-
-//                ControllerOfMainComponents.setStatus(Status.BUY_PAGE);//TODO needs to change
             }
         });
         add(walletBtn);

@@ -66,15 +66,11 @@ public class RankedPanel extends JPanel {
         backBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                Administer.writeLog("Go back from status page");
-//                CLI.currentPlayer.getLoggerOfMyPlayer().info("Go back from status page");
-               Administer.goBack();
+                Administer.goBack();
             }
         });
         add(backBtn);
     }
-
-
 
 
     private void initTenthBtn() {
@@ -96,7 +92,7 @@ public class RankedPanel extends JPanel {
         ninthBtn.setBounds(0, firstBtn.getHeight() * 8, secondBtn.getWidth(), secondBtn.getHeight());
         ninthBtn.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 Controller.getCurrentClient().sendShowDeckNumber(9);
             }
         });
@@ -162,7 +158,8 @@ public class RankedPanel extends JPanel {
         fourthBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Controller.getCurrentClient().sendShowDeckNumber(4);            }
+                Controller.getCurrentClient().sendShowDeckNumber(4);
+            }
         });
         add(fourthBtn);
     }

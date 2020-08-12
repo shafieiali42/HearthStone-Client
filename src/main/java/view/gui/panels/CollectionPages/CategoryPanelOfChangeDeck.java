@@ -81,9 +81,6 @@ public class CategoryPanelOfChangeDeck extends JPanel {
     private void changeName() {
         String name = JOptionPane.showInputDialog("Enter your favorite name!");
         Controller.getCurrentClient().sendChangeNameOfDeckRequest("ChangeName",name); //todo
-//        CollectionController.changeNameOfDeck(name);
-//        DeckPage.getInstance().getDeckTOChange().setName(JOptionPane.showInputDialog("Enter your favorite name!"));
-//        CLI.currentPlayer.getLoggerOfMyPlayer().info("Change name of deck ");
     }
 
 
@@ -154,8 +151,6 @@ public class CategoryPanelOfChangeDeck extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Controller.getCurrentClient().sendShowSpecificCardsRequest("NeutralCards", "cardPanelOfDeckPage");
-//                    CollectionController.showCardsOnCardPanelWithSpecifiedClass("Neutral",
-//                            Constant.getPanels().get("cardPanelOfDeckPage"), CardPanel.getNumOfCardInEveryRow());
             }
         });
         add(neutralBtn);
@@ -168,11 +163,6 @@ public class CategoryPanelOfChangeDeck extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Controller.getCurrentClient().sendShowSpecialCardsOfHeroRequest();
-//                    Controller.getCurrentClient().sendShowSpecificCardsRequest(
-//                            CollectionController.getHeroNameOfDeckToChange()+"Cards", "cardPanelOfDeckPage");
-
-//                    CollectionController.showCardsOnCardPanelWithSpecifiedClass(CollectionController.getHeroNameOfDeckToChange(),
-//                            Constant.getPanels().get("cardPanelOfDeckPage"), CardPanel.getNumOfCardInEveryRow());
             }
         });
         add(HeroCardsBtn);

@@ -67,11 +67,6 @@ public class SettingPage extends JPanel {
         backBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                CardPanel.getInstanceOfCollectionPage().removeAll();
-//                CardPanel.getInstanceOfCollectionPage().repaint();
-//                CardPanel.getInstanceOfCollectionPage().revalidate();
-//                Administer.writeLog("Go back from setting page");
-//                CLI.currentPlayer.getLoggerOfMyPlayer().info("Go back from setting page");
                 Administer.goBack();
             }
         });

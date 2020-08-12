@@ -79,13 +79,14 @@ public class RankPage extends JPanel {
         g2d.setFont(new Font("TimesRoman", Font.ITALIC, 25));
         g2d.setColor(Color.red);
 
-        int ySpace = Constant.heightOfMainFrame / (names.size() + 1);
+        int ySpace = Constant.heightOfMainFrame / (names.size()+1 );
         String xSpace = "";
         for (int i = 0; i < 20; i++) {
             xSpace = xSpace + " ";
         }
 
 
+        System.out.println(names);
         for (int i = 0; i < names.size(); i++) {
             if (names.get(i) != null) {
                 String playerState = names.get(i) + xSpace + cups.get(i);
@@ -96,7 +97,7 @@ public class RankPage extends JPanel {
                     }
                 }
                 int xCoordinate = (Constant.widthOfMainFrame - LengthOfMessage.lengthOfMessage(playerState, g2d)) / 2;
-                g2d.drawString(playerState, xCoordinate, (i + 1) * ySpace);
+                g2d.drawString(playerState, xCoordinate, (i+1) * ySpace);
 
             }
         }

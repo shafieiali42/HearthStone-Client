@@ -9,6 +9,9 @@ import view.gui.panels.MenuPanel.MainMenuPage;
 public class QuitGameResponse extends Response {
 
 
+    public QuitGameResponse() {
+        setResponseType("QuitGameResponse");
+    }
 
     @Override
     public void execute() {

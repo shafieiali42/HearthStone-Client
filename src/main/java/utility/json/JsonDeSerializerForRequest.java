@@ -2,8 +2,6 @@ package utility.json;
 
 import com.google.gson.Gson;
 import controller.request.*;
-import controller.response.RemoveCardFromDeckToChangeResponse;
-import utility.guiUtilities.LengthOfMessage;
 
 import java.util.HashMap;
 
@@ -46,7 +44,7 @@ public class JsonDeSerializerForRequest {
         map.put("ShowSpecialCardsOfHeroRequest", ShowSpecialCardsOfHeroRequest.class);
         map.put("ShowSpecificCardsRequest", ShowSpecificCardsRequest.class);
         map.put("ShowWalletRequest", ShowWalletRequest.class);
-        map.put("TransactionRequest", TransactionRequest.class);
+        map.put("BuyOrSellRequest", BuyOrSellRequest.class);
         map.put("SendTextRequest", SendTextRequest.class);
         map.put("ShowRankRequest", ShowRankRequest.class);
     }
