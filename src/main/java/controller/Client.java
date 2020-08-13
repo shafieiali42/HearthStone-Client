@@ -1,5 +1,6 @@
 package controller;
 
+import Main.ClientMain;
 import com.google.gson.Gson;
 import controller.controllers.Controller;
 import controller.request.*;
@@ -8,6 +9,7 @@ import utility.constant.Constant;
 import utility.json.JsonDeSerializerForResponse;
 import view.gui.panels.GamePage.FirstThreeCardsPage;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.Socket;
@@ -67,6 +69,8 @@ public class Client extends Thread {
                 }
             }
         } catch (IOException e) {
+            JOptionPane.showMessageDialog(ClientMain.getMyMainFrame(), "Disconnect from Server",
+                    "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
     }
@@ -122,10 +126,10 @@ public class Client extends Thread {
     }
 
 
-    public void sendShowPlayPanelRequest(){
-        Request request=new ShowPlayPanelRequest(Controller.getCurrentPlayerUserName(),"");
-        String message =new Gson().toJson(request);
-        sendRequest(authToken,"ShowPlayPanelRequest",message);
+    public void sendShowPlayPanelRequest() {
+        Request request = new ShowPlayPanelRequest(Controller.getCurrentPlayerUserName(), "");
+        String message = new Gson().toJson(request);
+        sendRequest(authToken, "ShowPlayPanelRequest", message);
     }
 
     public void sendMouseReleasedRequest(String cardName, String xCoordinateOfReleased,
@@ -134,8 +138,8 @@ public class Client extends Thread {
         Request request = new MouseReleasedRequest(Controller.getCurrentPlayerUserName(), cardName,
                 xCoordinateOfReleased, yCoordinateOfReleased);
 
-        String message =new Gson().toJson(request);
-        sendRequest(authToken,"MouseReleasedRequest",message);
+        String message = new Gson().toJson(request);
+        sendRequest(authToken, "MouseReleasedRequest", message);
     }
 
 
@@ -147,9 +151,9 @@ public class Client extends Thread {
 
 
     public void sendQuitGameRequest() {
-        Request request =new QuitGameRequest(Controller.getCurrentPlayerUserName());
-        String message =new Gson().toJson(request);
-        sendRequest(authToken,"QuitGameRequest",message);
+        Request request = new QuitGameRequest(Controller.getCurrentPlayerUserName());
+        String message = new Gson().toJson(request);
+        sendRequest(authToken, "QuitGameRequest", message);
     }
 
 
